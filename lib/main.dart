@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       '/': (context) => SplashPage(),
       '/sign-in': (context) => SignInPage(),
       '/sign-up': (context) => SignUpPage(),
+      '/home': (context) => MainPage(),
     });
   }
 }
