@@ -21,8 +21,8 @@ class ChatPage extends StatelessWidget {
       );
     }
 
-    Widget content() {
-      return Expanded(
+    Widget emptyChat(){
+         return Expanded(
         child: Container(
           width: double.infinity,
           color: backgroundColor1,
@@ -80,6 +80,25 @@ class ChatPage extends StatelessWidget {
           ),
         ),
       );
+   
+    }
+    Widget content() {
+      return Expanded(
+      child: Container(
+        width: double.infinity,
+        color: backgroundColor1,
+        child: ListView(
+          padding:  EdgeInsets.symmetric(
+            horizontal: defaultMargin,
+          ),
+          children: [
+            ChatTile(),
+          ],
+        ),
+    
+      ),
+    );
+ 
     }
 
     return Column(
