@@ -170,4 +170,5 @@ class DetailChatPage extends StatelessWidget {
       ),
     );
   }
+
 }
