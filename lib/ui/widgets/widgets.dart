@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-part '';
+import '../../shared/shared.dart';
+
+part 'home_page/product_card/product_card.dart';
