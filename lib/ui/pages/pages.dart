@@ -7,6 +7,7 @@ import '../../shared/shared.dart';
 import '../widgets/widgets.dart';
 
 part 'home/home_page/home_page.dart';
+part 'home/product_page/product_page.dart';
 part 'home/edit_profile_page/edit_profile_page.dart';
 part 'home/detail_chat_page/detail_chat_page.dart';
 part 'home/profile_page/profile_page.dart';
