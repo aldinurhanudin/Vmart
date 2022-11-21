@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../shared/shared.dart';
 
 part 'home_page/product_card/product_card.dart';
+part 'home_page/cart_card/cart_card.dart';
 part 'home_page/product_tile/product_tile.dart';
 part 'home_page/wishlist_card/wishlist_card.dart';
 part 'home_page/chat_bubble/chat_bubble.dart';
