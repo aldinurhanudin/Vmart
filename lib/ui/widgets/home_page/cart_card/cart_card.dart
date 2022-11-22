@@ -38,6 +38,7 @@ class CartCard extends StatelessWidget {
               ),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Terrex Urban Low',
@@ -85,6 +86,7 @@ class CartCard extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/icon_remove.png',
+                width: 10,
               ),
               SizedBox(
                 width: 4,
