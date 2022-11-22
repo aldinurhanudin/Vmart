@@ -8,6 +8,7 @@ import '../../shared/shared.dart';
 import '../widgets/widgets.dart';
 
 part 'home/home_page/home_page.dart';
+part 'home/checkout_page/checkout_page.dart';
 part 'home/cart_page/cart_page.dart';
 part 'home/product_page/product_page.dart';
 part 'home/edit_profile_page/edit_profile_page.dart';
