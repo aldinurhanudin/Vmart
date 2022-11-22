@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:js_util';
+
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,8 @@ import '../../shared/shared.dart';
 import '../widgets/widgets.dart';
 
 part 'home/home_page/home_page.dart';
+
+part 'home/checkout_success_page/checkout_success_page.dart';
 part 'home/checkout_page/checkout_page.dart';
 part 'home/cart_page/cart_page.dart';
 part 'home/product_page/product_page.dart';
