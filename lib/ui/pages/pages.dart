@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:js_util';
+// import 'dart:js_util';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
