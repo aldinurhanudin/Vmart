@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
 
+import '../../models/user_model/user_model.dart';
 import '../../shared/shared.dart';
 import '../widgets/widgets.dart';
 

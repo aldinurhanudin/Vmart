@@ -6,65 +6,67 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Widget header(){
-         return AppBar(
-      backgroundColor: backgroundColor1,
-      automaticallyImplyLeading: false,
-      elevation: 0,
-      flexibleSpace: SafeArea(
-        child: Container(
-          padding: EdgeInsets.all(
-            defaultMargin,
-          ),
-          child: Row(
-            children: [
-              ClipOval(
-                child: Image.asset(
-                  'assets/image_profile.png',
-                  width: 64,
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
+     Widget header() {
+      return AppBar(
+        backgroundColor: backgroundColor1,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        flexibleSpace: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(
+              defaultMargin,
+            ),
+            child: Row(
+              children: [
+                ClipOval(
+                  child: Image.network(
+                    user.profilePhotoUrl,
+                    width: 64,
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hallo, Aldi',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 24,
-                        fontWeight: semiBold,
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hallo, ${user.name}',
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 24,
+                          fontWeight: semiBold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '@aldi',
-                      style: subtitleTextStyle.copyWith(
-                        fontSize: 16,
+                      Text(
+                        '@${user.username}',
+                        style: subtitleTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/sign-in', (route) => false);
-                },
-                child: Image.asset(
-                  'assets/button_exit.png',
-                  width: 20,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/sign-in', (route) => false);
+                  },
+                  child: Image.asset(
+                    'assets/button_exit.png',
+                    width: 20,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
- 
+      );
     }
-    
+
     Widget menuItem(String text){
         return Container(
       margin: EdgeInsets.only(

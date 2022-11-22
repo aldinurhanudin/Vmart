@@ -5,7 +5,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    header() {
+     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+   Widget header() {
       return Container(
         margin: EdgeInsets.only(
           top: defaultMargin,
@@ -19,15 +21,17 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Hallo, Zayn",
+                    'Hallo, ${user.name}',
                     style: primaryTextStyle.copyWith(
                       fontSize: 24,
                       fontWeight: semiBold,
                     ),
                   ),
                   Text(
-                    '@zayn',
-                    style: subtitleTextStyle.copyWith(fontSize: 16),
+                    '@${user.username}',
+                    style: subtitleTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),
@@ -38,8 +42,8 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(
-                    'assets/image_profile.png',
+                  image: NetworkImage(
+                    user.profilePhotoUrl,
                   ),
                 ),
               ),

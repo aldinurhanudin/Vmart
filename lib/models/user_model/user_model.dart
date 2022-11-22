@@ -3,7 +3,7 @@ class UserModel {
   String? name;
   String? email;
   String? username;
-  String? profilePhotoUrl;
+  var profilePhotoUrl;
   String? token;
 
   UserModel({
