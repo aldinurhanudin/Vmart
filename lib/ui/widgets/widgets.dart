@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../models/models.dart';
 import '../../shared/shared.dart';
 
 part 'home_page/product_card/product_card.dart';
