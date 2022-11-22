@@ -29,9 +29,13 @@ environment:
 dependencies:
   carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  provider: ^4.3.3
+  http: ^0.13.5
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
+
 #  carousel_slider: ^4.0.0
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
