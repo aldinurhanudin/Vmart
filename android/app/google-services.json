@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296320399428",
+    "project_id": "vmart-dc6ca",
+    "storage_bucket": "vmart-dc6ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296320399428:android:c3a428625c6354877a6411",
+        "android_client_info": {
+          "package_name": "com.aldi.vmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296320399428-tudbcb5iph8u7v4jnc39i6onodigeuo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh4BQxjinxwfkOvDNbCOjVz-Bl-T1uKCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296320399428-tudbcb5iph8u7v4jnc39i6onodigeuo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
