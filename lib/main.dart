@@ -5,7 +5,7 @@ import 'package:vmart/providers/providers.dart';
 
 import 'ui/pages/pages.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -33,13 +33,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => TransactionProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => PageProvider(),
+        ),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
         '/': (context) => SplashPage(),
         '/sign-in': (context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
         '/home': (context) => MainPage(),
-       
         '/edit-profile': (context) => EditProfilePage(),
         '/cart': (context) => CartPage(),
         '/checkout': (context) => CheckoutPage(),

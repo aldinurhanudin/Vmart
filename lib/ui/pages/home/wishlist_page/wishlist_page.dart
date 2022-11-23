@@ -4,7 +4,9 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
-    header() {
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
+
+    Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
         centerTitle: true,
@@ -32,7 +34,7 @@ class WishlistPage extends StatelessWidget {
                 height: 23,
               ),
               Text(
-                'You don\'t have dream shoes?',
+                ' You don\'t have dream shoes?',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -42,7 +44,7 @@ class WishlistPage extends StatelessWidget {
                 height: 12,
               ),
               Text(
-                'Let\'s find your favoriet shoes',
+                'Let\'s find your favorite shoes',
                 style: secondaryTextStyle,
               ),
               SizedBox(
@@ -51,7 +53,9 @@ class WishlistPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       vertical: 10,

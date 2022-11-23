@@ -9,3 +9,4 @@ part 'wishlist_provider/wishlist_provider.dart';
 part 'product_provider/product_provider.dart';
 part 'cart_provider/cart_provider.dart';
 part 'transaction_provider/transaction_provider.dart';
+part 'page_provider/page_provider.dart';

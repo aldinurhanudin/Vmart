@@ -4,7 +4,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    // PageProvider pageProvider = Provider.of<PageProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -58,7 +58,7 @@ class ChatPage extends StatelessWidget {
                 height: 44,
                 child: TextButton(
                   onPressed: () {
-                    // pageProvider.currentIndex = 0;
+                    pageProvider.currentIndex = 0;
                   },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(
