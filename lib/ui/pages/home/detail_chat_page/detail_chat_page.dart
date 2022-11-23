@@ -3,8 +3,9 @@ part of '../../pages.dart';
 class DetailChatPage extends StatefulWidget {
   ProductModel product;
   DetailChatPage(this.product);
+
   @override
-  State<DetailChatPage> createState() => _DetailChatPageState();
+  _DetailChatPageState createState() => _DetailChatPageState();
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
@@ -16,10 +17,12 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     handleAddMessage() async {
       await MessageService().addMessage(
-          user: authProvider.user,
-          isFromUser: true,
-          product: widget.product,
-          message: messageController.text);
+        user: authProvider.user,
+        isFromUser: true,
+        product: widget.product,
+        message: messageController.text,
+      );
+
       setState(() {
         widget.product = UninitializedProductModel();
         messageController.text = '';
@@ -182,49 +185,29 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      // return StreamBuilder<
-      //         List
-      //         // <MessageModel>
-      //         >(
-      //     // stream: MessageService()
-      //     //     .getMessagesByUserId(userId: authProvider.user.id),
-      //     builder: (context, snapshot) {
-      //   if (snapshot.hasData) {
-      //     return ListView(
-      //       padding: EdgeInsets.symmetric(
-      //         horizontal: defaultMargin,
-      //       ),
-      //       // children:
-      //       // snapshot.data
-      //       //     .map((MessageModel message) => ChatBubble(
-      //       //           isSender: message.isFromUser,
-      //       //           text: message.message,
-      //       //           product: message.product,
-      //       //         ))
-      //       //     .toList(),
-      //     );
-      //   } else {
-      //     return Center(
-      //       child: CircularProgressIndicator(),
-      //     );
-      //   }
-      // });
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
-        children: [
-          ChatBubble(
-            isSender: true,
-            text: 'Hi, This item is still available?',
-            hasProduct: true,
-          ),
-          ChatBubble(
-            isSender: false,
-            text: 'Good night, This item is only available in size 42 and 43',
-          ),
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream: MessageService()
+              .getMessagesByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin,
+                ),
+                children: snapshot.data!
+                    .map((MessageModel message) => ChatBubble(
+                          isSender: message.isFromUser,
+                          text: message.message,
+                          product: message.product,
+                        ))
+                    .toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return Scaffold(
@@ -234,45 +217,4 @@ class _DetailChatPageState extends State<DetailChatPage> {
       body: content(),
     );
   }
-
-  // header() {
-  //   return PreferredSize(
-  //     preferredSize: Size.fromHeight(70),
-  //     child: AppBar(
-  //       backgroundColor: backgroundColor1,
-  //       centerTitle: false,
-  //       title: Row(
-  //         children: [
-  //           Image.asset(
-  //             'assets/image_shop_logo_online.png',
-  //             width: 50,
-  //           ),
-  //           SizedBox(
-  //             width: 12,
-  //           ),
-  //           Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               Text(
-  //                 'Shoe Store',
-  //                 style: primaryTextStyle.copyWith(
-  //                   fontWeight: medium,
-  //                   fontSize: 14,
-  //                 ),
-  //               ),
-  //               Text(
-  //                 'Online',
-  //                 style: secondaryTextStyle.copyWith(
-  //                   fontWeight: light,
-  //                   fontSize: 14,
-  //                 ),
-  //               )
-  //             ],
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
 }

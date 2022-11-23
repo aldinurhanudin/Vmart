@@ -1,11 +1,11 @@
 part of '../models.dart';
 
 class MessageModel {
-  String? message;
+  var message;
   int? userId;
   String? userName;
   String? userImage;
-  bool? isFromUser;
+  var isFromUser;
   ProductModel? product;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -21,13 +21,13 @@ class MessageModel {
     this.updatedAt,
   });
 
-  MessageModel.fromJson(Map<String, dynamic> json) {
+  MessageModel.fromJson(Map<String, dynamic> json, {required DocumentReference<Object?> reference}) {
     message = json['message'];
     userId = json['userId'];
     userName = json['userName'];
     userImage = json['userImage'];
     isFromUser = json['isFromUser'];
-    product = json['product'] == {}
+    product = json['product'].isEmpty
         ? UninitializedProductModel()
         : ProductModel.fromJson(json['product']);
     createdAt = DateTime.parse(json['createdAt']);
@@ -44,6 +44,6 @@ class MessageModel {
       'product': product is UninitializedProductModel ? {} : product!.toJson(),
       'createdAt': createdAt.toString(),
       'updatedAt': updatedAt.toString(),
-    }; 
+    };
   }
 }
