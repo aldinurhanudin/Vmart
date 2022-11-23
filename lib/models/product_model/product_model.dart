@@ -2,14 +2,14 @@ part of '../models.dart';
 
 class ProductModel {
   int? id;
-  String? name;
+  var name;
   double? price;
   String? description;
   String? tags;
   CategoryModel? category;
   DateTime? createdAt;
   DateTime? updatedAt;
-  late List<GalleryModel> galleries;
+  List<GalleryModel>? galleries;
 
   ProductModel({
     this.id,
@@ -20,7 +20,7 @@ class ProductModel {
     this.category,
     this.createdAt,
     this.updatedAt,
-    required this.galleries,
+    this.galleries,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -31,23 +31,23 @@ class ProductModel {
     tags = json['tags'];
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
-        .map((gallery) => GalleryModel.fromJson(gallery))
+        .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
   }
 
-  Map<String, dynamic> toJson(){
-    return{
+  Map<String, dynamic> toJson() {
+    return {
       'id': id,
       'name': name,
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category!.toJson(),
-      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
-      'createdAt': createdAt.toString(),
-      'updatedAt': updatedAt.toString(),
+      'category': category?.toJson(),
+      'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),
+      'created_at': createdAt.toString(),
+      'updated_at': updatedAt.toString(),
     };
   }
 }

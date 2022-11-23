@@ -1,13 +1,28 @@
 part of '../../pages.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
+  // Widget build(BuildContext context) {
+  //   AuthProvider authProvider = Provider.of<AuthProvider>(context);
+  //   UserModel user = authProvider.user;
+  //   return ListView(
+  //     children: [
+  //       HeaderHomePage(),
+  //       Categories(),
+  //       PopularProductsTitle(),
+  //       PopularProducts(),
+  //       NewArrivalsTitle(),
+  //       NewArrivals(),
+  //     ],
+  //   );
+  // }
+
   Widget build(BuildContext context) {
-     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
-   Widget header() {
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
+    Widget header() {
       return Container(
         margin: EdgeInsets.only(
           top: defaultMargin,
@@ -192,9 +207,7 @@ class HomePage extends StatelessWidget {
 
     Widget popularProducts() {
       return Container(
-        margin: EdgeInsets.only(
-          top: 14,
-        ),
+        margin: EdgeInsets.only(top: 14),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -203,11 +216,11 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: productProvider.products
+                    .map(
+                      (product) => ProductCard(product),
+                    )
+                    .toList(),
               ),
             ],
           ),
@@ -238,12 +251,17 @@ class HomePage extends StatelessWidget {
           top: 14,
         ),
         child: Column(
-          children: [
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-          ],
+          children: productProvider.products
+              .map(
+                (product) => ProductTile(product),
+              )
+              .toList(),
+          // children: [
+          //   ProductTile(),
+          //   ProductTile(),
+          //   ProductTile(),
+          //   ProductTile(),
+          // ],
         ),
       );
     }

@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
 
 import '../../models/user_model/user_model.dart';

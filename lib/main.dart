@@ -11,10 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- return MultiProvider(
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
@@ -30,6 +33,5 @@ class MyApp extends StatelessWidget {
         '/checkout-success': (context) => CheckoutSuccessPage(),
       }),
     );
-  
   }
 }
