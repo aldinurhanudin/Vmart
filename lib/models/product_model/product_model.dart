@@ -4,7 +4,7 @@ class ProductModel {
   int? id;
   var name;
   double? price;
-  String? description;
+  var description;
   String? tags;
   CategoryModel? category;
   DateTime? createdAt;
@@ -51,3 +51,5 @@ class ProductModel {
     };
   }
 }
+
+class UninitializedProductModel extends ProductModel {}
