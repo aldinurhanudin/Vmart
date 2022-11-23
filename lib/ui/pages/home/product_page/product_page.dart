@@ -25,10 +25,11 @@ class _ProductPageState extends State<ProductPage> {
     'assets/image_shoes8.png',
   ];
 
-  bool isWishList = false;
+ 
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     Future<void> showSuccessDialog() async {
       return showDialog(
         context: context,
@@ -167,11 +168,9 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        isWishList = !isWishList;
-                        // print('name');
-                      });
-                      if (isWishList) {
+                    wishlistProvider.setProduct(widget.product);
+                        
+                      if (wishlistProvider.isWishlist(widget.product)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: secondaryColor,
@@ -194,7 +193,7 @@ class _ProductPageState extends State<ProductPage> {
                       }
                     },
                     child: Image.asset(
-                      isWishList
+                      wishlistProvider.isWishlist(widget.product)
                           ? 'assets/button_wishlist_blue.png'
                           : 'assets/button_wishlist.png',
                       width: 46,

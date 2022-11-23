@@ -1,10 +1,12 @@
 part of '../../widgets.dart';
 
 class WishlistCard extends StatelessWidget {
-  const WishlistCard({super.key});
+  final ProductModel product;
+  WishlistCard(this.product);
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     return Container(
       margin: EdgeInsets.only(
         top: 20,
@@ -22,8 +24,8 @@ class WishlistCard extends StatelessWidget {
       child: Row(
         children: [
           ClipRRect(
-            child: Image.asset(
-              'assets/image_shoes.png',
+            child: Image.network(
+              product.galleries![0].url!,
               width: 60,
             ),
           ),
@@ -35,25 +37,29 @@ class WishlistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Terrex Urban Low',
+                  product.name,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
                 ),
                 Text(
-                  '\$143,98',
+                  '\$${product.price}',
                   style: priceTextStyle,
                 ),
               ],
             ),
           ),
-          Image.asset(
-            'assets/button_wishlist_blue.png',
-            width: 34,
+          GestureDetector(
+            onTap: () {
+              wishlistProvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/button_wishlist_blue.png',
+              width: 34,
+            ),
           ),
         ],
       ),
     );
- 
   }
 }

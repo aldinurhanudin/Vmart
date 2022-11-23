@@ -3,6 +3,7 @@ part of '../../pages.dart';
 class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -84,11 +85,11 @@ class WishlistPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: defaultMargin,
             ),
-            children: [
-              WishlistCard(),
-              WishlistCard(),
-              WishlistCard(),
-            ],
+            children: wishlistProvider.wishlist
+                .map(
+                  (product) => WishlistCard(product),
+                )
+                .toList(),
           ),
         ),
       );
@@ -98,7 +99,7 @@ class WishlistPage extends StatelessWidget {
       children: [
         header(),
         // emptyWishlist(),
-        content(),
+        wishlistProvider.wishlist.length == 0 ? emptyWishlist() : content(),
       ],
     );
   }

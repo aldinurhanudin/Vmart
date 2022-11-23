@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistProvider(),
+        ),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
         '/': (context) => SplashPage(),

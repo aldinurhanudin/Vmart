@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vmart/models/models.dart';
-import 'package:vmart/ui/pages/pages.dart';
+import 'package:provider/provider.dart';
 
+
+import '../../models/models.dart';
+import '../../providers/providers.dart';
 import '../../shared/shared.dart';
+import '../pages/pages.dart';
 
 part 'home_page/product_card/product_card.dart';
 part 'home_page/loading_button/loading_button.dart';
