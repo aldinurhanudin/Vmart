@@ -9,6 +9,7 @@ import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
 
 import '../../models/user_model/user_model.dart';
+import '../../services/services.dart';
 import '../../shared/shared.dart';
 import '../widgets/widgets.dart';
 

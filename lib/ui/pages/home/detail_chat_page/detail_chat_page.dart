@@ -8,8 +8,24 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleAddMessage() async {
+      await MessageService().addMessage(
+          user: authProvider.user,
+          isFromUser: true,
+          product: widget.product,
+          message: messageController.text);
+      setState(() {
+        widget.product = UninitializedProductModel();
+        messageController.text = '';
+      });
+    }
+
     header() {
       return PreferredSize(
         preferredSize: Size.fromHeight(70),
@@ -138,7 +154,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                     child: Center(
                       child: TextFormField(
-                        // controller: messageController,
+                        controller: messageController,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type Message...',
@@ -152,7 +168,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                   width: 20,
                 ),
                 GestureDetector(
-                  // onTap: handleAddMessage,
+                  onTap: handleAddMessage,
                   child: Image.asset(
                     'assets/button_send.png',
                     width: 45,
