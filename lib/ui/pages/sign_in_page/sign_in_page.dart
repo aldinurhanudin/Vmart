@@ -90,6 +90,7 @@ class _SignInPageState extends State<SignInPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -144,6 +145,7 @@ class _SignInPageState extends State<SignInPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -190,7 +192,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
           child: Text(
             'Sign In',
-            style: primaryTextStyle.copyWith(
+            style: thirdTextStyle.copyWith(
               fontSize: 16,
               fontWeight: medium,
             ),

@@ -268,6 +268,92 @@ class HomePage extends StatelessWidget {
 
     return ListView(
       children: [
+        // Container(
+        //   padding: EdgeInsets.only(
+        //       left: 20, right: 20, top: SizeApps.height(context, size: 0.055)),
+        //   height: SizeApps.height(context, size: 0.2),
+        //   width: SizeApps.width(context, size: 1),
+        //   decoration: const BoxDecoration(color: AppColor.mainColor),
+        //   child: Row(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       Row(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         children: [
+        //           SizedBox(
+        //             height: SizeApps.width(context, size: 0.08),
+        //             width: SizeApps.width(context, size: 0.08),
+        //             child: ClipRRect(
+        //                 borderRadius: BorderRadius.circular(100.0),
+        //                 child: CachedNetworkImage(
+        //                     imageUrl: "Image",
+        //                     fit: BoxFit.cover,
+        //                     alignment: Alignment.center,
+        //                     httpHeaders: {
+        //                       // "authorization" : "Bearer ${controller.tokenAccess}",
+        //                       // "x-authorization" : "${controller.token}",
+        //                       // "Content-Type" : "image/*"
+        //                     },
+        //                     placeholder: (context, url) => Image.asset(
+        //                           'assets/no_profile.png',
+        //                           fit: BoxFit.cover,
+        //                         ),
+        //                     errorWidget: (context, url, error) {
+        //                       return Image.asset(
+        //                         'assets/no_profile.png',
+        //                         fit: BoxFit.cover,
+        //                       );
+        //                     })),
+        //           ),
+        //           const SizedBox(
+        //             width: 8,
+        //           ),
+        //           Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               // controller.profileData == null ?
+        //               ShimmerLine(width: SizeApps.width(context, size: 0.3)),
+        //               Text(
+        //                 "",
+        //                 // controller.profileData!.NAME,
+        //                 overflow: TextOverflow.ellipsis,
+        //                 style: TextStyle(
+        //                     color: Colors.white,
+        //                     fontWeight: FontWeight.bold,
+        //                     fontSize: SizeApps.width(context, size: 0.035)),
+        //               ),
+        //               const SizedBox(
+        //                 height: 3,
+        //               ),
+        //               // controller.profileData == null ?
+        //               ShimmerLine(width: SizeApps.width(context, size: 0.2)),
+        //               Text(
+        //                 "",
+        //                 // controller.profileData!.USR,
+        //                 overflow: TextOverflow.ellipsis,
+        //                 style: TextStyle(
+        //                     color: Colors.white,
+        //                     fontSize: SizeApps.width(context, size: 0.025)),
+        //               ),
+        //             ],
+        //           )
+        //         ],
+        //       ),
+        //       InkWell(
+        //         onTap: () {
+        //           // Get.offAllNamed(RouteConstant.login);
+        //         },
+        //         child: Icon(
+        //           Icons.settings,
+        //           color: Colors.white,
+        //           size: SizeApps.width(context, size: 0.035),
+        //         ),
+        //       )
+        //     ],
+        //   ),
+        // ),
+       
         header(),
         categories(),
         popularProductsTitle(),

@@ -13,6 +13,10 @@ class CheckoutPage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Checkout Details',
+          style: primaryTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
         ),
       );
     }
@@ -266,7 +270,7 @@ class CheckoutPage extends StatelessWidget {
               ),
               child: Text(
                 'Checkout Now',
-                style: primaryTextStyle.copyWith(
+                style: thirdTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semiBold,
                 ),

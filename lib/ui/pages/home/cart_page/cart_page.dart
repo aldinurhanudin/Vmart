@@ -12,6 +12,10 @@ class CartPage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Your Cart',
+          style: primaryTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
         ),
         elevation: 0,
       );
@@ -146,14 +150,14 @@ class CartPage extends StatelessWidget {
                   children: [
                     Text(
                       'Continue to Checkout',
-                      style: primaryTextStyle.copyWith(
+                      style: thirdTextStyle.copyWith(
                         fontSize: 16,
                         fontWeight: semiBold,
                       ),
                     ),
                     Icon(
                       Icons.arrow_forward,
-                      color: primaryTextColor,
+                      color: thirdTextColor,
                     ),
                   ],
                 ),

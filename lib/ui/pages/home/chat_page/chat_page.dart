@@ -72,7 +72,7 @@ class ChatPage extends StatelessWidget {
                   ),
                   child: Text(
                     'Explore Store',
-                    style: primaryTextStyle.copyWith(
+                    style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
                     ),

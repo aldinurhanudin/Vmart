@@ -1,6 +1,7 @@
 import 'dart:async';
 
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
 
+import '../../core/style/app_color.dart';
+import '../../core/style/shimmerline.dart';
+import '../../core/style/size_apps.dart';
 import '../../models/user_model/user_model.dart';
 import '../../services/services.dart';
 import '../../shared/shared.dart';

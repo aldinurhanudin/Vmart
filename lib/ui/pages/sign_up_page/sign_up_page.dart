@@ -41,7 +41,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         );
-      
       }
       setState(() {
         isLoading = false;
@@ -97,6 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -151,6 +151,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -205,6 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -259,6 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: BoxDecoration(
                 color: backgroundColor2,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black),
               ),
               child: Center(
                 child: Row(
@@ -360,8 +363,7 @@ class _SignUpPageState extends State<SignUpPage> {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              isLoading ? LoadingButton() :
-              signUpButton(),
+              isLoading ? LoadingButton() : signUpButton(),
               Spacer(),
               footer(),
             ],

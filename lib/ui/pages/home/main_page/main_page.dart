@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
         onPressed: () {
           Navigator.pushNamed(context, '/cart');
         },
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColor,
         child: Image.asset(
           'assets/icon_cart.png',
           width: 20,

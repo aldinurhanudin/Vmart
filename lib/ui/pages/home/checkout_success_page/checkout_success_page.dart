@@ -62,7 +62,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 ),
                 child: Text(
                   'Order Other Shoes',
-                  style: primaryTextStyle.copyWith(
+                  style: thirdTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
                   ),
@@ -85,7 +85,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 ),
                 child: Text(
                   'View My Order',
-                  style: primaryTextStyle.copyWith(
+                  style: thirdTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
                     color: Color(0xffB7B6BF),

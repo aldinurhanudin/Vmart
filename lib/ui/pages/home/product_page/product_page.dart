@@ -94,7 +94,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                       child: Text(
                         'View My Cart',
-                        style: primaryTextStyle.copyWith(
+                        style: thirdTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: medium,
                         ),
@@ -324,7 +324,6 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       );
                     },
-                   
                     child: Container(
                       width: 54,
                       height: 54,
@@ -356,7 +355,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                         child: Text(
                           'Add to cart',
-                          style: primaryTextStyle.copyWith(
+                          style: thirdTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: semiBold,
                           ),
@@ -409,7 +408,7 @@ class _ProductPageState extends State<ProductPage> {
                 Icon(
                   Icons.shopping_bag,
                   size: 40,
-                  color: backgroundColor1,
+                  color: primaryColor,
                 ),
               ],
             ),

@@ -12,6 +12,10 @@ class WishlistPage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Favorite Shoes',
+          style: primaryTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
         ),
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -68,7 +72,7 @@ class WishlistPage extends StatelessWidget {
                   ),
                   child: Text(
                     'Explore Store',
-                    style: primaryTextStyle.copyWith(
+                    style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
                     ),
