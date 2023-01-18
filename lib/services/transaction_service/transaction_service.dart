@@ -1,8 +1,8 @@
 part of '../services.dart';
 
-
 class TransactionService {
-  String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
+  String baseUrl = 'http://10.0.2.2:8000/api';
+  // 'https://shamo-backend.buildwithangga.id/api';
 
   Future<bool> checkout(
       String token, List<CartModel> carts, double totalPrice) async {
