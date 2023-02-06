@@ -21,6 +21,18 @@ class ProductTile extends StatelessWidget {
           right: defaultMargin,
           bottom: defaultMargin,
         ),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(20),
+          color: Color(0xFFFFFFFF),
+        ),
         child: Row(
           children: [
             ClipRRect(
@@ -60,7 +72,7 @@ class ProductTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    '\$${product.price}',
+                    'Rp.${product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

@@ -11,7 +11,7 @@ class ChatPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         centerTitle: true,
         title: Text(
-          'Message Support',
+          'Pesan',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
@@ -38,7 +38,7 @@ class ChatPage extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                'Opss no message yet?',
+                'Upss belum ada pesanan?',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -48,7 +48,7 @@ class ChatPage extends StatelessWidget {
                 height: 12,
               ),
               Text(
-                'You have never done a transaction',
+                'Anda belum pernah melakukan transaksi',
                 style: secondaryTextStyle,
               ),
               SizedBox(
@@ -71,7 +71,7 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Explore Store',
+                    'Jelajahi Toko',
                     style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,

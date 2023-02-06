@@ -5,11 +5,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
-     Widget header() {
+    Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
         automaticallyImplyLeading: false,
@@ -35,7 +34,7 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hallo, ${user.name}',
+                        '${user.name}',
                         style: primaryTextStyle.copyWith(
                           fontSize: 24,
                           fontWeight: semiBold,
@@ -67,94 +66,92 @@ class ProfilePage extends StatelessWidget {
       );
     }
 
-    Widget menuItem(String text){
-        return Container(
-      margin: EdgeInsets.only(
-        top: 16,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: secondaryTextStyle.copyWith(
-              fontSize: 13,
-            ),
-          ),
-          Icon(
-            Icons.chevron_right,
-            color: primaryTextColor,
-          ),
-        ],
-      ),
-    );
-  
-    }
-
-    Widget content(){
-         return Expanded(
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
+    Widget menuItem(String text) {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 16,
         ),
-        decoration: BoxDecoration(
-          color: backgroundColor3,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              height: 20,
-            ),
             Text(
-              'Account',
-              style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: semiBold,
+              text,
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/edit-profile');
-              },
-              child: menuItem(
-                 'Edit profile',
-              ),
-            ),
-            menuItem(
-              'Your Orders',
-            ),
-            menuItem(
-              'Help',
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'General',
-              style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: semiBold,
-              ),
-            ),
-            menuItem(
-               'Privacy & Policy',
-            ),
-            menuItem(
-              'Term of Service',
-            ),
-            menuItem(
-               'Rate App',
+            Icon(
+              Icons.chevron_right,
+              color: primaryTextColor,
             ),
           ],
         ),
-      ),
-    );
- 
+      );
     }
 
-     return Column(
+    Widget content() {
+      return Expanded(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin,
+          ),
+          decoration: BoxDecoration(
+            color: backgroundColor3,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Akun',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/edit-profile');
+                },
+                child: menuItem(
+                  'Edit profil',
+                ),
+              ),
+              menuItem(
+                'Pesanan Saya',
+              ),
+              menuItem(
+                'Bantuan',
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'General',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+              menuItem(
+                'Privacy & Policy',
+              ),
+              menuItem(
+                'Term of Service',
+              ),
+              menuItem(
+                'Rate App',
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Column(
       children: [
         header(),
         content(),

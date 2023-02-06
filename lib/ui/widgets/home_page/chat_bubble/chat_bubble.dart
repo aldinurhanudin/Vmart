@@ -15,7 +15,7 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget productPreview() {
       return Container(
-        width: 230,
+        width: 268,
         margin: EdgeInsets.only(bottom: 12),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -25,7 +25,19 @@ class ChatBubble extends StatelessWidget {
             bottomLeft: Radius.circular(12),
             bottomRight: Radius.circular(12),
           ),
-          color: isSender ? backgroundColor5 : backgroundColor4,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
+          border: Border.all(
+            color: primaryColor,
+            width: 2,
+          ),
+          color: isSender ? backgroundColor1 : backgroundColor4,
         ),
         child: Column(
           children: [
@@ -53,7 +65,7 @@ class ChatBubble extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        '\$${product!.price}',
+                        'Rp.${product!.price}',
                         style: priceTextStyle.copyWith(
                           fontWeight: medium,
                         ),
@@ -79,7 +91,7 @@ class ChatBubble extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Add to Cart',
+                    '+ Keranjang',
                     style: purpleTextStyle,
                   ),
                 ),
@@ -95,9 +107,9 @@ class ChatBubble extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Buy Now',
+                    'Beli Langsung',
                     style: GoogleFonts.poppins(
-                      color: backgroundColor5,
+                      color: backgroundColor1,
                       fontWeight: medium,
                     ),
                   ),
@@ -137,7 +149,21 @@ class ChatBubble extends StatelessWidget {
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12),
                     ),
-                    color: isSender ? backgroundColor5 : backgroundColor4,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset:
+                            const Offset(0, 2), // changes position of shadow
+                      ),
+                    ],
+                    border: Border.all(
+                      color: primaryColor,
+                      // style: BorderStyle.solid,
+                      width: 2,
+                    ),
+                    color: isSender ? backgroundColor1 : backgroundColor4,
                   ),
                   child: Text(
                     text,

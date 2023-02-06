@@ -29,7 +29,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'You made a transaction',
+              'Kamu melakukan transaksi',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -39,7 +39,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               height: 12,
             ),
             Text(
-              'Stay at home while we\nprepare your dream shoes',
+              'Tetap di rumah sementara kami\nmenyiapkan sepatu impian kamu',
               style: secondaryTextStyle,
               textAlign: TextAlign.center,
             ),
@@ -48,6 +48,18 @@ class CheckoutSuccessPage extends StatelessWidget {
               height: 44,
               margin: EdgeInsets.only(
                 top: defaultMargin,
+              ),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+                // color: Color(0xFFFFFFFF),
               ),
               child: TextButton(
                 onPressed: () {
@@ -61,7 +73,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Order Other Shoes',
+                  'Pesan Sepatu Lainnya',
                   style: thirdTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -69,26 +81,41 @@ class CheckoutSuccessPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               width: 196,
               height: 44,
               margin: EdgeInsets.only(
                 top: 12,
               ),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+                color: Color(0xFFFFFFFF),
+              ),
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  backgroundColor: Color(0xff39374B),
+                  backgroundColor: backgroundColor1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 child: Text(
-                  'View My Order',
+                  'Lihat Pesanan Saya',
                   style: thirdTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
-                    color: Color(0xffB7B6BF),
+                    color: Colors.black,
                   ),
                 ),
               ),

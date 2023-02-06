@@ -12,7 +12,7 @@ class CheckoutPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Checkout Details',
+          'Detail Pembayaran',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
@@ -37,7 +37,7 @@ class CheckoutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'List Items',
+                  'Daftar item',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -61,14 +61,22 @@ class CheckoutPage extends StatelessWidget {
             ),
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: backgroundColor4,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2), // changes position of shadow
+                ),
+              ],
+              color: backgroundColor1,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Address Details',
+                  'Alamat Lengkap',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -102,7 +110,7 @@ class CheckoutPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Store Location',
+                          'Lokasi toko',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
@@ -118,7 +126,7 @@ class CheckoutPage extends StatelessWidget {
                           height: defaultMargin,
                         ),
                         Text(
-                          'Your Address',
+                          'Alamat Anda',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
@@ -145,14 +153,22 @@ class CheckoutPage extends StatelessWidget {
             ),
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: backgroundColor4,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2), // changes position of shadow
+                ),
+              ],
+              color: backgroundColor1,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Payment Summary',
+                  'Ringkasan Belanja',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -165,11 +181,11 @@ class CheckoutPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Product Quantity',
+                      'Kuantitas Produk',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '${cartProvider.totalItems()} Items',
+                      '${cartProvider.totalItems()} Barang',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -183,11 +199,11 @@ class CheckoutPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Product Price',
+                      'Harga Produk',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '\$${cartProvider.totalPrice()}',
+                      'Rp.${cartProvider.totalPrice()}',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -201,11 +217,11 @@ class CheckoutPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Shipping',
+                      'Total Ongkos Kirim',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'Free',
+                      'Gratis',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -232,7 +248,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${cartProvider.totalPrice()}',
+                      'Rp.${cartProvider.totalPrice()}',
                       style: priceTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),
@@ -269,7 +285,7 @@ class CheckoutPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'Checkout Now',
+                'Buat Pesanan',
                 style: thirdTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semiBold,

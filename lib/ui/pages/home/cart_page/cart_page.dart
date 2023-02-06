@@ -11,7 +11,7 @@ class CartPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         centerTitle: true,
         title: Text(
-          'Your Cart',
+          'Keranjang',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
@@ -34,7 +34,7 @@ class CartPage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'Opss! Your Cart is Empty',
+              'Ups! Keranjang Anda kosong',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -44,7 +44,7 @@ class CartPage extends StatelessWidget {
               height: 12,
             ),
             Text(
-              'Lets\'s find your favorite shoes',
+              'Ayo temukan produk favoritmu',
               style: secondaryTextStyle,
             ),
             Container(
@@ -65,10 +65,11 @@ class CartPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Explore Store',
+                  'Jelajahi Toko',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -96,27 +97,6 @@ class CartPage extends StatelessWidget {
         height: 180,
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: defaultMargin,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Subtotal',
-                    style: primaryTextStyle,
-                  ),
-                  Text(
-                    '\$${cartProvider.totalPrice()}',
-                    style: priceTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
             SizedBox(
               height: 30,
             ),
@@ -127,41 +107,68 @@ class CartPage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Container(
-              height: 50,
-              margin: EdgeInsets.symmetric(
-                horizontal: defaultMargin,
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/checkout');
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 20,
                 ),
-                child: Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Continue to Checkout',
-                      style: thirdTextStyle.copyWith(
+                      'Total Harga',
+                      style: primaryTextStyle,
+                    ),
+                    Text(
+                      'Rp.${cartProvider.totalPrice()}',
+                      style: priceTextStyle.copyWith(
                         fontSize: 16,
                         fontWeight: semiBold,
                       ),
                     ),
-                    Icon(
-                      Icons.arrow_forward,
-                      color: thirdTextColor,
-                    ),
                   ],
                 ),
-              ),
+                SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  width: 180,
+                  height: 50,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: defaultMargin,
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/checkout');
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Beli',
+                          style: thirdTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: thirdTextColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

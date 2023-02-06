@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/image_splash.png',
+                'assets/VMART.png',
               ),
             ),
           ),

@@ -38,7 +38,7 @@ class WishlistPage extends StatelessWidget {
                 height: 23,
               ),
               Text(
-                ' You don\'t have dream shoes?',
+                'Anda tidak memiliki produk impian?',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -48,7 +48,7 @@ class WishlistPage extends StatelessWidget {
                 height: 12,
               ),
               Text(
-                'Let\'s find your favorite shoes',
+                'Anda tidak memiliki produk impian?',
                 style: secondaryTextStyle,
               ),
               SizedBox(
@@ -71,7 +71,7 @@ class WishlistPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Explore Store',
+                    'Jelajahi Toko',
                     style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,

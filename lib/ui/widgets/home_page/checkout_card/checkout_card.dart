@@ -13,7 +13,15 @@ class CheckoutCard extends StatelessWidget {
         horizontal: 12,
       ),
       decoration: BoxDecoration(
-        color: backgroundColor4,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2), // changes position of shadow
+          ),
+        ],
+        color: backgroundColor1,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -48,7 +56,7 @@ class CheckoutCard extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  '\$${cart.product!.price}',
+                  'Rp.${cart.product!.price}',
                   style: priceTextStyle,
                 ),
               ],
@@ -58,7 +66,7 @@ class CheckoutCard extends StatelessWidget {
             width: 12,
           ),
           Text(
-            '${cart.quantity} Items',
+            '${cart.quantity} Barang',
             style: secondaryTextStyle.copyWith(
               fontSize: 12,
             ),

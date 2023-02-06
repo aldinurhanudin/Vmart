@@ -38,8 +38,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
           title: Row(
             children: [
               Image.asset(
-                'assets/image_shop_logo_online.png',
-                width: 50,
+                'assets/vmart_on.png',
+                width: 60,
               ),
               SizedBox(
                 width: 12,
@@ -48,7 +48,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Shoe Store',
+                    'Vegetables Mart',
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 14,
@@ -76,11 +76,19 @@ class _DetailChatPageState extends State<DetailChatPage> {
         margin: EdgeInsets.only(bottom: 20),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: backgroundColor5,
+          color: backgroundColor1,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: primaryColor,
-          ),
+          // border: Border.all(
+          //   color: primaryColor,
+          // ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +117,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     height: 2,
                   ),
                   Text(
-                    '\$${widget.product.price}',
+                    'Rp.${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -160,7 +168,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                         controller: messageController,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Type Message...',
+                          hintText: 'Ketik Pesan...',
                           hintStyle: subtitleTextStyle,
                         ),
                       ),

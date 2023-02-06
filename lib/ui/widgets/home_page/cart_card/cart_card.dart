@@ -16,8 +16,16 @@ class CartCard extends StatelessWidget {
         vertical: 10,
       ),
       decoration: BoxDecoration(
-        color: backgroundColor4,
+        color: backgroundColor1,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2), // changes position of shadow
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -32,7 +40,6 @@ class CartCard extends StatelessWidget {
                     image: NetworkImage(
                       cart.product!.galleries![0].url!,
                     ),
-                 
                   ),
                 ),
               ),
@@ -50,7 +57,7 @@ class CartCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${cart.product!.price}',
+                      'Rp.${cart.product!.price}',
                       style: priceTextStyle,
                     ),
                   ],
@@ -67,7 +74,6 @@ class CartCard extends StatelessWidget {
                       width: 16,
                     ),
                   ),
-                 
                   SizedBox(
                     height: 2,
                   ),
@@ -89,7 +95,6 @@ class CartCard extends StatelessWidget {
                       width: 16,
                     ),
                   ),
-                
                 ],
               ),
             ],
@@ -111,7 +116,7 @@ class CartCard extends StatelessWidget {
                   width: 4,
                 ),
                 Text(
-                  'Remove',
+                  'Hapus',
                   style: alertTextStyle.copyWith(
                     fontSize: 12,
                     fontWeight: light,
@@ -120,7 +125,6 @@ class CartCard extends StatelessWidget {
               ],
             ),
           ),
-        
         ],
       ),
     );

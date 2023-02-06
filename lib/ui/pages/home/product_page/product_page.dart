@@ -15,14 +15,14 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   List familiarShoes = [
-    'assets/image_shoes.png',
-    'assets/image_shoes2.png',
-    'assets/image_shoes3.png',
-    'assets/image_shoes4.png',
-    'assets/image_shoes5.png',
-    'assets/image_shoes6.png',
-    'assets/image_shoes7.png',
-    'assets/image_shoes8.png',
+    'assets/image_kangkung.png',
+    'assets/image_bayam.jpg',
+    'assets/image_selada.png',
+    'assets/image_apple.png',
+    'assets/image_paprika.png',
+    'assets/image_sawi.png',
+    'assets/image_brokoli.png',
+    'assets/image_sawi.png',
   ];
 
   int currentIndex = 0;
@@ -63,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    "Hurray:",
+                    "Horre:",
                     style: primaryTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
@@ -73,14 +73,14 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    'Item added succesfully',
+                    'Item berhasil ditambahkan',
                     style: secondaryTextStyle,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Container(
-                    width: 154,
+                    width: 142,
                     height: 44,
                     child: TextButton(
                       onPressed: () {
@@ -93,7 +93,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       child: Text(
-                        'View My Cart',
+                        'Lihat Keranjang Saya',
                         style: thirdTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: medium,
@@ -120,7 +120,16 @@ class _ProductPageState extends State<ProductPage> {
           image: DecorationImage(
             image: AssetImage(imageUrl),
           ),
-          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
         ),
       );
     }
@@ -177,7 +186,7 @@ class _ProductPageState extends State<ProductPage> {
                           SnackBar(
                             backgroundColor: secondaryColor,
                             content: Text(
-                              'Has been added to the Wishlist',
+                              'Telah ditambahkan ke Daftar Keinginan',
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -187,7 +196,7 @@ class _ProductPageState extends State<ProductPage> {
                           SnackBar(
                             backgroundColor: alertColor,
                             content: Text(
-                              'Has been removed to the Wishlist',
+                              'Telah dihapus ke Daftar Keinginan',
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -196,7 +205,7 @@ class _ProductPageState extends State<ProductPage> {
                     },
                     child: Image.asset(
                       wishlistProvider.isWishlist(widget.product)
-                          ? 'assets/button_wishlist_blue.png'
+                          ? 'assets/button_wishlist_red.png'
                           : 'assets/button_wishlist.png',
                       width: 46,
                     ),
@@ -214,20 +223,29 @@ class _ProductPageState extends State<ProductPage> {
               ),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: backgroundColor2,
-                borderRadius: BorderRadius.circular(4),
+                color: backgroundColor1,
+                borderRadius: BorderRadius.circular(13),
+                // color: Color(0xFFFFFFFF),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Price starts from',
+                    'Harga',
                     style: primaryTextStyle.copyWith(
                       fontSize: 20,
                     ),
                   ),
                   Text(
-                    '\$${widget.product.price}',
+                    'Rp.${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -248,7 +266,7 @@ class _ProductPageState extends State<ProductPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Description',
+                    'Deskripsi',
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -281,7 +299,7 @@ class _ProductPageState extends State<ProductPage> {
                       horizontal: defaultMargin,
                     ),
                     child: Text(
-                      'Familiar shoes',
+                      'Produk Populer',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -341,6 +359,18 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Expanded(
                     child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: const Offset(
+                                0, 2), // changes position of shadow
+                          ),
+                        ],
+                        // borderRadius: BorderRadius.circular(35),
+                      ),
                       height: 54,
                       child: TextButton(
                         onPressed: () {
@@ -354,7 +384,7 @@ class _ProductPageState extends State<ProductPage> {
                           backgroundColor: primaryColor,
                         ),
                         child: Text(
-                          'Add to cart',
+                          '+Keranjang',
                           style: thirdTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: semiBold,

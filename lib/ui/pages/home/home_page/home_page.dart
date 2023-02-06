@@ -1,6 +1,11 @@
 part of '../../pages.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   // Widget build(BuildContext context) {
   //   AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -21,7 +26,8 @@ class HomePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-
+    int currentIndex = 0;
+    CarouselController carouselController = CarouselController();
     Widget header() {
       return Container(
         margin: EdgeInsets.only(
@@ -68,6 +74,173 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget carousel() {
+      return Container(
+        child: CarouselSlider(
+          items: [
+            Container(
+              width: 360,
+              height: 205,
+              margin: const EdgeInsets.only(
+                bottom: 1,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              decoration: BoxDecoration(
+                // color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/carousel_home.png',
+                height: 203,
+                width: 400,
+              ),
+            ),
+            Container(
+              width: 360,
+              height: 205,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/welcome.png',
+                height: 203,
+                width: 268,
+              ),
+            ),
+            Container(
+              width: 360,
+              height: 205,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/welcome.png',
+                height: 203,
+                width: 268,
+              ),
+            ),
+            Container(
+              width: 360,
+              height: 205,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/welcome.png',
+
+                // height: 203,
+                // width: 268,
+              ),
+            ),
+            Container(
+              width: 360,
+              height: 205,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/welcome.png',
+                // height: 203,
+                // width: 268,
+              ),
+            ),
+            Container(
+              width: 360,
+              height: 205,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/welcome.png',
+                // height: 203,
+                // width: 268,
+              ),
+            ),
+          ],
+          options: CarouselOptions(
+              height: 204,
+              viewportFraction: 1,
+              enableInfiniteScroll: false,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              }),
+          carouselController: carouselController,
+        ),
+      );
+    }
+
+    Widget categoriesTitle() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Text(
+          'Pilihan Kategori',
+          style: primaryTextStyle.copyWith(
+            fontSize: 22,
+            fontWeight: semiBold,
+          ),
+        ),
+      );
+    }
+
     Widget categories() {
       return Container(
         margin: EdgeInsets.only(
@@ -87,11 +260,19 @@ class HomePage extends StatelessWidget {
                 ),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 2), // changes position of shadow
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(12),
                   color: primaryColor,
                 ),
                 child: Text(
-                  'All Shoes',
+                  'Semua Produk',
                   style: primaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -112,7 +293,7 @@ class HomePage extends StatelessWidget {
                   color: transparentColor,
                 ),
                 child: Text(
-                  'Running',
+                  'Sayur Segar',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -133,7 +314,7 @@ class HomePage extends StatelessWidget {
                   color: transparentColor,
                 ),
                 child: Text(
-                  'Training',
+                  'Buah Segar',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -154,28 +335,7 @@ class HomePage extends StatelessWidget {
                   color: transparentColor,
                 ),
                 child: Text(
-                  'Basketball',
-                  style: subtitleTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
-                margin: EdgeInsets.only(right: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: subtitleColor,
-                  ),
-                  color: transparentColor,
-                ),
-                child: Text(
-                  'Hiking',
+                  'Daging',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -196,7 +356,7 @@ class HomePage extends StatelessWidget {
           right: defaultMargin,
         ),
         child: Text(
-          'Popular Products',
+          'Produk Populer',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -236,7 +396,7 @@ class HomePage extends StatelessWidget {
           right: defaultMargin,
         ),
         child: Text(
-          'New Arrivals',
+          'Produk Terbaru',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -266,6 +426,57 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget buildTips() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Kumpulan Tips Untukmu',
+              style: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Wrap(
+              spacing: 17,
+              runSpacing: 18,
+              children: [
+                HomeTipsItem(
+                  imageUrl: 'assets/img_tips1.png',
+                  title: 'Best tips for using a credit card',
+                  url: 'https://www.google.com',
+                ),
+                HomeTipsItem(
+                  imageUrl: 'assets/img_tips2.png',
+                  title: 'Spot the good pie of finance model ',
+                  url: 'https://pub.dev/',
+                ),
+                HomeTipsItem(
+                  imageUrl: 'assets/img_tips3.png',
+                  title: 'Great hack to get better advices',
+                  url: 'https://www.google.com',
+                ),
+                HomeTipsItem(
+                  imageUrl: 'assets/img_tips4.png',
+                  title: 'Save more penny buy this instead',
+                  url: 'https://www.google.com',
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
     return ListView(
       children: [
         // Container(
@@ -273,7 +484,7 @@ class HomePage extends StatelessWidget {
         //       left: 20, right: 20, top: SizeApps.height(context, size: 0.055)),
         //   height: SizeApps.height(context, size: 0.2),
         //   width: SizeApps.width(context, size: 1),
-        //   decoration: const BoxDecoration(color: AppColor.mainColor),
+        //   decoration: const BoxDecoration(color: mainColor),
         //   child: Row(
         //     crossAxisAlignment: CrossAxisAlignment.start,
         //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -353,13 +564,17 @@ class HomePage extends StatelessWidget {
         //     ],
         //   ),
         // ),
-       
+
         header(),
+        // carousel(),
+
+        categoriesTitle(),
         categories(),
         popularProductsTitle(),
         popularProducts(),
         newArrivalsTitle(),
         newArrivals(),
+        buildTips()
       ],
     );
   }
