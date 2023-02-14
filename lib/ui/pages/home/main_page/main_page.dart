@@ -48,6 +48,10 @@ class _MainPageState extends State<MainPage> {
             notchMargin: 12,
             clipBehavior: Clip.antiAlias,
             child: BottomNavigationBar(
+              unselectedLabelStyle:
+                  const TextStyle(color: Colors.white, fontSize: 14),
+              // backgroundColor: const Color(0xFF084A76),
+              fixedColor: primaryColor,
               backgroundColor: backgroundColor7,
               currentIndex: pageProvider.currentIndex,
               onTap: (value) {
@@ -70,7 +74,7 @@ class _MainPageState extends State<MainPage> {
                           : Color(0xff808191),
                     ),
                   ),
-                  label: '',
+                  label: 'Beranda',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
@@ -102,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                           : Color(0xff808191),
                     ),
                   ),
-                  label: '',
+                  label: 'Pesan',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
@@ -118,7 +122,7 @@ class _MainPageState extends State<MainPage> {
                           : Color(0xff808191),
                     ),
                   ),
-                  label: '',
+                  label: 'Akun',
                 ),
               ],
             ),

@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
               offset: const Offset(0, 2), // changes position of shadow
             ),
           ],
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           color: Color(0xFFFFFFFF),
         ),
         child: Column(

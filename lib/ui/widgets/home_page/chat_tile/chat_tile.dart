@@ -19,12 +19,24 @@ class ChatTile extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(top: 33),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xFFFFFFFF),
+        ),
         child: Column(
           children: [
             Row(
               children: [
                 Image.asset(
-                  'assets/image_shop_logo.png',
+                  'assets/vmart_on.png',
                   width: 54,
                 ),
                 SizedBox(
@@ -35,7 +47,7 @@ class ChatTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Shoe Store',
+                        'Vegetable Mart',
                         style: primaryTextStyle.copyWith(
                           fontSize: 15,
                         ),
@@ -51,7 +63,7 @@ class ChatTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Now',
+                  'Sekarang',
                   style: secondaryTextStyle.copyWith(
                     fontSize: 10,
                   ),
@@ -61,10 +73,10 @@ class ChatTile extends StatelessWidget {
             SizedBox(
               height: 12,
             ),
-            Divider(
-              thickness: 1,
-              color: Color(0xff2B2939),
-            ),
+            // Divider(
+            //   thickness: 1,
+            //   color: Color(0xff2B2939),
+            // ),
           ],
         ),
       ),

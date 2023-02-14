@@ -34,7 +34,8 @@ part of '../services.dart';
 class ProductService {
   String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
   // 'http://10.0.2.2:8000/api';
-
+  // 'http://192.168.1.14:8000/api';
+  // '';
   Future<List<ProductModel>> getProducts() async {
     var url = '$baseUrl/products';
     var headers = {'Content-Type': 'application/json'};

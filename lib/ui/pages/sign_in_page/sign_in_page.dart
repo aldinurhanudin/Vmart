@@ -121,8 +121,8 @@ class _SignInPageState extends State<SignInPage> {
       List<String> titles = [
         // (AppLocalizations.of(context)!.welcome.toTitleCase()),
         'Selamat Datang di Vegetable Mart !',
-        'Gaji',
-        'Lembur',
+        'Kualitas Terbaik Dari Para Petani',
+        'Kamu Senang Petani Menang',
         'Cuti',
         'Claim',
         'SPPD'
@@ -130,13 +130,14 @@ class _SignInPageState extends State<SignInPage> {
 
       List<String> subtitles = [
         // (AppLocalizations.of(context)!.labelLogin.toCapitalized()),
-        'Aplikasi yang diperuntukan untuk karyawan CBN untuk membantu kegiatanmu.',
-        'Beritahu kamu tentang gajimu',
-        'Kamu bisa mengajukan lembur dan melihat sudah berapa kali kamu lembur',
+        '',
+        'Sayur,buah dengan jaminan kualitas terbaik dan segar',
+        'Ribuan petani lokal terbantu di setiap  belanjaan yang kamu beli',
         'Kamu bisa mengajukan cuti ',
         'Kamu bisa mengclaim apa yang menjadi hak mu',
         'Kamu bisa mengajukan pembuatan SPPD'
       ];
+
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         child: Column(
@@ -306,7 +307,6 @@ class _SignInPageState extends State<SignInPage> {
                     }),
                 carouselController: carouselController,
               ),
-           
             ),
 
             const SizedBox(
@@ -318,6 +318,7 @@ class _SignInPageState extends State<SignInPage> {
                 // AppLocalizations.of(context)!.welcome.toTitleCase(),
 
                 titles[currentIndex],
+
                 style: blackTextStyle.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -331,6 +332,7 @@ class _SignInPageState extends State<SignInPage> {
                 child: Text(
                   // AppLocalizations.of(context)!.labelLogin.toCapitalized(),
                   subtitles[currentIndex],
+
                   style: greyTextFont.copyWith(
                       fontSize: 12, fontWeight: FontWeight.w400),
                 ),
@@ -412,6 +414,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ],
             ),
+
             SizedBox(
               height: 30,
             ),
