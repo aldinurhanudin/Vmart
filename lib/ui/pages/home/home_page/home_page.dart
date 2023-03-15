@@ -62,11 +62,11 @@ class _HomePageState extends State<HomePage> {
               height: 54,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(
-                    user.profilePhotoUrl,
-                  ),
-                ),
+                // image: DecorationImage(
+                //   image: NetworkImage(
+                //     user.profilePhotoUrl,
+                //   ),
+                // ),
               ),
             ),
           ],
@@ -75,6 +75,8 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget search() {
+      final TextEditingController _textController = TextEditingController();
+
       return Container(
         padding: const EdgeInsets.only(
           top: 16,
@@ -137,38 +139,50 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Container(
-                  width: 260,
-                  height: 40,
+                    width: 260,
+                    height: 40,
 
-                  // color: Colors.green,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                    color: Colors.grey.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-
-                  child: TextFormField(
-                    // focusNode: controller.focusNodeSearch,
-                    decoration: InputDecoration(
-                      hintText: 'search',
-                      hintStyle: blackTextStyle,
-                      suffixIcon: Icon(Icons.search),
+                    // color: Colors.green,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset:
+                              const Offset(0, 2), // changes position of shadow
+                        ),
+                      ],
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                    child: TextField(
+                      controller: _textController,
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            // Perform search functionality here using _textController.text
+                          },
+                        ),
+                      ),
+                    )),
 
-                    // controller: controller.searchController,
-                    textInputAction: TextInputAction.search,
-                    // onFieldSubmitted: (value) =>
-                    //     controller.onSearchPUMK(),
-                  ),
-                ),
+                // child: TextFormField(
+                //   // focusNode: controller.focusNodeSearch,
+                //   decoration: InputDecoration(
+                //     hintText: 'search',
+                //     hintStyle: blackTextStyle,
+                //     suffixIcon: Icon(Icons.search),
+                //   ),
+
+                //   // controller: controller.searchController,
+                //   textInputAction: TextInputAction.search,
+                //   // onFieldSubmitted: (value) =>
+                //   //     controller.onSearchPUMK(),
+                // ),
+
                 const SizedBox(
                   width: 19,
                 ),

@@ -1,8 +1,11 @@
 part of '../services.dart';
 
 class AuthService {
-  String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
-  // 'http://10.0.2.2:8000/api';
+  String baseUrl =
+      
+      'http://10.0.2.2:8000/api';
+      // 'http://127.0.0.1:8000/api';
+
   Future<UserModel> register({
     required String name,
     required String username,

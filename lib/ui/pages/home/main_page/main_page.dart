@@ -90,7 +90,7 @@ class _MainPageState extends State<MainPage> {
                           : Color(0xff808191),
                     ),
                   ),
-                  label: '',
+                  label: 'Whislist',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
