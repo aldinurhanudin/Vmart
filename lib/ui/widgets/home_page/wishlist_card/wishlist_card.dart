@@ -11,15 +11,28 @@ class WishlistCard extends StatelessWidget {
       margin: EdgeInsets.only(
         top: 20,
       ),
+
       padding: EdgeInsets.only(
         top: 10,
         left: 12,
         bottom: 14,
         right: 20,
       ),
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(12),
+      //   color: backgroundColor4,
+      // ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: backgroundColor4,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2), // changes position of shadow
+          ),
+        ],
+        borderRadius: BorderRadius.circular(10),
+        color: Color(0xFFFFFFFF),
       ),
       child: Row(
         children: [
@@ -43,7 +56,7 @@ class WishlistCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$${product.price}',
+                  '\Rp${product.price}',
                   style: priceTextStyle,
                 ),
               ],

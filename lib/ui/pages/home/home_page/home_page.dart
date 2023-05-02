@@ -57,18 +57,18 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                // image: DecorationImage(
-                //   image: NetworkImage(
-                //     user.profilePhotoUrl,
-                //   ),
-                // ),
-              ),
-            ),
+            // Container(
+            //   width: 54,
+            //   height: 54,
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     image: DecorationImage(
+            //       image: NetworkImage(
+            //         user.profilePhotoUrl,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       );
@@ -119,18 +119,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 54,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        user.profilePhotoUrl,
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: 54,
+                //   height: 54,
+                //   decoration: BoxDecoration(
+                //     shape: BoxShape.circle,
+                //     image: DecorationImage(
+                //       image: NetworkImage(
+                //         user.profilePhotoUrl,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             SizedBox(
@@ -637,96 +637,28 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       width: defaultMargin,
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      margin: EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(
-                                0, 2), // changes position of shadow
+                    Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/kategori_buah_segar.png',
+                            fit: BoxFit.cover,
+                            height: 100,
+                            width: 100,
                           ),
-                        ],
-                        borderRadius: BorderRadius.circular(12),
-                        color: primaryColor,
-                      ),
-                      child: Text(
-                        'Semua Produk',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 13,
-                          fontWeight: medium,
-                          color: Colors.white,
                         ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      margin: EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: subtitleColor,
+                        SizedBox(
+                          width: defaultMargin,
                         ),
-                        color: transparentColor,
-                      ),
-                      child: Text(
-                        'Sayur Segar',
-                        style: subtitleTextStyle.copyWith(
-                          fontSize: 13,
-                          fontWeight: medium,
+                        Text(
+                          'Buah Segar ',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 9,
+                            fontWeight: bold,
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      margin: EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: subtitleColor,
-                        ),
-                        color: transparentColor,
-                      ),
-                      child: Text(
-                        'Buah Segar',
-                        style: subtitleTextStyle.copyWith(
-                          fontSize: 13,
-                          fontWeight: medium,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 10,
-                      ),
-                      margin: EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: subtitleColor,
-                        ),
-                        color: transparentColor,
-                      ),
-                      child: Text(
-                        'Daging',
-                        style: subtitleTextStyle.copyWith(
-                          fontSize: 13,
-                          fontWeight: medium,
-                        ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
@@ -900,21 +832,24 @@ class _HomePageState extends State<HomePage> {
             left: 30,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Kumpulan Tips Untukmu',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: semiBold,
+              Padding(
+                padding: const EdgeInsets.only(right: 95),
+                child: Text(
+                  'Kumpulan Tips Untukmu',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: semiBold,
+                  ),
                 ),
               ),
               SizedBox(
                 height: 14,
               ),
               Wrap(
-                spacing: 17,
-                runSpacing: 18,
+                spacing: 15,
+                runSpacing: 15,
                 children: [
                   HomeTipsItem(
                     imageUrl: 'assets/img_tips1.png',

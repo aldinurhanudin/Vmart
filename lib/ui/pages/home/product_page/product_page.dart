@@ -147,256 +147,271 @@ class _ProductPageState extends State<ProductPage> {
           ),
           color: backgroundColor1,
         ),
-        child: Column(
-          children: [
-            //Note: header
-            Container(
-              margin: EdgeInsets.only(
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 2), // changes position of shadow
+              ),
+            ],
+            borderRadius: BorderRadius.circular(10),
+            color: Color(0xFFFFFFFF),
+          ),
+          child: Column(
+            children: [
+              //Note: header
+              Container(
+                margin: EdgeInsets.only(
+                    top: defaultMargin,
+                    left: defaultMargin,
+                    right: defaultMargin),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.product.name,
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 18,
+                              fontWeight: semiBold,
+                            ),
+                          ),
+                          Text(
+                            widget.product.category?.name,
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        wishlistProvider.setProduct(widget.product);
+
+                        if (wishlistProvider.isWishlist(widget.product)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: secondaryColor,
+                              content: Text(
+                                'Telah ditambahkan ke Daftar Keinginan',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: alertColor,
+                              content: Text(
+                                'Telah dihapus ke Daftar Keinginan',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      child: Image.asset(
+                        wishlistProvider.isWishlist(widget.product)
+                            ? 'assets/button_wishlist_red.png'
+                            : 'assets/button_wishlist.png',
+                        width: 46,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //note: price
+              Container(
+                margin: EdgeInsets.only(
+                  top: 20,
+                  left: defaultMargin,
+                  right: defaultMargin,
+                ),
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: backgroundColor1,
+                  borderRadius: BorderRadius.circular(13),
+                  // color: Color(0xFFFFFFFF),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 2), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Harga',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      'Rp.${widget.product.price}',
+                      style: priceTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //Note: Description
+              Container(
+                margin: EdgeInsets.only(
                   top: defaultMargin,
                   left: defaultMargin,
-                  right: defaultMargin),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.product.name,
-                          style: primaryTextStyle.copyWith(
-                            fontSize: 18,
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                        Text(
-                          widget.product.category?.name,
-                          style: secondaryTextStyle.copyWith(
-                            fontSize: 12,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      wishlistProvider.setProduct(widget.product);
-
-                      if (wishlistProvider.isWishlist(widget.product)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: secondaryColor,
-                            content: Text(
-                              'Telah ditambahkan ke Daftar Keinginan',
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            backgroundColor: alertColor,
-                            content: Text(
-                              'Telah dihapus ke Daftar Keinginan',
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: Image.asset(
-                      wishlistProvider.isWishlist(widget.product)
-                          ? 'assets/button_wishlist_red.png'
-                          : 'assets/button_wishlist.png',
-                      width: 46,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            //note: price
-            Container(
-              margin: EdgeInsets.only(
-                top: 20,
-                left: defaultMargin,
-                right: defaultMargin,
-              ),
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: backgroundColor1,
-                borderRadius: BorderRadius.circular(13),
-                // color: Color(0xFFFFFFFF),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(0, 2), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Harga',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    'Rp.${widget.product.price}',
-                    style: priceTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            //Note: Description
-            Container(
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-                left: defaultMargin,
-                right: defaultMargin,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Deskripsi',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    widget.product.description!,
-                    style: subtitleTextStyle.copyWith(
-                      fontWeight: light,
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                ],
-              ),
-            ),
-
-            //Note: Familiar shoes
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(
-                top: defaultMargin,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: defaultMargin,
-                    ),
-                    child: Text(
-                      'Produk Populer',
+                  right: defaultMargin,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Deskripsi',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: familiarShoes.map((image) {
-                        index++;
-                        return Container(
-                          margin: EdgeInsets.only(
-                              left: index == 0 ? defaultMargin : 0),
-                          child: familiarShoesCard(image),
-                        );
-                      }).toList(),
+                    SizedBox(
+                      height: 12,
                     ),
-                  )
-                ],
+                    Text(
+                      widget.product.description!,
+                      style: subtitleTextStyle.copyWith(
+                        fontWeight: light,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            //Note Buttons
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(
-                defaultMargin,
-              ),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailChatPage(widget.product),
+              //Note: Familiar shoes
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(
+                  top: defaultMargin,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultMargin,
+                      ),
+                      child: Text(
+                        'Produk Populer',
+                        style: primaryTextStyle.copyWith(
+                          fontWeight: medium,
                         ),
-                      );
-                    },
-                    child: Container(
-                      width: 54,
-                      height: 54,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            'assets/button_chat.png',
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: familiarShoes.map((image) {
+                          index++;
+                          return Container(
+                            margin: EdgeInsets.only(
+                                left: index == 0 ? defaultMargin : 0),
+                            child: familiarShoesCard(image),
+                          );
+                        }).toList(),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              //Note Buttons
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(
+                  defaultMargin,
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailChatPage(widget.product),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 54,
+                        height: 54,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'assets/button_chat.png',
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(
-                                0, 2), // changes position of shadow
-                          ),
-                        ],
-                        // borderRadius: BorderRadius.circular(35),
-                      ),
-                      height: 54,
-                      child: TextButton(
-                        onPressed: () {
-                          cartProvider.addCart(widget.product);
-                          showSuccessDialog();
-                        },
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          backgroundColor: primaryColor,
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: const Offset(
+                                  0, 2), // changes position of shadow
+                            ),
+                          ],
+                          // borderRadius: BorderRadius.circular(35),
                         ),
-                        child: Text(
-                          '+Keranjang',
-                          style: thirdTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semiBold,
+                        height: 54,
+                        child: TextButton(
+                          onPressed: () {
+                            cartProvider.addCart(widget.product);
+                            showSuccessDialog();
+                          },
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            backgroundColor: primaryColor,
+                          ),
+                          child: Text(
+                            '+Keranjang',
+                            style: thirdTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: semiBold,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
@@ -482,7 +497,7 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor6,
+      backgroundColor: backgroundColor1,
       body: ListView(
         children: [
           header(),

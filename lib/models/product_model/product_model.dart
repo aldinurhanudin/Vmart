@@ -3,7 +3,7 @@ part of '../models.dart';
 class ProductModel {
   int? id;
   var name;
-  double? price;
+  int? price;
   var description;
   String? tags;
   CategoryModel? category;
@@ -26,7 +26,7 @@ class ProductModel {
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    price = double.parse(json['price'].toString());
+    price = int.parse(json['price'].toString());
     description = json['description'];
     tags = json['tags'];
     category = CategoryModel.fromJson(json['category']);
