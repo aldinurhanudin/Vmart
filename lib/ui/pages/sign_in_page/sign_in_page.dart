@@ -6,9 +6,16 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool _isChecked = false;
   TextEditingController emailController = TextEditingController(text: '');
 
   TextEditingController passwordController = TextEditingController(text: '');
+  // @override
+  // void initState() {
+  //   _loadUserEmailPassword();
+  //   super.initState();
+  //   print(Get.arguments);
+  // }
 
   bool isLoading = false;
 
@@ -556,6 +563,33 @@ class _SignInPageState extends State<SignInPage> {
       );
     }
 
+    Widget rememberMe() {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          SizedBox(
+              height: 24.0,
+              width: 24.0,
+              child: Theme(
+                data: ThemeData(unselectedWidgetColor: Color(0xFF7B7B7B)),
+                child: Checkbox(
+                    activeColor: primaryColor,
+                    //  Color(0xff00C8E8),
+                    value: _isChecked,
+                    onChanged: _handleRemeberme),
+              )),
+          SizedBox(width: 10.0),
+          Text(
+            "Remember Me",
+            style: TextStyle(
+              color: Colors.black54,
+              fontSize: 13,
+            ),
+          )
+        ]),
+      );
+    }
+
     Widget signInButton() {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -626,6 +660,10 @@ class _SignInPageState extends State<SignInPage> {
           slider(),
           emailInput(),
           passwordInput(),
+          SizedBox(
+            height: 5,
+          ),
+          rememberMe(),
           isLoading ? LoadingButton() : signInButton(),
           Spacer(),
           footer(),
@@ -633,4 +671,47 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
+
+  void _handleRemeberme(value) async {
+    // final loginController = Get.put(LoginController(authRepository: sl()));
+    print("Handle Rember Me");
+    _isChecked = value;
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool("remember_me", value);
+    // SharedPreferences.getInstance().then(
+    //   (prefs) {
+    //     prefs.setBool("remember_me", value);
+    //     prefs.setString("email", loginController.emailController.text);
+    //     prefs.setString("password", loginController.passwordController.text);
+    //   },
+    // );
+    setState(() {
+      _isChecked = value;
+    });
+  }
+  //  void _loadUserEmailPassword() async {
+  //   print("Load Email");
+  //   try {
+  //     final loginController = Get.put(LoginController(authRepository: sl()));
+  //     SharedPreferences _prefs = await SharedPreferences.getInstance();
+  //     var _email = _prefs.getString("email") ?? "";
+  //     var _password = _prefs.getString("password") ?? "";
+  //     var _remeberMe = _prefs.getBool("remember_me") ?? false;
+
+  //     print(_remeberMe);
+  //     print(_email);
+  //     print(_password);
+
+  //     if (_remeberMe) {
+  //       print("has ben remember");
+  //       setState(() {
+  //         _isChecked = true;
+  //         loginController.emailController.text = _email;
+  //         loginController.passwordController.text = _password;
+  //       });
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }

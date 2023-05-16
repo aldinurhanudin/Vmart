@@ -68,4 +68,18 @@ class AuthService {
       throw Exception('Gagal Login');
     }
   }
+
+
+  Future<String> getToken() async {
+    String token = '';
+
+    const storage = FlutterSecureStorage();
+    String? value = await storage.read(key: 'token');
+
+    if (value != null) {
+      token = 'Bearer' + value;
+    }
+
+    return token;
+  }
 }

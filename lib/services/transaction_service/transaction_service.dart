@@ -2,7 +2,10 @@ part of '../services.dart';
 
 
 class TransactionService {
-  String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
+  String baseUrl = 
+  // 'https://shamo-backend.buildwithangga.id/api';
+  // 'https://bwabank.my.id/api';
+  'http://10.0.2.2:8000/api';
 
   Future<bool> checkout(
       String token, List<CartModel> carts, double totalPrice) async {
@@ -42,4 +45,28 @@ class TransactionService {
       throw Exception('Gagal Melakukan Checkout!');
     }
   }
+
+    Future<String> topUp(TopupFormModel data) async {
+    try {
+      final token = await AuthService().getToken();
+
+      final res = await http.post(
+        Uri.parse(
+          '$baseUrl/top_ups',
+        ),
+        headers: {
+          'Authorization': token,
+        },
+        body: data.toJson(),
+      );
+
+      if (res.statusCode == 200) {
+        return jsonDecode(res.body)['redirect_url'];
+      }
+      throw jsonDecode(res.body)['message'];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 }

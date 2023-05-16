@@ -1,5 +1,4 @@
-
-part of'../providers.dart';
+part of '../providers.dart';
 
 class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
@@ -55,12 +54,12 @@ class CartProvider with ChangeNotifier {
     return total;
   }
 
-  totalPrice() {
+  int totalPrice() {
     double total = 0;
     for (var item in _carts) {
-      total += (item.quantity!* item.product!.price!);
+      total += (item.quantity! * item.product!.price!);
     }
-    return total;
+    return total.toInt();
   }
 
   productExist(ProductModel product) {

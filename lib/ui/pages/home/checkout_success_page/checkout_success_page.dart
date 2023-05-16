@@ -73,7 +73,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Pesan Sepatu Lainnya',
+                  'Pesan Sayur dan Buah Lainnya',
                   style: thirdTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,

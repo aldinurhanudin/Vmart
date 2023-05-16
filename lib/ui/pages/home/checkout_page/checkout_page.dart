@@ -117,7 +117,7 @@ class CheckoutPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Adidas Core',
+                          'Indramayu,jawabarat',
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -133,7 +133,7 @@ class CheckoutPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Marsemoon',
+                          'Indramayu,jawabarat',
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),

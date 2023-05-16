@@ -74,6 +74,26 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+    Widget search2() {
+      return Container(
+        height: 38,
+        child: TextField(
+          // onChanged: (value) => onSearch(),
+          onChanged: (value) {},
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              contentPadding: EdgeInsets.all(0),
+              prefix: Icon(Icons.search, color: Colors.grey.shade500),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide.none),
+              hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+              hintText: "Search Users"),
+        ),
+      );
+    }
+
     Widget search() {
       final TextEditingController _textController = TextEditingController();
 
@@ -971,6 +991,7 @@ class _HomePageState extends State<HomePage> {
         // SizedBox(
         //   height: 20,
         // ),
+        // search2(),
         search(),
         SizedBox(
           height: 20,
