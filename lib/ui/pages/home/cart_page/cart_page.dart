@@ -77,6 +77,7 @@ class CartPage extends StatelessWidget {
           ],
         ),
       );
+    
     }
 
     Widget content() {
@@ -94,18 +95,15 @@ class CartPage extends StatelessWidget {
 
     Widget customBottomNav() {
       return Container(
-        height: 180,
+        height: 89,
         child: Column(
           children: [
-            SizedBox(
-              height: 30,
-            ),
             Divider(
               thickness: 0.3,
               color: subtitleColor,
             ),
             SizedBox(
-              height: 30,
+              height: 8,
             ),
             Row(
               children: [
@@ -129,7 +127,7 @@ class CartPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 18,
                 ),
                 Container(
                   width: 180,
@@ -154,7 +152,7 @@ class CartPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Beli',
+                          'Checkout',
                           style: thirdTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: semiBold,

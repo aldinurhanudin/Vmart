@@ -38,7 +38,7 @@ class ChatPage extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                'Upss belum ada pesanan?',
+                'Upss belum ada pesan',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -115,11 +115,13 @@ class ChatPage extends StatelessWidget {
           });
     }
 
-    return Column(
-      children: [
-        header(),
-        content(),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          header(),
+          content(),
+        ],
+      ),
     );
   }
 }

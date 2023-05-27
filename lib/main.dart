@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
+import 'package:vmart/ui/widgets/widgets.dart';
 
 import 'ui/pages/pages.dart';
 
@@ -46,7 +47,11 @@ class MyApp extends StatelessWidget {
         '/cart': (context) => CartPage(),
         '/checkout': (context) => CheckoutPage(),
         '/checkout-success': (context) => CheckoutSuccessPage(),
-        // '/chat': (context) => ChatPage(),
+        '/chat': (context) => ChatPage(),
+        '/myorder': (context) => MyOrder(),
+        '/addresslist': (context) => AddressList(),
+        '/selectdelivery': (context) => SelectDelivery(),
+        '/education': (context) => Education(),
       }),
     );
   }

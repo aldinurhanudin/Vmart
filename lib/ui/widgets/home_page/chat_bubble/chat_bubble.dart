@@ -15,7 +15,7 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget productPreview() {
       return Container(
-        width: 268,
+        width: 270,
         margin: EdgeInsets.only(bottom: 12),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(

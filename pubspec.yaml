@@ -27,13 +27,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_flushbar: ^1.12.30
   cached_network_image: ^3.2.1
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.0.5
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
   firebase_core: ^2.3.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.0.1
   flutter_secure_storage: ^8.0.0
   get: ^4.6.5
   get_it: ^7.2.0
@@ -44,7 +47,10 @@ dependencies:
   provider: ^6.0.4
   shared_preferences: ^2.1.0
   shimmer: ^2.0.0
-  url_launcher: ^6.1.5
+  url_launcher: ^6.0.3
+  dropdown_search: ^0.6.3
+  geocoding: ^2.0.4
+  geolocator: ^9.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

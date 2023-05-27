@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class CheckoutCard extends StatelessWidget {
   final CartModel cart;
@@ -74,5 +74,6 @@ class CheckoutCard extends StatelessWidget {
         ],
       ),
     );
+ 
   }
 }

@@ -39,7 +39,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               height: 12,
             ),
             Text(
-              'Tetap di rumah sementara kami\nmenyiapkan sepatu impian kamu',
+              'Tetap di rumah selagi kami\nmenyiapkan sayur&buah kamu',
               style: secondaryTextStyle,
               textAlign: TextAlign.center,
             ),
@@ -73,10 +73,10 @@ class CheckoutSuccessPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Pesan Sayur dan Buah Lainnya',
+                  'Belanja Lagi',
                   style: thirdTextStyle.copyWith(
                     fontSize: 16,
-                    fontWeight: medium,
+                    fontWeight: bold,
                   ),
                 ),
               ),
@@ -103,7 +103,9 @@ class CheckoutSuccessPage extends StatelessWidget {
                 color: Color(0xFFFFFFFF),
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/myorder');
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: backgroundColor1,
                   shape: RoundedRectangleBorder(

@@ -45,6 +45,7 @@ TextStyle priceTextStyle = GoogleFonts.poppins(
 
 TextStyle purpleTextStyle = GoogleFonts.poppins(
   color: primaryColor,
+  fontWeight: FontWeight.bold,
 );
 
 TextStyle blackTextStyle = GoogleFonts.poppins(

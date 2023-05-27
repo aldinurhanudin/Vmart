@@ -6,22 +6,61 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  // Widget build(BuildContext context) {
-  //   AuthProvider authProvider = Provider.of<AuthProvider>(context);
-  //   UserModel user = authProvider.user;
-  //   return ListView(
-  //     children: [
-  //       HeaderHomePage(),
-  //       Categories(),
-  //       PopularProductsTitle(),
-  //       PopularProducts(),
-  //       NewArrivalsTitle(),
-  //       NewArrivals(),
-  //     ],
-  //   );
-  // }
+  Future<Position> _getGeoLocationPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location service Not Enabled');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permission denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+        'Location permission denied forever, we cannot access',
+      );
+    }
+
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+  }
+
+  Future<String> getAddressFromLongLat(Position position) async {
+    try {
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks[0];
+        String address =
+            '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+        return address;
+      } else {
+        return 'Alamat tidak ditemukan';
+      }
+    } catch (e) {
+      return 'Terjadi kesalahan dalam mendapatkan alamat';
+    }
+  }
+
+  String abbreviateText(String text, int maxLength) {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
@@ -74,35 +113,15 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget search2() {
-      return Container(
-        height: 38,
-        child: TextField(
-          // onChanged: (value) => onSearch(),
-          onChanged: (value) {},
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              contentPadding: EdgeInsets.all(0),
-              prefix: Icon(Icons.search, color: Colors.grey.shade500),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none),
-              hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
-              hintText: "Search Users"),
-        ),
-      );
-    }
-
-    Widget search() {
+    Widget carousel() {
       final TextEditingController _textController = TextEditingController();
-
       return Container(
         padding: const EdgeInsets.only(
           top: 16,
           right: 10,
           left: 20,
         ),
+        height: 310,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -117,94 +136,92 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hallo, ${user.name}',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: semiBold,
-                        ),
+            FutureBuilder<Position>(
+              future: _getGeoLocationPosition(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Gagal mendapatkan posisi'));
+                } else if (!snapshot.hasData) {
+                  return Center(child: Text('Posisi tidak ditemukan'));
+                }
+
+                Position position = snapshot.data!;
+                return FutureBuilder<String>(
+                  future: getAddressFromLongLat(position),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Gagal mendapatkan alamat'));
+                    } else if (!snapshot.hasData) {
+                      return Center(child: Text('Alamat tidak ditemukan'));
+                    }
+
+                    String address = snapshot.data!;
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.location_on),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Dikirim Ke',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(width: 5),
+                              GestureDetector(
+                                child: Text(
+                                  abbreviateText(address, 25),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onLongPress: () {
+                                  Clipboard.setData(
+                                      ClipboardData(text: address));
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      Text(
-                        '@${user.username}',
-                        style: subtitleTextStyle.copyWith(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Container(
-                //   width: 54,
-                //   height: 54,
-                //   decoration: BoxDecoration(
-                //     shape: BoxShape.circle,
-                //     image: DecorationImage(
-                //       image: NetworkImage(
-                //         user.profilePhotoUrl,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-            SizedBox(
-              height: 23,
+                    );
+                  },
+                );
+              },
             ),
             Row(
               children: [
                 Container(
-                    width: 260,
-                    height: 40,
-
-                    // color: Colors.green,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
-                        ),
-                      ],
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      controller: _textController,
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.search),
-                          onPressed: () {
-                            // Perform search functionality here using _textController.text
-                          },
-                        ),
+                  width: 280,
+                  height: 60,
+                  color: Colors.white,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Cari Buah&Sayur segar di sini...',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide.none,
                       ),
-                    )),
-
-                // child: TextFormField(
-                //   // focusNode: controller.focusNodeSearch,
-                //   decoration: InputDecoration(
-                //     hintText: 'search',
-                //     hintStyle: blackTextStyle,
-                //     suffixIcon: Icon(Icons.search),
-                //   ),
-
-                //   // controller: controller.searchController,
-                //   textInputAction: TextInputAction.search,
-                //   // onFieldSubmitted: (value) =>
-                //   //     controller.onSearchPUMK(),
-                // ),
-
-                const SizedBox(
-                  width: 19,
+                      filled: true,
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    style: TextStyle(fontSize: 13.0),
+                  ),
                 ),
                 Flexible(
                   flex: 2,
@@ -215,15 +232,13 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(100.0)),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(100.0),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/cart');
-
-                        // ChatPage();
-                        // if (controller
-                        //     .searchController.text.isNotEmpty) {
-                        //   controller.onSearchPUMK();
-                        // }
-                      },
+                      // onTap: () {
+                      //   // Navigator.pushNamed(context, '/cart');
+                      //   // Navigator.pushNamed(context, '/chat');
+                      //   // Navigator.pushNamedAndRemoveUntil(
+                      //   //     context, '/chat', (route) => false);
+                      //   ChatPage();
+                      // },
                       child: Container(
                         width: 40,
                         height: 40,
@@ -231,10 +246,21 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        child: Image.asset(
-                          'assets/icon_chat.png',
-                          width: 15,
-                          color: Colors.white,
+                        child: GestureDetector(
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => ChatPage(),
+                            //   ),
+                            // );
+                            Navigator.pushNamed(context, '/chat');
+                          },
+                          child: Image.asset(
+                            'assets/icon_chat.png',
+                            width: 15,
+                            color: Colors.white,
+                          ),
                         ),
                         // const Icon(
                         //   Icons.message_sharp,
@@ -250,255 +276,252 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-          ],
-        ),
-      );
-    }
-
-    Widget carousel() {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            Container(
-              height: 150,
-              // width: 1000,
-              child: CarouselSlider(
-                items: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
                   Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      // color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
+                    height: 150,
+                    // width: 1000,
+                    child: CarouselSlider(
+                      items: [
+                        Container(
+                          width: 360,
+                          height: 205,
+                          decoration: BoxDecoration(
+                            // color: primaryColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/carousel_2.png',
+                              fit: BoxFit.cover,
+                              // height: 203,
+                              // width: 400,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 360,
+                          height: 205,
+                          decoration: BoxDecoration(
+                            // color: primaryColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/carousel_1.png',
+                              fit: BoxFit.cover,
+                              // height: 203,
+                              // width: 268,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 360,
+                          height: 360,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/carousel_3.png',
+                              fit: BoxFit.cover,
+                              // height: 203,
+                              // width: 268,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 360,
+                          height: 205,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/carousel_1.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 360,
+                          height: 205,
+                          decoration: BoxDecoration(
+                            // color: primaryColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/carousel_2.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 360,
+                          height: 205,
+                          decoration: BoxDecoration(
+                            // color: primaryColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/carousel_3.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/carousel_2.png',
-                        fit: BoxFit.cover,
-                        // height: 203,
-                        // width: 400,
-                      ),
+                      options: CarouselOptions(
+                          height: 204,
+                          viewportFraction: 1,
+                          enableInfiniteScroll: false,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          }),
+                      carouselController: carouselController,
                     ),
                   ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      // color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/carousel_1.png',
-                        fit: BoxFit.cover,
-                        // height: 203,
-                        // width: 268,
-                      ),
-                    ),
+                  SizedBox(
+                    height: 5,
                   ),
-                  Container(
-                    width: 360,
-                    height: 360,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: currentIndex == 0 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
                         ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/carousel_3.png',
-                        fit: BoxFit.cover,
-                        // height: 203,
-                        // width: 268,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 0 ? blackColor : greyColor,
                         ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/carousel_1.png',
-                        fit: BoxFit.cover,
                       ),
-                    ),
-                  ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      // color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
+                      Container(
+                        width: currentIndex == 1 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
                         ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/carousel_2.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      // color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 1 ? blackColor : greyColor,
                         ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'assets/carousel_3.png',
-                        fit: BoxFit.cover,
                       ),
-                    ),
+                      Container(
+                        width: currentIndex == 2 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 2 ? blackColor : greyColor,
+                        ),
+                      ),
+                      Container(
+                        width: currentIndex == 3 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 3 ? blackColor : greyColor,
+                        ),
+                      ),
+                      Container(
+                        width: currentIndex == 4 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 4 ? blackColor : greyColor,
+                        ),
+                      ),
+                      Container(
+                        width: currentIndex == 5 ? 28 : 12,
+                        height: 12,
+                        margin: EdgeInsets.only(
+                          right: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: currentIndex == 5 ? blackColor : greyColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-                options: CarouselOptions(
-                    height: 204,
-                    viewportFraction: 1,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    }),
-                carouselController: carouselController,
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: currentIndex == 0 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 0 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 1 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 1 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 2 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 2 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 3 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 3 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 4 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 4 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 5 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 5 ? blackColor : greyColor,
-                  ),
-                ),
-              ],
             ),
           ],
         ),
@@ -508,6 +531,7 @@ class _HomePageState extends State<HomePage> {
     Widget categoriesTitle() {
       return Container(
         // color: Colors.white,
+
         margin: EdgeInsets.only(
           top: defaultMargin,
           left: defaultMargin,
@@ -527,6 +551,7 @@ class _HomePageState extends State<HomePage> {
       return Container(
         // color: Colors.white,
         height: 170,
+
         margin: EdgeInsets.only(
           top: defaultMargin,
         ),
@@ -884,7 +909,9 @@ class _HomePageState extends State<HomePage> {
                   HomeTipsItem(
                     imageUrl: 'assets/img_tips3.png',
                     title: 'Great hack to get better advices',
-                    url: 'https://www.google.com',
+                    url:
+                        // 'https://www.google.com',
+                        'https://app.sandbox.midtrans.com/snap/v3/redirection/8527b81c-1023-44c6-9b92-e84d86c182b8',
                   ),
                   HomeTipsItem(
                     imageUrl: 'assets/img_tips4.png',
@@ -901,101 +928,6 @@ class _HomePageState extends State<HomePage> {
 
     return ListView(
       children: [
-        // Container(
-        //   padding: EdgeInsets.only(
-        //       left: 20, right: 20, top: SizeApps.height(context, size: 0.055)),
-        //   height: SizeApps.height(context, size: 0.2),
-        //   width: SizeApps.width(context, size: 1),
-        //   decoration: const BoxDecoration(color: mainColor),
-        //   child: Row(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //     children: [
-        //       Row(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           SizedBox(
-        //             height: SizeApps.width(context, size: 0.08),
-        //             width: SizeApps.width(context, size: 0.08),
-        //             child: ClipRRect(
-        //                 borderRadius: BorderRadius.circular(100.0),
-        //                 child: CachedNetworkImage(
-        //                     imageUrl: "Image",
-        //                     fit: BoxFit.cover,
-        //                     alignment: Alignment.center,
-        //                     httpHeaders: {
-        //                       // "authorization" : "Bearer ${controller.tokenAccess}",
-        //                       // "x-authorization" : "${controller.token}",
-        //                       // "Content-Type" : "image/*"
-        //                     },
-        //                     placeholder: (context, url) => Image.asset(
-        //                           'assets/no_profile.png',
-        //                           fit: BoxFit.cover,
-        //                         ),
-        //                     errorWidget: (context, url, error) {
-        //                       return Image.asset(
-        //                         'assets/no_profile.png',
-        //                         fit: BoxFit.cover,
-        //                       );
-        //                     })),
-        //           ),
-        //           const SizedBox(
-        //             width: 8,
-        //           ),
-        //           Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               // controller.profileData == null ?
-        //               ShimmerLine(width: SizeApps.width(context, size: 0.3)),
-        //               Text(
-        //                 "",
-        //                 // controller.profileData!.NAME,
-        //                 overflow: TextOverflow.ellipsis,
-        //                 style: TextStyle(
-        //                     color: Colors.white,
-        //                     fontWeight: FontWeight.bold,
-        //                     fontSize: SizeApps.width(context, size: 0.035)),
-        //               ),
-        //               const SizedBox(
-        //                 height: 3,
-        //               ),
-        //               // controller.profileData == null ?
-        //               ShimmerLine(width: SizeApps.width(context, size: 0.2)),
-        //               Text(
-        //                 "",
-        //                 // controller.profileData!.USR,
-        //                 overflow: TextOverflow.ellipsis,
-        //                 style: TextStyle(
-        //                     color: Colors.white,
-        //                     fontSize: SizeApps.width(context, size: 0.025)),
-        //               ),
-        //             ],
-        //           )
-        //         ],
-        //       ),
-        //       InkWell(
-        //         onTap: () {
-        //           // Get.offAllNamed(RouteConstant.login);
-        //         },
-        //         child: Icon(
-        //           Icons.settings,
-        //           color: Colors.white,
-        //           size: SizeApps.width(context, size: 0.035),
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
-
-        // header(),
-        // SizedBox(
-        //   height: 20,
-        // ),
-        // search2(),
-        search(),
-        SizedBox(
-          height: 20,
-        ),
         carousel(),
 
         // categoriesTitle(),

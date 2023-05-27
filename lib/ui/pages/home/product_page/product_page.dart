@@ -63,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    "Horre:",
+                    "Assyikkk:",
                     style: primaryTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
@@ -269,6 +269,34 @@ class _ProductPageState extends State<ProductPage> {
               ),
 
               //Note: Description
+              // Container(
+              //   margin: EdgeInsets.only(
+              //     top: defaultMargin,
+              //     // left: 10,
+              //     right: 150,
+              //   ),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         'Deskripsi',
+              //         style: primaryTextStyle.copyWith(
+              //           fontWeight: bold,
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         height: 12,
+              //       ),
+              //       Text(
+              //         widget.product.description!,
+              //         style: subtitleTextStyle.copyWith(
+              //           fontWeight: light,
+              //         ),
+              //         textAlign: TextAlign.justify,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: EdgeInsets.only(
                   top: defaultMargin,
@@ -281,14 +309,14 @@ class _ProductPageState extends State<ProductPage> {
                     Text(
                       'Deskripsi',
                       style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
+                        fontWeight: bold,
                       ),
                     ),
                     SizedBox(
                       height: 12,
                     ),
                     Text(
-                      widget.product.description!,
+                      widget.product.description,
                       style: subtitleTextStyle.copyWith(
                         fontWeight: light,
                       ),
@@ -339,79 +367,164 @@ class _ProductPageState extends State<ProductPage> {
               ),
 
               //Note Buttons
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.all(
-                  defaultMargin,
-                ),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailChatPage(widget.product),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: 54,
-                        height: 54,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              'assets/button_chat.png',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: const Offset(
-                                  0, 2), // changes position of shadow
-                            ),
-                          ],
-                          // borderRadius: BorderRadius.circular(35),
-                        ),
-                        height: 54,
-                        child: TextButton(
-                          onPressed: () {
-                            cartProvider.addCart(widget.product);
-                            showSuccessDialog();
-                          },
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            backgroundColor: primaryColor,
-                          ),
-                          child: Text(
-                            '+Keranjang',
-                            style: thirdTextStyle.copyWith(
-                              fontSize: 16,
-                              fontWeight: semiBold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   width: double.infinity,
+              //   margin: EdgeInsets.all(
+              //     defaultMargin,
+              //   ),
+              //   child: Row(
+              //     children: [
+              //       GestureDetector(
+              //         onTap: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) =>
+              //                   DetailChatPage(widget.product),
+              //             ),
+              //           );
+              //         },
+              //         child: Container(
+              //           width: 54,
+              //           height: 54,
+              //           decoration: BoxDecoration(
+              //             image: DecorationImage(
+              //               image: AssetImage(
+              //                 'assets/button_chat.png',
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 16,
+              //       ),
+              //       Expanded(
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //             boxShadow: [
+              //               BoxShadow(
+              //                 color: Colors.grey.withOpacity(0.5),
+              //                 spreadRadius: 1,
+              //                 blurRadius: 5,
+              //                 offset: const Offset(
+              //                     0, 2), // changes position of shadow
+              //               ),
+              //             ],
+              //             // borderRadius: BorderRadius.circular(35),
+              //           ),
+              //           height: 54,
+              //           child: TextButton(
+              //             onPressed: () {
+              //               cartProvider.addCart(widget.product);
+              //               showSuccessDialog();
+              //             },
+              //             style: TextButton.styleFrom(
+              //               shape: RoundedRectangleBorder(
+              //                 borderRadius: BorderRadius.circular(12),
+              //               ),
+              //               backgroundColor: primaryColor,
+              //             ),
+              //             child: Text(
+              //               '+Keranjang',
+              //               style: thirdTextStyle.copyWith(
+              //                 fontSize: 16,
+              //                 fontWeight: semiBold,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
+        ),
+      );
+    }
+
+    Widget tambahKeranjang() {
+      return Container(
+        // width: double.infinity,
+        height: 89,
+
+        child: Column(
+          children: [
+            Divider(
+              thickness: 0.3,
+              color: subtitleColor,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  height: 8,
+                  width: 30,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailChatPage(widget.product),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 54,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/button_chat.png',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 80,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset:
+                            const Offset(0, 2), // changes position of shadow
+                      ),
+                    ],
+                    // borderRadius: BorderRadius.circular(35),
+                  ),
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () {
+                      cartProvider.addCart(widget.product);
+                      showSuccessDialog();
+                    },
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      backgroundColor: primaryColor,
+                    ),
+                    child: Text(
+                      'Tambah Keranjang',
+                      style: thirdTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       );
     }
@@ -450,10 +563,16 @@ class _ProductPageState extends State<ProductPage> {
                     size: 40,
                   ),
                 ),
-                Icon(
-                  Icons.shopping_bag,
-                  size: 40,
-                  color: primaryColor,
+                GestureDetector(
+                  onTap: () {
+                    cartProvider.addCart(widget.product);
+                    showSuccessDialog();
+                  },
+                  child: Icon(
+                    Icons.shopping_bag,
+                    size: 40,
+                    color: primaryColor,
+                  ),
                 ),
               ],
             ),
@@ -507,6 +626,7 @@ class _ProductPageState extends State<ProductPage> {
           content(),
         ],
       ),
+      bottomNavigationBar: tambahKeranjang(),
     );
   }
 }

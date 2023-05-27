@@ -61,6 +61,13 @@ class CartProvider with ChangeNotifier {
     }
     return total.toInt();
   }
+  int totalPriceShipping() {
+    double total = 0;
+    for (var item in _carts) {
+      total += (item.quantity! * item.product!.price!);
+    }
+    return (total + 8000).toInt();
+  }
 
   productExist(ProductModel product) {
     if (_carts.indexWhere((element) => element.product!.id == product.id) ==

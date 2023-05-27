@@ -21,11 +21,11 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                    // child: Image.network(
-                    //   user.profilePhotoUrl,
-                    //   width: 64,
-                    // ),
-                    ),
+                  child: Image.asset(
+                    'assets/vmart_on.png',
+                    width: 64,
+                  ),
+                ),
                 SizedBox(
                   width: 16,
                 ),
@@ -40,12 +40,12 @@ class ProfilePage extends StatelessWidget {
                           fontWeight: semiBold,
                         ),
                       ),
-                      Text(
-                        '@${user.username}',
-                        style: subtitleTextStyle.copyWith(
-                          fontSize: 16,
-                        ),
-                      ),
+                      // Text(
+                      //   '@${user.username}',
+                      //   style: subtitleTextStyle.copyWith(
+                      //     fontSize: 16,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -120,11 +120,21 @@ class ProfilePage extends StatelessWidget {
                   'Edit profil',
                 ),
               ),
-              menuItem(
-                'Pesanan Saya',
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/myorder');
+                },
+                child: menuItem(
+                  'Pesanan Saya',
+                ),
               ),
-              menuItem(
-                'Bantuan',
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/education');
+                },
+                child: menuItem(
+                  'Edukasi',
+                ),
               ),
               SizedBox(
                 height: 30,
