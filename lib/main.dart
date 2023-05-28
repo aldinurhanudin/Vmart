@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
+import 'package:vmart/ui/pages/home/education_page/education_page.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
+import 'controller/education_controller/video_notifier.dart';
 import 'ui/pages/pages.dart';
 
 void main() async {
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => PageProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => VideoNotifier(),
+        ),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
         '/': (context) => SplashPage(),
@@ -51,7 +56,7 @@ class MyApp extends StatelessWidget {
         '/myorder': (context) => MyOrder(),
         '/addresslist': (context) => AddressList(),
         '/selectdelivery': (context) => SelectDelivery(),
-        '/education': (context) => Education(),
+        '/education': (context) => EducationPage(),
       }),
     );
   }

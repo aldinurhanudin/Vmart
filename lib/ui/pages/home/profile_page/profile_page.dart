@@ -136,6 +136,14 @@ class ProfilePage extends StatelessWidget {
                   'Edukasi',
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/education');
+                },
+                child: menuItem(
+                  'Quiz',
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
