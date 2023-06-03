@@ -118,8 +118,8 @@ class _HomePageState extends State<HomePage> {
       return Container(
         padding: const EdgeInsets.only(
           top: 16,
-          right: 10,
-          left: 20,
+          right: 5,
+          left: 5,
         ),
         height: 310,
         decoration: BoxDecoration(
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(width: 5),
                               GestureDetector(
                                 child: Text(
-                                  abbreviateText(address, 25),
+                                  abbreviateText(address, 31),
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -200,11 +200,10 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Container(
-                  width: 280,
+                  width: 300,
                   height: 60,
                   color: Colors.white,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Cari Buah&Sayur segar di sini...',
@@ -232,13 +231,6 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(100.0)),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(100.0),
-                      // onTap: () {
-                      //   // Navigator.pushNamed(context, '/cart');
-                      //   // Navigator.pushNamed(context, '/chat');
-                      //   // Navigator.pushNamedAndRemoveUntil(
-                      //   //     context, '/chat', (route) => false);
-                      //   ChatPage();
-                      // },
                       child: Container(
                         width: 40,
                         height: 40,
@@ -248,12 +240,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => ChatPage(),
-                            //   ),
-                            // );
                             Navigator.pushNamed(context, '/chat');
                           },
                           child: Image.asset(
@@ -277,7 +263,7 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 5),
               child: Column(
                 children: [
                   Container(
@@ -553,7 +539,7 @@ class _HomePageState extends State<HomePage> {
         height: 170,
 
         margin: EdgeInsets.only(
-          top: defaultMargin,
+          top: 14,
         ),
         decoration: BoxDecoration(
           boxShadow: [
@@ -569,7 +555,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Padding(
           padding: const EdgeInsets.only(
-            left: 30,
+            left: 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -716,25 +702,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget popularProductsTitle() {
       return Container(
-        margin: EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        ),
-        child: Text(
-          'Produk Populer',
-          style: primaryTextStyle.copyWith(
-            fontSize: 22,
-            fontWeight: semiBold,
-          ),
-        ),
-      );
-    }
-
-    Widget popularProducts() {
-      return Container(
-        margin: EdgeInsets.only(top: 14),
-        height: 350,
+        height: 85,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -747,8 +715,11 @@ class _HomePageState extends State<HomePage> {
           // borderRadius: BorderRadius.circular(12),
           color: Colors.white,
         ),
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -759,28 +730,160 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: semiBold,
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: defaultMargin,
+              Row(
+                children: [
+                  Text(
+                    'Temukan penawaran terbaik\ndi Vmart!',
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 14,
+                      // fontWeight: semiBold,
                     ),
-                    Row(
-                      children: productProvider.products
-                          .map(
-                            (product) => ProductCard(product),
-                          )
-                          .toList(),
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AllProductsPage(),
+      ),
+    );
+  },
+                    child: Text(
+                      'Lihat Semua',
+                      style: greenTextStyle.copyWith(
+                        fontSize: 14,
+                        // fontWeight: semiBold,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
+        ),
+      );
+    
+    }
+
+    Widget popularProducts() {
+      // return Container(
+      //   margin: EdgeInsets.only(top: 14),
+      //   height: 380,
+      //   decoration: BoxDecoration(
+      //     boxShadow: [
+      //       BoxShadow(
+      //         color: Colors.grey.withOpacity(0.5),
+      //         spreadRadius: 1,
+      //         blurRadius: 5,
+      //         offset: const Offset(0, 2), // changes position of shadow
+      //       ),
+      //     ],
+      //     // borderRadius: BorderRadius.circular(12),
+      //     color: Colors.green,
+      //   ),
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(left: 30),
+      //     child: Column(
+      //       crossAxisAlignment: CrossAxisAlignment.start,
+      //       children: [
+      //         Text(
+      //           'Produk Populer',
+      //           style: primaryTextStyle.copyWith(
+      //             fontSize: 22,
+      //             fontWeight: semiBold,
+      //           ),
+      //         ),
+      //         SizedBox(
+      //           height: 15,
+      //         ),
+      //         SingleChildScrollView(
+      //           scrollDirection: Axis.horizontal,
+      //           child: Row(
+      //             children: [
+      //               SizedBox(
+      //                 width: defaultMargin,
+      //               ),
+      //               Row(
+      //                 children: productProvider.products
+      //                     .map(
+      //                       (product) => ProductCard(product),
+      //                     )
+      //                     .toList(),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // );
+
+      return Container(
+        margin: EdgeInsets.only(top: 3),
+        height: 330,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
+          // borderRadius: BorderRadius.circular(12),
+          color: primaryColor,
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              left: 1,
+              right: 130,
+              top: 0,
+              bottom: 50,
+              child: Image.asset(
+                'assets/VMART.png', // Ganti dengan path gambar Anda
+                fit: BoxFit.cover,
+                height: 20,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Text(
+                //   'Produk Populer',
+                //   style: primaryTextStyle.copyWith(
+                //     fontSize: 22,
+                //     fontWeight: semiBold,
+                //   ),
+                // ),
+                SizedBox(height: 15),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(width: 250),
+                      Row(
+                        children: productProvider.products
+                            .map(
+                              (product) => ClipRect(
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  widthFactor: 1.0,
+                                  child: ProductCard(product),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       );
     }
@@ -821,7 +924,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Padding(
           padding: const EdgeInsets.only(
-            left: 30,
+            left: 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -839,86 +942,6 @@ class _HomePageState extends State<HomePage> {
                       (product) => ProductTile(product),
                     )
                     .toList(),
-                // children: [
-                //   ProductTile(),
-                //   ProductTile(),
-                //   ProductTile(),
-                //   ProductTile(),
-                // ],
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    Widget buildTips() {
-      return Container(
-        // margin: EdgeInsets.only(
-        //   top: defaultMargin,
-        //   left: defaultMargin,
-        //   right: defaultMargin,
-        // ),
-        decoration: BoxDecoration(
-          // color: primaryColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
-            ),
-          ],
-          // borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 30,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 95),
-                child: Text(
-                  'Kumpulan Tips Untukmu',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              Wrap(
-                spacing: 15,
-                runSpacing: 15,
-                children: [
-                  HomeTipsItem(
-                    imageUrl: 'assets/img_tips1.png',
-                    title: 'Best tips for using a credit card',
-                    url: 'https://www.google.com',
-                  ),
-                  HomeTipsItem(
-                    imageUrl: 'assets/img_tips2.png',
-                    title: 'Spot the good pie of finance model ',
-                    url: 'https://pub.dev/',
-                  ),
-                  HomeTipsItem(
-                    imageUrl: 'assets/img_tips3.png',
-                    title: 'Great hack to get better advices',
-                    url:
-                        // 'https://www.google.com',
-                        'https://app.sandbox.midtrans.com/snap/v3/redirection/8527b81c-1023-44c6-9b92-e84d86c182b8',
-                  ),
-                  HomeTipsItem(
-                    imageUrl: 'assets/img_tips4.png',
-                    title: 'Save more penny buy this instead',
-                    url: 'https://www.google.com',
-                  ),
-                ],
               ),
             ],
           ),
@@ -932,14 +955,13 @@ class _HomePageState extends State<HomePage> {
 
         // categoriesTitle(),
         categories(),
-        // popularProductsTitle(),
+        popularProductsTitle(),
+
         popularProducts(),
         // newArrivalsTitle(),
         newArrivals(),
-        SizedBox(
-          height: 20,
-        ),
-        buildTips()
+        popularProductsTitle(),
+        RecipePage(),
       ],
     );
   }

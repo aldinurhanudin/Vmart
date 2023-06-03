@@ -138,7 +138,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/education');
+                  Navigator.pushNamed(context, '/quiz');
                 },
                 child: menuItem(
                   'Quiz',

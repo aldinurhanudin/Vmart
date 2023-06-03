@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
 import 'package:vmart/ui/pages/home/education_page/education_page.dart';
+import 'package:vmart/ui/pages/home/quiz_page/quiz_page.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
 import 'controller/education_controller/video_notifier.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         '/addresslist': (context) => AddressList(),
         '/selectdelivery': (context) => SelectDelivery(),
         '/education': (context) => EducationPage(),
+        '/quiz': (context) => QuizPage(),
       }),
     );
   }

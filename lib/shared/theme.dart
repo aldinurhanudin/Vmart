@@ -23,6 +23,10 @@ Color blackColor = Color(0xff2E2E2E);
 Color accentColor1 = Color(0xFFADADAD);
 Color greyColor = Color(0xffA4A8AE);
 
+const Color correct = Colors.green;
+const Color incorrect = Colors.red;
+const Color neutral = Colors.white;
+
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryTextColor,
 );
@@ -43,7 +47,7 @@ TextStyle priceTextStyle = GoogleFonts.poppins(
   color: priceColor,
 );
 
-TextStyle purpleTextStyle = GoogleFonts.poppins(
+TextStyle greenTextStyle = GoogleFonts.poppins(
   color: primaryColor,
   fontWeight: FontWeight.bold,
 );
@@ -62,7 +66,6 @@ FontWeight medium = FontWeight.w500;
 FontWeight semiBold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
 
-// Text Normal-Body
 TextStyle whiteTextFont = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 TextStyle blackTextFont = GoogleFonts.poppins()
@@ -74,7 +77,7 @@ TextStyle redTextFont = GoogleFonts.poppins()
 TextStyle greyTextFont = GoogleFonts.poppins()
     .copyWith(color: accentColor1, fontWeight: FontWeight.w500, fontSize: 12);
 
-// Text Title
+
 TextStyle whiteTextFontTitle = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15);
 TextStyle blackTextFontTitle = GoogleFonts.poppins()
@@ -86,7 +89,7 @@ TextStyle redTextFontTitle = GoogleFonts.poppins()
 TextStyle greyTextFontTitle = GoogleFonts.poppins()
     .copyWith(color: accentColor1, fontWeight: FontWeight.w500, fontSize: 15);
 
-// Text Big
+
 TextStyle whiteTextFontBig = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 18);
 TextStyle blackTextFontBig = GoogleFonts.poppins()
@@ -98,9 +101,7 @@ TextStyle redTextFontBig = GoogleFonts.poppins()
 TextStyle greyTextFontBig = GoogleFonts.poppins()
     .copyWith(color: accentColor1, fontWeight: FontWeight.w500, fontSize: 18);
 
-// BOLD
 
-// Text Normal-Body
 TextStyle whiteTextFontBold = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12);
 TextStyle blackTextFontBold = GoogleFonts.poppins()
@@ -112,7 +113,7 @@ TextStyle redTextFontBold = GoogleFonts.poppins()
 TextStyle greyTextFontBold = GoogleFonts.poppins()
     .copyWith(color: accentColor1, fontWeight: FontWeight.bold, fontSize: 12);
 
-// Text Title
+
 TextStyle whiteTextFontTitleBold = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15);
 TextStyle blackTextFontTitleBold = GoogleFonts.poppins()
@@ -124,7 +125,7 @@ TextStyle redTextFontTitleBold = GoogleFonts.poppins()
 TextStyle greyTextFontTitleBold = GoogleFonts.poppins()
     .copyWith(color: accentColor1, fontWeight: FontWeight.bold, fontSize: 15);
 
-// Text Big
+
 TextStyle whiteTextFontBigBold = GoogleFonts.poppins()
     .copyWith(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18);
 TextStyle blackTextFontBigBold = GoogleFonts.poppins()

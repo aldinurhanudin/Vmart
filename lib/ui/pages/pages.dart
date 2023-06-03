@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
+import 'package:vmart/ui/pages/home/education_page/recipe_page.dart';
 
 import '../../models/user_model/user_model.dart';
 
@@ -25,12 +26,14 @@ import '../../services/services.dart';
 import '../../shared/shared.dart';
 import 'package:http/http.dart' as http;
 import '../widgets/widgets.dart';
+
 // import 'home/profile_page/my_order/my_order.dart';
 
 part 'home/home_page/home_page.dart';
 
 part 'home/checkout_success_page/checkout_success_page.dart';
 part 'home/checkout_page/checkout_page.dart';
+part 'home/all_product_page/all_products_page.dart';
 part 'home/cart_page/cart_page.dart';
 part 'home/profile_page/my_order/my_order.dart';
 part 'home/profile_page/education/education.dart';

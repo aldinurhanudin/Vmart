@@ -22,6 +22,7 @@ part 'home_page/checkout_widget/select_delivery/select_delivery.dart';
 part 'home_page/cart_card/cart_card.dart';
 
 part 'home_page/product_tile/product_tile.dart';
+part 'home_page/product_all/product_all.dart';
 part 'home_page/wishlist_card/wishlist_card.dart';
 part 'home_page/tips_item/home_tips_item.dart';
 part 'home_page/chat_bubble/chat_bubble.dart';

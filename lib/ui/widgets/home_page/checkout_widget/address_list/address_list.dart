@@ -150,7 +150,7 @@ class _AddressListState extends State<AddressList> {
                     ),
                     child: Text(
                       'Tambah Alamat',
-                      style: purpleTextStyle,
+                      style: greenTextStyle,
                     ),
                   ),
                 ),

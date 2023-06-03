@@ -637,7 +637,7 @@ class _SignInPageState extends State<SignInPage> {
               },
               child: Text(
                 'Daftar',
-                style: purpleTextStyle.copyWith(
+                style: greenTextStyle.copyWith(
                   fontSize: 12,
                   fontWeight: medium,
                 ),

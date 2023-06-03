@@ -336,7 +336,7 @@ class _SignUpPageState extends State<SignUpPage> {
               },
               child: Text(
                 'Sign In',
-                style: purpleTextStyle.copyWith(
+                style: greenTextStyle.copyWith(
                   fontSize: 12,
                   fontWeight: medium,
                 ),

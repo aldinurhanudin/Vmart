@@ -92,7 +92,7 @@ class ChatBubble extends StatelessWidget {
                   ),
                   child: Text(
                     '+ Keranjang',
-                    style: purpleTextStyle,
+                    style: greenTextStyle,
                   ),
                 ),
                 SizedBox(
