@@ -569,7 +569,7 @@ class _ProductPageState extends State<ProductPage> {
                     showSuccessDialog();
                   },
                   child: Icon(
-                    Icons.shopping_bag,
+                    Icons.shopping_bag_outlined,
                     size: 40,
                     color: primaryColor,
                   ),

@@ -222,6 +222,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 13.0),
                   ),
                 ),
+             
                 Flexible(
                   flex: 2,
                   child: Card(
@@ -886,6 +887,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
+   
     }
 
     Widget newArrivalsTitle() {
