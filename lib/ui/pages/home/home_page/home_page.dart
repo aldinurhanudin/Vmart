@@ -424,25 +424,6 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget categoriesTitle() {
-      return Container(
-        // color: Colors.white,
-
-        margin: EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        ),
-        child: Text(
-          'Pilihan Kategori',
-          style: primaryTextStyle.copyWith(
-            fontSize: 22,
-            fontWeight: semiBold,
-          ),
-        ),
-      );
-    }
-
     Widget categories() {
       return Container(
         // color: Colors.white,
@@ -473,7 +454,7 @@ class _HomePageState extends State<HomePage> {
               Text(
                 'Pilihan Kategori',
                 style: primaryTextStyle.copyWith(
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: semiBold,
                 ),
               ),
@@ -505,19 +486,19 @@ class _HomePageState extends State<HomePage> {
                             child: Image.asset(
                               'assets/semua_kategori.png',
                               fit: BoxFit.cover,
-                              height: 100,
-                              width: 100,
+                              height: 90,
+                              width: 90,
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: defaultMargin,
+                             height: 5,
                         ),
                         Text(
                           'Semua Kategori ',
                           style: primaryTextStyle.copyWith(
-                            fontSize: 9,
-                            fontWeight: semiBold,
+                            fontSize: 15,
+                            fontWeight: medium,
                           ),
                           maxLines: 1,
                         ),
@@ -533,18 +514,18 @@ class _HomePageState extends State<HomePage> {
                           child: Image.asset(
                             'assets/kategori_sayur_segar.png',
                             fit: BoxFit.cover,
-                            height: 100,
-                            width: 100,
+                            height: 90,
+                            width: 90,
                           ),
                         ),
                         SizedBox(
-                          width: defaultMargin,
+                            height: 5,
                         ),
                         Text(
                           'Sayur Segar',
                           style: primaryTextStyle.copyWith(
-                            fontSize: 9,
-                            fontWeight: semiBold,
+                            fontSize: 15,
+                            fontWeight: medium,
                           ),
                         ),
                       ],
@@ -559,18 +540,18 @@ class _HomePageState extends State<HomePage> {
                           child: Image.asset(
                             'assets/kategori_buah_segar.png',
                             fit: BoxFit.cover,
-                            height: 100,
-                            width: 100,
+                            height: 90,
+                            width: 90,
                           ),
                         ),
                         SizedBox(
-                          width: defaultMargin,
+                          height: 5,
                         ),
                         Text(
                           'Buah Segar ',
                           style: primaryTextStyle.copyWith(
-                            fontSize: 9,
-                            fontWeight: bold,
+                            fontSize: 15,
+                            fontWeight: medium,
                           ),
                         ),
                       ],
@@ -585,18 +566,18 @@ class _HomePageState extends State<HomePage> {
                           child: Image.asset(
                             'assets/kategori_buah_segar.png',
                             fit: BoxFit.cover,
-                            height: 100,
-                            width: 100,
+                            height: 90,
+                            width: 90,
                           ),
                         ),
                         SizedBox(
-                          width: defaultMargin,
+                          height: 5,
                         ),
                         Text(
                           'Buah Segar ',
                           style: primaryTextStyle.copyWith(
-                            fontSize: 9,
-                            fontWeight: bold,
+                            fontSize: 15,
+                            fontWeight: medium,
                           ),
                         ),
                       ],
