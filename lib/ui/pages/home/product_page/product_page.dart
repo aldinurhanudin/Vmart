@@ -162,12 +162,9 @@ class _ProductPageState extends State<ProductPage> {
           ),
           child: Column(
             children: [
-              //Note: header
               Container(
-                margin: EdgeInsets.only(
-                    top: defaultMargin,
-                    left: defaultMargin,
-                    right: defaultMargin),
+                margin:
+                    EdgeInsets.only(top: defaultMargin, left: 10, right: 10),
                 child: Row(
                   children: [
                     Expanded(
@@ -227,12 +224,11 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
 
-              //note: price
               Container(
                 margin: EdgeInsets.only(
                   top: 20,
-                  left: defaultMargin,
-                  right: defaultMargin,
+                  left: 10,
+                  right: 10,
                 ),
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -268,40 +264,11 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
 
-              //Note: Description
-              // Container(
-              //   margin: EdgeInsets.only(
-              //     top: defaultMargin,
-              //     // left: 10,
-              //     right: 150,
-              //   ),
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Text(
-              //         'Deskripsi',
-              //         style: primaryTextStyle.copyWith(
-              //           fontWeight: bold,
-              //         ),
-              //       ),
-              //       SizedBox(
-              //         height: 12,
-              //       ),
-              //       Text(
-              //         widget.product.description!,
-              //         style: subtitleTextStyle.copyWith(
-              //           fontWeight: light,
-              //         ),
-              //         textAlign: TextAlign.justify,
-              //       ),
-              //     ],
-              //   ),
-              // ),
               Container(
                 margin: EdgeInsets.only(
                   top: defaultMargin,
-                  left: defaultMargin,
-                  right: defaultMargin,
+                  left: 10,
+                  right: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -326,7 +293,6 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
 
-              //Note: Familiar shoes
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(
@@ -337,7 +303,7 @@ class _ProductPageState extends State<ProductPage> {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: defaultMargin,
+                        horizontal: 10,
                       ),
                       child: Text(
                         'Produk Populer',
@@ -548,8 +514,8 @@ class _ProductPageState extends State<ProductPage> {
           Container(
             margin: EdgeInsets.only(
               top: defaultMargin,
-              left: defaultMargin,
-              right: defaultMargin,
+              // left: defaultMargin,
+              right: 5,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

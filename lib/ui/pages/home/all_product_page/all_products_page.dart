@@ -95,5 +95,6 @@ class AllProductsPage extends StatelessWidget {
         },
       ),
     );
+  
   }
 }

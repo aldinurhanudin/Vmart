@@ -222,7 +222,6 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 13.0),
                   ),
                 ),
-             
                 Flexible(
                   flex: 2,
                   child: Card(
@@ -745,13 +744,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AllProductsPage(),
-      ),
-    );
-  },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AllProductsPage(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Lihat Semua',
                       style: greenTextStyle.copyWith(
@@ -766,7 +765,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
-    
     }
 
     Widget popularProducts() {
@@ -868,6 +866,7 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(width: 250),
                       Row(
                         children: productProvider.products
+                            .take(6)
                             .map(
                               (product) => ClipRect(
                                 child: Align(
@@ -887,7 +886,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
-   
     }
 
     Widget newArrivalsTitle() {
@@ -940,6 +938,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Column(
                 children: productProvider.products
+                    .take(6)
                     .map(
                       (product) => ProductTile(product),
                     )
