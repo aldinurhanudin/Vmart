@@ -60,58 +60,148 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  int currentIndex = 0;
+  CarouselController carouselController = CarouselController();
+  List<Widget> carouselItems = [
+    Container(
+      width: 360,
+      height: 205,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/carousel_2.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    Container(
+      width: 360,
+      height: 205,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/carousel_1.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    Container(
+      width: 360,
+      height: 360,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/carousel_3.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    Container(
+      width: 360,
+      height: 205,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/carousel_1.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    Container(
+      width: 360,
+      height: 205,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset(
+          'assets/carousel_2.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    Container(
+      width: 360,
+      height: 205,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          'assets/carousel_3.png',
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-    int currentIndex = 0;
-    CarouselController carouselController = CarouselController();
-    Widget header() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hallo, ${user.name}',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  Text(
-                    '@${user.username}',
-                    style: subtitleTextStyle.copyWith(
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Container(
-            //   width: 54,
-            //   height: 54,
-            //   decoration: BoxDecoration(
-            //     shape: BoxShape.circle,
-            //     image: DecorationImage(
-            //       image: NetworkImage(
-            //         user.profilePhotoUrl,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      );
-    }
 
     Widget carousel() {
       final TextEditingController _textController = TextEditingController();
@@ -121,7 +211,7 @@ class _HomePageState extends State<HomePage> {
           right: 5,
           left: 5,
         ),
-        height: 310,
+        height: 360,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -266,242 +356,62 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Column(
                 children: [
-                  Container(
-                    height: 150,
-                    // width: 1000,
-                    child: CarouselSlider(
-                      items: [
-                        Container(
-                          width: 360,
-                          height: 205,
-                          decoration: BoxDecoration(
-                            // color: primaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/carousel_2.png',
-                              fit: BoxFit.cover,
-                              // height: 203,
-                              // width: 400,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 360,
-                          height: 205,
-                          decoration: BoxDecoration(
-                            // color: primaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/carousel_1.png',
-                              fit: BoxFit.cover,
-                              // height: 203,
-                              // width: 268,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 360,
-                          height: 360,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/carousel_3.png',
-                              fit: BoxFit.cover,
-                              // height: 203,
-                              // width: 268,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 360,
-                          height: 205,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/carousel_1.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 360,
-                          height: 205,
-                          decoration: BoxDecoration(
-                            // color: primaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/carousel_2.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 360,
-                          height: 205,
-                          decoration: BoxDecoration(
-                            // color: primaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/carousel_3.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ],
-                      options: CarouselOptions(
-                          height: 204,
-                          viewportFraction: 1,
-                          enableInfiniteScroll: false,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          }),
-                      carouselController: carouselController,
+                  CarouselSlider(
+                    items: carouselItems,
+                    options: CarouselOptions(
+                      height: 204,
+                      viewportFraction: 1,
+                      enableInfiniteScroll: false,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          currentIndex = index;
+                        });
+                      },
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 10),
                     ),
+                    carouselController: carouselController,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: currentIndex == 0 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 0 ? blackColor : greyColor,
-                        ),
-                      ),
-                      Container(
-                        width: currentIndex == 1 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 1 ? blackColor : greyColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            carouselItems.length,
+                            (index) => Container(
+                              width: 10,
+                              height: 10,
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: currentIndex == index
+                                    ? primaryColor
+                                    : Colors.grey,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      Container(
-                        width: currentIndex == 2 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 2 ? blackColor : greyColor,
-                        ),
-                      ),
-                      Container(
-                        width: currentIndex == 3 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 3 ? blackColor : greyColor,
-                        ),
-                      ),
-                      Container(
-                        width: currentIndex == 4 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 4 ? blackColor : greyColor,
-                        ),
-                      ),
-                      Container(
-                        width: currentIndex == 5 ? 28 : 12,
-                        height: 12,
-                        margin: EdgeInsets.only(
-                          right: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: currentIndex == 5 ? blackColor : greyColor,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AllProductsPage(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Lihat Semua',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
