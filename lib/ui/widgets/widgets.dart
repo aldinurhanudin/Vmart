@@ -34,3 +34,4 @@ part 'home_page/profile/my_order_widget/processed_widget.dart';
 part 'home_page/profile/my_order_widget/my_order_card.dart';
 
 part 'home_page/categories_widget/special_categories.dart';
+part 'home_page/categories_widget/choose_categories.dart';
