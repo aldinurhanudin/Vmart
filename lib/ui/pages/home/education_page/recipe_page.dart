@@ -31,7 +31,7 @@ class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
+      height: 460,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.5),
@@ -45,10 +45,10 @@ class _RecipePageState extends State<RecipePage> {
           Positioned(
             left: 1,
             right: 130,
-            top: 0,
+            top: 1,
             bottom: 50,
             child: Image.asset(
-              'assets/VMART.png', // Ganti dengan path gambar Anda
+              'assets/resep_vmart.png', // Ganti dengan path gambar Anda
               fit: BoxFit.cover,
               height: 20,
             ),
@@ -62,7 +62,7 @@ class _RecipePageState extends State<RecipePage> {
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 200, top: 20),
+                    padding: const EdgeInsets.only(left: 235, top: 30),
                     child: Column(
                       children: [
                         Row(
@@ -81,9 +81,6 @@ class _RecipePageState extends State<RecipePage> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
-                                      margin: EdgeInsets.only(
-                                        right: 10,
-                                      ),
                                       decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
@@ -103,11 +100,17 @@ class _RecipePageState extends State<RecipePage> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.6, //
+                                                0.6,
                                             height: 120,
-                                            child: Image.network(
-                                              '${mypost['image']}',
-                                              fit: BoxFit.fill,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10.0),
+                                                topRight: Radius.circular(10.0),
+                                              ),
+                                              child: Image.network(
+                                                '${mypost['image']}',
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -147,7 +150,6 @@ class _RecipePageState extends State<RecipePage> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
-                                      margin: EdgeInsets.only(right: 10),
                                       decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
@@ -168,9 +170,15 @@ class _RecipePageState extends State<RecipePage> {
                                                     .width *
                                                 0.6,
                                             height: 120,
-                                            child: Image.network(
-                                              '${mypost['image']}',
-                                              fit: BoxFit.fill,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10.0),
+                                                topRight: Radius.circular(10.0),
+                                              ),
+                                              child: Image.network(
+                                                '${mypost['image']}',
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -198,7 +206,6 @@ class _RecipePageState extends State<RecipePage> {
                     ),
                   ),
                 );
-            
               }
             },
           ),

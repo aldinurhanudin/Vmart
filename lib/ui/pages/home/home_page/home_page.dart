@@ -492,7 +492,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                             height: 5,
+                          height: 5,
                         ),
                         Text(
                           'Semua Kategori ',
@@ -519,7 +519,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                            height: 5,
+                          height: 5,
                         ),
                         Text(
                           'Sayur Segar',
@@ -658,59 +658,81 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget popularProducts() {
-      // return Container(
-      //   margin: EdgeInsets.only(top: 14),
-      //   height: 380,
-      //   decoration: BoxDecoration(
-      //     boxShadow: [
-      //       BoxShadow(
-      //         color: Colors.grey.withOpacity(0.5),
-      //         spreadRadius: 1,
-      //         blurRadius: 5,
-      //         offset: const Offset(0, 2), // changes position of shadow
-      //       ),
-      //     ],
-      //     // borderRadius: BorderRadius.circular(12),
-      //     color: Colors.green,
-      //   ),
-      //   child: Padding(
-      //     padding: const EdgeInsets.only(left: 30),
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Text(
-      //           'Produk Populer',
-      //           style: primaryTextStyle.copyWith(
-      //             fontSize: 22,
-      //             fontWeight: semiBold,
-      //           ),
-      //         ),
-      //         SizedBox(
-      //           height: 15,
-      //         ),
-      //         SingleChildScrollView(
-      //           scrollDirection: Axis.horizontal,
-      //           child: Row(
-      //             children: [
-      //               SizedBox(
-      //                 width: defaultMargin,
-      //               ),
-      //               Row(
-      //                 children: productProvider.products
-      //                     .map(
-      //                       (product) => ProductCard(product),
-      //                     )
-      //                     .toList(),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // );
+    Widget recipeTitle() {
+      return Container(
+        height: 85,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
+          // borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+        ),
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Text(
+                  'Kumpulan Resep Untukmu',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllProductsPage(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 10,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Lihat Semua',
+                      style: greenTextStyle.copyWith(
+                        fontSize: 12,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'Jawaban Dari Kata "Terserah"',
+                  style: secondaryTextStyle.copyWith(
+                    fontSize: 12,
+                    // fontWeight: semiBold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
+    Widget popularProducts() {
       return Container(
         margin: EdgeInsets.only(top: 3),
         height: 330,
@@ -729,26 +751,19 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: [
             Positioned(
-              left: 1,
+              left: 2,
               right: 130,
-              top: 0,
-              bottom: 50,
+              top: 3,
+              bottom: 40,
               child: Image.asset(
-                'assets/VMART.png', // Ganti dengan path gambar Anda
+                'assets/spesial_hari_ini.png', // Ganti dengan path gambar Anda
                 fit: BoxFit.cover,
-                height: 20,
+                // height: 20,
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text(
-                //   'Produk Populer',
-                //   style: primaryTextStyle.copyWith(
-                //     fontSize: 22,
-                //     fontWeight: semiBold,
-                //   ),
-                // ),
                 SizedBox(height: 15),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -852,7 +867,7 @@ class _HomePageState extends State<HomePage> {
         popularProducts(),
         // newArrivalsTitle(),
         newArrivals(),
-        popularProductsTitle(),
+        recipeTitle(),
         RecipePage(),
       ],
     );
