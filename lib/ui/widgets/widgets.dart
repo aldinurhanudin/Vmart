@@ -26,8 +26,11 @@ part 'home_page/product_all/product_all.dart';
 part 'home_page/wishlist_card/wishlist_card.dart';
 part 'home_page/tips_item/home_tips_item.dart';
 part 'home_page/chat_bubble/chat_bubble.dart';
+
 part 'home_page/chat_tile/chat_tile.dart';
 
 part 'home_page/profile/my_order_widget/finish_widget.dart';
 part 'home_page/profile/my_order_widget/processed_widget.dart';
 part 'home_page/profile/my_order_widget/my_order_card.dart';
+
+part 'home_page/categories_widget/special_categories.dart';

@@ -865,6 +865,7 @@ class _HomePageState extends State<HomePage> {
         popularProductsTitle(),
 
         popularProducts(),
+        SpecialCategories(),
         // newArrivalsTitle(),
         newArrivals(),
         recipeTitle(),
