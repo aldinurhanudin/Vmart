@@ -61,6 +61,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     header() {
+      // return AppBar(
+      //   backgroundColor: backgroundColor1,
+      //   elevation: 0,
+      //   centerTitle: true,
+      //   title: Text(
+      //     'Detail Pembayaran',
+      //     style: primaryTextStyle.copyWith(
+      //       fontSize: 18,
+      //       fontWeight: medium,
+      //     ),
+      //   ),
+      // );
       return AppBar(
         backgroundColor: backgroundColor1,
         elevation: 0,
@@ -70,6 +82,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
           ),
         ),
       );
@@ -451,12 +471,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget checkoutButton() {
       return Container(
-        height: 89,
+        height: 65,
         child: Column(
           children: [
             Divider(
-              thickness: 0.3,
-              color: subtitleColor,
+              thickness: 1.3,
+              color: greyColor,
+              height: 1.0,
             ),
             SizedBox(
               height: 8,
