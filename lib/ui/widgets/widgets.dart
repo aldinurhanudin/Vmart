@@ -1,7 +1,12 @@
 import 'dart:convert';
 
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -35,3 +40,5 @@ part 'home_page/profile/my_order_widget/my_order_card.dart';
 
 part 'home_page/categories_widget/special_categories.dart';
 part 'home_page/categories_widget/choose_categories.dart';
+
+part 'home_page/carousel_map_widget/carousel_map_widget.dart';
