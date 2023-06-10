@@ -14,6 +14,7 @@ import 'package:vmart/shared/shared.dart';
 import 'package:http/http.dart' as http;
 import '../../models/models.dart';
 
+import '../../models/user_model/user_model.dart';
 import '../../providers/providers.dart';
 import '../../shared/shared.dart';
 import '../../shared/shared.dart';
@@ -36,6 +37,7 @@ part 'home_page/chat_tile/chat_tile.dart';
 
 part 'home_page/profile/my_order_widget/finish_widget.dart';
 part 'home_page/profile/my_order_widget/processed_widget.dart';
+part 'home_page/profile/header_akun_profile_widget/header_akun_profile_widget.dart';
 part 'home_page/profile/my_order_widget/my_order_card.dart';
 
 part 'home_page/categories_widget/special_categories.dart';

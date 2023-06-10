@@ -8,116 +8,102 @@ class ProfilePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
-    Widget header() {
+    header() {
       return AppBar(
-        backgroundColor: backgroundColor1,
-        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
         elevation: 0,
-        flexibleSpace: SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(
-              defaultMargin,
-            ),
-            child: Row(
-              children: [
-                ClipOval(
-                  child: Image.asset(
-                    'assets/vmart_on.png',
-                    width: 64,
-                  ),
-                ),
-                SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${user.name}',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: semiBold,
-                        ),
-                      ),
-                      // Text(
-                      //   '@${user.username}',
-                      //   style: subtitleTextStyle.copyWith(
-                      //     fontSize: 16,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/sign-in', (route) => false);
-                  },
-                  child: Image.asset(
-                    'assets/button_exit.png',
-                    width: 20,
-                  ),
-                ),
-              ],
-            ),
+        centerTitle: true,
+        title: Text(
+          'Akun',
+          style: primaryTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
           ),
         ),
       );
     }
 
-    Widget menuItem(String text) {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 16,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              text,
-              style: secondaryTextStyle.copyWith(
-                fontSize: 13,
-              ),
+    Widget menuItem(String text, IconData icon) {
+      return Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(
+              top: 16,
             ),
-            Icon(
-              Icons.chevron_right,
-              color: primaryTextColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      icon,
+                      color: primaryTextColor,
+                      size: 20,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      text,
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 13,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ],
+                ),
+                Icon(
+                  Icons.chevron_right,
+                  color: primaryColor,
+                  size: 20,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Divider(
+            color: greyColor,
+            thickness: 0.5,
+          ),
+        ],
       );
     }
 
     Widget content() {
       return Expanded(
         child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
-          ),
           decoration: BoxDecoration(
-            color: backgroundColor3,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 2),
+              ),
+            ],
+            // borderRadius: BorderRadius.circular(12),
+            color: Colors.white,
           ),
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          // decoration: BoxDecoration(
+          //   color: backgroundColor3,
+          // ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Akun',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semiBold,
-                ),
-              ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/edit-profile');
                 },
                 child: menuItem(
                   'Edit profil',
+                  Icons.home,
                 ),
               ),
               GestureDetector(
@@ -126,6 +112,7 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: menuItem(
                   'Pesanan Saya',
+                  Icons.receipt_long_outlined,
                 ),
               ),
               GestureDetector(
@@ -134,6 +121,7 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: menuItem(
                   'Edukasi',
+                  Icons.school,
                 ),
               ),
               GestureDetector(
@@ -141,27 +129,25 @@ class ProfilePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/quiz');
                 },
                 child: menuItem(
-                  'Quiz',
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'General',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semiBold,
+                  'Kuis',
+                  Icons.lightbulb_outline_rounded,
                 ),
               ),
               menuItem(
-                'Privacy & Policy',
+                'Kebijakan Privasi',
+                Icons.lock_outline,
               ),
               menuItem(
-                'Term of Service',
+                'Syarat dan Ketentuan',
+                Icons.description_outlined,
               ),
               menuItem(
-                'Rate App',
+                'Bantuan',
+                Icons.headset_mic_outlined,
+              ),
+              menuItem(
+                'Pengaturan Akun',
+                Icons.settings,
               ),
             ],
           ),
@@ -169,11 +155,14 @@ class ProfilePage extends StatelessWidget {
       );
     }
 
-    return Column(
-      children: [
-        header(),
-        content(),
-      ],
+    return Scaffold(
+      appBar: header(),
+      body: ListView(
+        children: [
+          HeaderAkunProfileWidget(),
+          content(),
+        ],
+      ),
     );
   }
 }

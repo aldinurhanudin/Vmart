@@ -61,18 +61,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     header() {
-      // return AppBar(
-      //   backgroundColor: backgroundColor1,
-      //   elevation: 0,
-      //   centerTitle: true,
-      //   title: Text(
-      //     'Detail Pembayaran',
-      //     style: primaryTextStyle.copyWith(
-      //       fontSize: 18,
-      //       fontWeight: medium,
-      //     ),
-      //   ),
-      // );
+    
       return AppBar(
         backgroundColor: backgroundColor1,
         elevation: 0,
