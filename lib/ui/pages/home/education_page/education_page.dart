@@ -42,7 +42,7 @@ class _EducationPageState extends State<EducationPage> {
           ),
           Tab(
             icon: Icon(Icons.description),
-            child: Text('Dokumen'),
+            child: Text('Artikel'),
           ),
         ]);
   }

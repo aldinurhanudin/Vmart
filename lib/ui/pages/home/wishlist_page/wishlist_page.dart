@@ -11,7 +11,7 @@ class WishlistPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         centerTitle: true,
         title: Text(
-          'Favorite Shoes',
+          'Wishlist',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
@@ -38,7 +38,7 @@ class WishlistPage extends StatelessWidget {
                 height: 23,
               ),
               Text(
-                'Anda tidak memiliki produk impian?',
+                'Kamu tidak memiliki produk impian?',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -48,7 +48,7 @@ class WishlistPage extends StatelessWidget {
                 height: 12,
               ),
               Text(
-                'Anda tidak memiliki produk impian?',
+                'Ayo temukan produk keinginanmu',
                 style: secondaryTextStyle,
               ),
               SizedBox(

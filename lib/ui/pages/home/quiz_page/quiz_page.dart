@@ -103,14 +103,14 @@ class _QuizPageState extends State<QuizPage> {
             return Scaffold(
               backgroundColor: Colors.black,
               appBar: AppBar(
-                title: Text('Quiz '),
+                title: Text('Kuis'),
                 backgroundColor: primaryColor,
                 shadowColor: Colors.transparent,
                 actions: [
                   Padding(
                     padding: EdgeInsets.all(18),
                     child: Text(
-                      'Score: $score',
+                      'Nilai: $score',
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -181,7 +181,7 @@ class _QuizPageState extends State<QuizPage> {
                   height: 20,
                 ),
                 Text(
-                  'Please Wait while questions are loading..',
+                  'Harap Tunggu sementara pertanyaan sedang dimuat..',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     decoration: TextDecoration.none,

@@ -63,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    "Assyikkk:",
+                    "Horre:",
                     style: primaryTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,

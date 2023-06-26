@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vmart/shared/shared.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../models/education_model/video.dart';
@@ -64,10 +65,10 @@ class VideoListTile extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'View',
+                    'Lihat Video',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.blue,
+                      color: primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -76,7 +77,7 @@ class VideoListTile extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(
                     Icons.star_border,
-                    color: Colors.blue,
+                    color: primaryColor,
                   ),
                 ),
               ],

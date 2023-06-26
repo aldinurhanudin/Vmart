@@ -18,7 +18,7 @@ class _AddressListState extends State<AddressList> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        title: Text('Pesanan Saya',
+        title: Text('Alamat Saya',
             style: primaryTextStyle.copyWith(
               fontSize: 20,
             )),
@@ -109,7 +109,6 @@ class _AddressListState extends State<AddressList> {
               ),
             ),
           ),
-          
           SizedBox(
             height: 412,
           ),

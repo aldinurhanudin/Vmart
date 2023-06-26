@@ -24,7 +24,7 @@ class ResultBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Result',
+              'Nilai',
               style: TextStyle(color: neutral, fontSize: 22),
             ),
             SizedBox(
@@ -47,10 +47,10 @@ class ResultBox extends StatelessWidget {
             ),
             Text(
               result == questionLength / 2
-                  ? 'Almost there'
+                  ? 'Ayo sedikit lagi'
                   : result < questionLength / 2
-                      ? 'try again'
-                      : 'Great!',
+                      ? 'coba lagi'
+                      : 'Kerja bagus',
               style: TextStyle(color: neutral),
             ),
             SizedBox(

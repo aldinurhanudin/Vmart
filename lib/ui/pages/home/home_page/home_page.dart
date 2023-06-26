@@ -63,11 +63,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    child: Text(
-                      'Lihat Semua',
-                      style: greenTextStyle.copyWith(
-                        fontSize: 14,
-                        // fontWeight: semiBold,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 22),
+                      child: Text(
+                        'Lihat Semua',
+                        style: greenTextStyle.copyWith(
+                          fontSize: 14,
+                          // fontWeight: semiBold,
+                        ),
                       ),
                     ),
                   ),
@@ -81,7 +84,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget recipeTitle() {
       return Container(
-        height: 85,
+        height: 91,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -130,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       'Lihat Semua',
                       style: greenTextStyle.copyWith(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: medium,
                       ),
                     ),
@@ -142,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Jawaban Dari Kata "Terserah"',
                   style: secondaryTextStyle.copyWith(
-                    fontSize: 12,
+                    fontSize: 14,
                     // fontWeight: semiBold,
                   ),
                 ),
@@ -262,6 +265,9 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 22,
                   fontWeight: semiBold,
                 ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               Column(
                 children: productProvider.products
