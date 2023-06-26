@@ -315,7 +315,6 @@ class _SignInPageState extends State<SignInPage> {
                 carouselController: carouselController,
               ),
             ),
-
             const SizedBox(
               height: 24,
             ),
@@ -333,7 +332,6 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 20, top: 8),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -344,11 +342,6 @@ class _SignInPageState extends State<SignInPage> {
                       fontSize: 12, fontWeight: FontWeight.w400),
                 ),
               ),
-            ),
-            // Form username & Password
-
-            SizedBox(
-              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -421,9 +414,8 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ],
             ),
-
             SizedBox(
-              height: 30,
+              height: 10,
             ),
           ],
         ),
