@@ -1,11 +1,25 @@
-part of '../../../widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+import 'package:vmart/providers/providers.dart';
+import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/my_order_card_finish.dart';
+import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/review/review_order_card.dart';
 
-class FinishWidget extends StatelessWidget {
-  const FinishWidget({super.key});
+import '../../../../../../shared/shared.dart';
 
+class ReviewOrder extends StatefulWidget {
+  const ReviewOrder({super.key});
+
+  @override
+  State<ReviewOrder> createState() => _ReviewOrderState();
+}
+
+class _ReviewOrderState extends State<ReviewOrder> {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     Widget emptyCart() {
       return Center(
         child: Column(
@@ -74,7 +88,7 @@ class FinishWidget extends StatelessWidget {
             Column(
               children: cartProvider.carts
                   .map(
-                    (cart) => MyOrderCardFinish(cart),
+                    (cart) => ReviewOrderCard(cart),
                   )
                   .toList(),
             ),
@@ -84,6 +98,35 @@ class FinishWidget extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        title: Text(
+          'Ulasan',
+          style: primaryTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: cartProvider.carts.length == 0 ? emptyCart() : content(),
     );
   }

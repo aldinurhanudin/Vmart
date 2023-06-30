@@ -6,6 +6,7 @@ class ProcessedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+      final orderCompletedNotifier = Provider.of<OrderCompletedNotifier>(context);
 
     Widget emptyCart() {
       return Center(
@@ -75,7 +76,7 @@ class ProcessedWidget extends StatelessWidget {
             Column(
               children: cartProvider.carts
                   .map(
-                    (cart) => MyOrderCard(cart),
+                    (cart) => MyOrderCardProcessed(cart),
                   )
                   .toList(),
             ),
@@ -84,8 +85,20 @@ class ProcessedWidget extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+    // return Scaffold(
+    //   body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+    // );
+    return ValueListenableBuilder<bool>(
+      valueListenable: orderCompletedNotifier,
+      builder: (context, isOrderCompleted, _) {
+        if (isOrderCompleted) {
+          return emptyCart();
+        } else {
+          return Scaffold(
+            body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+          );
+        }
+      },
     );
   }
 }

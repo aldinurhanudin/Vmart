@@ -20,6 +20,8 @@ import '../../providers/providers.dart';
 import '../../shared/shared.dart';
 import '../../shared/shared.dart';
 import '../pages/pages.dart';
+import 'home_page/profile/my_order_widget/my_order_card_finish.dart';
+import 'home_page/profile/my_order_widget/order_complited_notifier.dart';
 
 part 'home_page/product_card/product_card.dart';
 part 'home_page/loading_button/loading_button.dart';
@@ -39,7 +41,7 @@ part 'home_page/chat_tile/chat_tile.dart';
 part 'home_page/profile/my_order_widget/finish_widget.dart';
 part 'home_page/profile/my_order_widget/processed_widget.dart';
 part 'home_page/profile/header_akun_profile_widget/header_akun_profile_widget.dart';
-part 'home_page/profile/my_order_widget/my_order_card.dart';
+part 'home_page/profile/my_order_widget/my_order_card_processed.dart';
 
 part 'home_page/categories_widget/special_categories.dart';
 part 'home_page/categories_widget/choose_categories.dart';

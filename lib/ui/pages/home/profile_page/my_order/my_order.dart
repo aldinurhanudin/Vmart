@@ -34,7 +34,14 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
             thickness: 1.2,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+          },
+        ),
       ),
+    
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

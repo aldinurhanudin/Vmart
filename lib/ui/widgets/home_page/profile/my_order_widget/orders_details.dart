@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,13 +8,15 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
+import 'package:vmart/ui/pages/pages.dart';
+import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_complited_notifier.dart';
 import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_place_details.dart';
 import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_status.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
 import '../../../../../shared/shared.dart';
 
-class OrdersDetails extends StatelessWidget {
+class OrdersDetails extends StatefulWidget {
   final dynamic data;
 
   const OrdersDetails({
@@ -22,8 +25,16 @@ class OrdersDetails extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<OrdersDetails> createState() => _OrdersDetailsState();
+}
+
+int activeStep = 0;
+
+class _OrdersDetailsState extends State<OrdersDetails> {
+  @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final orderCompletedNotifier = Provider.of<OrderCompletedNotifier>(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -77,52 +88,112 @@ class OrdersDetails extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
+                                offset: const Offset(0, 2),
                               ),
                             ],
                             // borderRadius: BorderRadius.circular(12),
                             color: Colors.white,
                           ),
-                          child: Column(
-                            children: [
-                              orderStatus(
-                                color: Colors.red,
-                                icon: Icons.done,
-                                title: "Proses",
-                                showDone: data != null &&
-                                        data.containsKey('order_placed')
-                                    ? data['order_placed']
-                                    : false,
-                              ),
-                              orderStatus(
-                                color: Colors.blue,
-                                icon: Icons.thumb_up,
-                                title: "Dikonfirmasi",
-                                showDone: data != null &&
-                                        data.containsKey('order_confirmed')
-                                    ? data['order_confirmed']
-                                    : false,
-                              ),
-                              orderStatus(
-                                color: Colors.yellow,
-                                icon: Icons.car_crash,
-                                title: "Dalam Proses Pengiriman",
-                                showDone: data != null &&
-                                        data.containsKey('order_on_delivery')
-                                    ? data['order_on_delivery']
-                                    : false,
-                              ),
-                              orderStatus(
-                                color: Colors.purple,
-                                icon: Icons.done_all_rounded,
-                                title: "Terkirim",
-                                showDone: data != null &&
-                                        data.containsKey('order_delivered')
-                                    ? data['order_delivered']
-                                    : false,
-                              ),
-                            ],
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                EasyStepper(
+                                  activeStep: activeStep,
+                                  lineLength: 45,
+                                  stepShape: StepShape.circle,
+                                  stepBorderRadius: 15,
+                                  borderThickness: 2,
+                                  internalPadding: 20,
+                                  stepRadius: 28,
+                                  finishedStepBorderColor: Colors.orange,
+                                  finishedStepTextColor: Colors.orange,
+                                  finishedStepBackgroundColor: Colors.green,
+                                  activeStepIconColor: Colors.deepOrange,
+                                  showLoadingAnimation: true,
+                                  steps: [
+                                    EasyStep(
+                                      customStep: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Opacity(
+                                          opacity: activeStep >= 0 ? 1 : 0.3,
+                                          child:
+                                              // Icon(Icons.check)
+                                              Image.asset(
+                                                  'assets/Payment Success.png'),
+                                        ),
+                                      ),
+                                      customTitle: const Text(
+                                        'Di Proses',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    EasyStep(
+                                      customStep: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Opacity(
+                                          opacity: activeStep >= 1 ? 1 : 0.3,
+                                          child:
+                                              // Icon(
+                                              //   Icons.car_crash,
+                                              // ),
+                                              Image.asset(
+                                                  'assets/Eco Transportation.png'),
+                                        ),
+                                      ),
+                                      customTitle: const Text(
+                                        'Dalam proses Pengiriman',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    EasyStep(
+                                      customStep: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Opacity(
+                                          opacity: activeStep >= 2 ? 1 : 0.3,
+                                          child:
+                                              // Image.asset('assets/3.png'),
+                                              Image.asset(
+                                                  'assets/Delivery Success.png'),
+                                        ),
+                                      ),
+                                      customTitle: const Text(
+                                        'Terkirim',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    EasyStep(
+                                      customStep: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Opacity(
+                                          opacity: activeStep >= 2 ? 1 : 0.3,
+                                          child: Image.asset(
+                                              'assets/Shopping Done.png'),
+                                        ),
+                                      ),
+                                      customTitle: const Text(
+                                        'Pesanan Selesai',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                  // onStepReached: (index) =>
+                                  //     setState(() => activeStep = index),
+                                  onStepReached: (index) {
+                                    setState(() => activeStep = index);
+                                    if (index == 3) {
+                                      orderCompletedNotifier
+                                          .markOrderCompleted();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => MyOrder()),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
 
@@ -143,8 +214,7 @@ class OrdersDetails extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
+                                offset: const Offset(0, 2),
                               ),
                             ],
                             // borderRadius: BorderRadius.circular(12),
@@ -172,7 +242,8 @@ class OrdersDetails extends StatelessWidget {
                                       Column(
                                         children: cartProvider.carts
                                             .map(
-                                              (cart) => MyOrderCard(cart),
+                                              (cart) =>
+                                                  MyOrderCardProcessed(cart),
                                             )
                                             .toList(),
                                       ),
@@ -198,8 +269,7 @@ class OrdersDetails extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
+                                offset: const Offset(0, 2),
                               ),
                             ],
                             // borderRadius: BorderRadius.circular(12),
@@ -221,12 +291,6 @@ class OrdersDetails extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                    // OrderPlaceDetails(
-                                    //   d1: data['shipping_methode'] ?? "",
-                                    //   d2: data['order_code'] ?? "",
-                                    //   title1: "Kurir",
-                                    //   title2: "No. Pesanan",
-                                    // ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 3),
@@ -258,7 +322,6 @@ class OrdersDetails extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 3),
@@ -298,7 +361,6 @@ class OrdersDetails extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 3),
@@ -336,7 +398,6 @@ class OrdersDetails extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -443,8 +504,7 @@ class OrdersDetails extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: const Offset(
-                                    0, 2), // changes position of shadow
+                                offset: const Offset(0, 2),
                               ),
                             ],
                             // borderRadius: BorderRadius.circular(12),

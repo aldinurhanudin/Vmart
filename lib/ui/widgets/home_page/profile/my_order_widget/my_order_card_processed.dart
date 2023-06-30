@@ -1,9 +1,9 @@
 part of '../../../widgets.dart';
 
-class MyOrderCard extends StatelessWidget {
+class MyOrderCardProcessed extends StatelessWidget {
   final CartModel cart;
 
-  MyOrderCard(
+  MyOrderCardProcessed(
     this.cart,
   );
 
@@ -29,7 +29,7 @@ class MyOrderCard extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           color: backgroundColor1,
@@ -138,5 +138,6 @@ class MyOrderCard extends StatelessWidget {
         ),
       ),
     );
+ 
   }
 }

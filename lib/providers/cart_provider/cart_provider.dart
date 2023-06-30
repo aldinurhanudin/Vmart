@@ -61,6 +61,7 @@ class CartProvider with ChangeNotifier {
     }
     return total.toInt();
   }
+
   int totalPriceShipping() {
     double total = 0;
     for (var item in _carts) {
@@ -76,5 +77,10 @@ class CartProvider with ChangeNotifier {
     } else {
       return true;
     }
+  }
+
+  void clearCart() {
+    _carts.clear();
+    notifyListeners();
   }
 }

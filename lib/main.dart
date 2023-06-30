@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
 import 'package:vmart/ui/pages/home/education_page/education_page.dart';
 import 'package:vmart/ui/pages/home/quiz_page/quiz_page.dart';
+import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_complited_notifier.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
 import 'controller/education_controller/video_notifier.dart';
@@ -43,6 +44,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => VideoNotifier(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => OrderCompletedNotifier(),
+        ),
+        
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
         '/': (context) => SplashPage(),
