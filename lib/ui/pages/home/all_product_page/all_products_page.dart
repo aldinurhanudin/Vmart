@@ -24,7 +24,7 @@ class AllProductsPage extends StatelessWidget {
           children: [
             Container(
               width: 225,
-              height: 60,
+              height: 51,
               color: Colors.white,
               padding: EdgeInsets.symmetric(horizontal: 1, vertical: 8),
               child: TextField(
@@ -45,6 +45,9 @@ class AllProductsPage extends StatelessWidget {
                 style: TextStyle(fontSize: 13.0),
               ),
             ),
+            SizedBox(
+              width: 5,
+            ),
             Flexible(
               flex: 2,
               child: Card(
@@ -55,8 +58,8 @@ class AllProductsPage extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(100.0),
                   child: Container(
-                    width: 40,
-                    height: 40,
+                    width: 33,
+                    height: 33,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
@@ -67,7 +70,7 @@ class AllProductsPage extends StatelessWidget {
                       },
                       child: Image.asset(
                         'assets/icon_cart.png',
-                        width: 23,
+                        width: 20,
                         color: Colors.white,
                       ),
                     ),
@@ -95,6 +98,5 @@ class AllProductsPage extends StatelessWidget {
         },
       ),
     );
-  
   }
 }

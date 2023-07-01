@@ -6,9 +6,10 @@ class WishlistPage extends StatelessWidget {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     PageProvider pageProvider = Provider.of<PageProvider>(context);
 
-    Widget header() {
+    header() {
       return AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
         title: Text(
           'Wishlist',
@@ -17,8 +18,14 @@ class WishlistPage extends StatelessWidget {
             fontWeight: medium,
           ),
         ),
-        elevation: 0,
-        automaticallyImplyLeading: false,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
+          ),
+        ),
       );
     }
 
@@ -71,7 +78,7 @@ class WishlistPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Jelajahi Toko',
+                    'Jelajahi Vmart',
                     style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -103,12 +110,13 @@ class WishlistPage extends StatelessWidget {
       );
     }
 
-    return Column(
-      children: [
-        header(),
-        // emptyWishlist(),
-        wishlistProvider.wishlist.length == 0 ? emptyWishlist() : content(),
-      ],
+    return Scaffold(
+      appBar: header(),
+      body: Column(
+        children: [
+          wishlistProvider.wishlist.length == 0 ? emptyWishlist() : content(),
+        ],
+      ),
     );
   }
 }

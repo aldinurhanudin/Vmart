@@ -82,7 +82,7 @@ class CartPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Jelajahi Toko',
+                  'Jelajahi Vmart',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,

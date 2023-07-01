@@ -6,9 +6,10 @@ class ChatPage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     PageProvider pageProvider = Provider.of<PageProvider>(context);
 
-    Widget header() {
+    header() {
       return AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
         title: Text(
           'Pesan',
@@ -17,8 +18,14 @@ class ChatPage extends StatelessWidget {
             fontWeight: medium,
           ),
         ),
-        elevation: 0,
-        automaticallyImplyLeading: false,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
+          ),
+        ),
       );
     }
 
@@ -71,7 +78,7 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Jelajahi Toko',
+                    'Jelajahi Vmart',
                     style: thirdTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -116,9 +123,9 @@ class ChatPage extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: header(),
       body: Column(
         children: [
-          header(),
           content(),
         ],
       ),
