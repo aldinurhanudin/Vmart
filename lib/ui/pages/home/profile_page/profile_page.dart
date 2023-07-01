@@ -99,11 +99,11 @@ class ProfilePage extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/edit-profile');
+                  Navigator.pushNamed(context, '/addresslist');
                 },
                 child: menuItem(
-                  'Edit profil',
-                  Icons.home,
+                  'Daftar alamat saya',
+                  Icons.location_on_outlined,
                 ),
               ),
               GestureDetector(

@@ -63,18 +63,8 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    "Horre:",
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
                     'Item berhasil ditambahkan',
-                    style: secondaryTextStyle,
+                    style: primaryTextStyle,
                   ),
                   SizedBox(
                     height: 20,

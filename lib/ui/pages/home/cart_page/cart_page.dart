@@ -8,8 +8,12 @@ class CartPage extends StatelessWidget {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     header() {
       return AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         title: Text(
           'Keranjang',
           style: primaryTextStyle.copyWith(
@@ -17,7 +21,20 @@ class CartPage extends StatelessWidget {
             fontWeight: medium,
           ),
         ),
-        elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+          },
+        ),
       );
     }
 
@@ -77,7 +94,6 @@ class CartPage extends StatelessWidget {
           ],
         ),
       );
-    
     }
 
     Widget content() {

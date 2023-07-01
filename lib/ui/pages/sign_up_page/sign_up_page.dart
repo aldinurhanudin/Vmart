@@ -73,7 +73,8 @@ class _SignUpPageState extends State<SignUpPage> {
     }
 
     Widget nameInput() {
-      return Container(
+      return 
+      Container(
         margin: EdgeInsets.only(top: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,6 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       );
+   
     }
 
     Widget usernameInput() {

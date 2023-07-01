@@ -65,6 +65,23 @@ class _DetailChatPageState extends State<DetailChatPage> {
               ),
             ],
           ),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1.0),
+            child: Divider(
+              color: greyColor,
+              height: 1.0,
+              thickness: 1.2,
+            ),
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       );
     }

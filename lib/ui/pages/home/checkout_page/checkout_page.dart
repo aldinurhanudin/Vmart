@@ -9,11 +9,11 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   final String apiKey =
-      'd6e171a68e0353d3f840306a11756725'; // Ganti dengan API Key yang Anda dapatkan dari Raja Ongkir
+      'd6e171a68e0353d3f840306a11756725'; 
   final String origin =
-      '22'; //149indramayu// Ganti dengan kota asal pengiriman Anda
-  final String destination = '22'; // Ganti dengan kota tujuan pengiriman Anda
-  final int weight = 1000; // Ganti dengan berat pengiriman dalam gram
+      '22'; 
+  final String destination = '22'; 
+  final int weight = 1000; 
 
   List<dynamic> shippingCosts = [];
   bool isLoading = false;
@@ -56,16 +56,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
       });
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     header() {
-    
       return AppBar(
-        backgroundColor: backgroundColor1,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         title: Text(
           'Detail Pembayaran',
           style: primaryTextStyle.copyWith(
@@ -80,6 +83,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
             height: 1.0,
             thickness: 1.2,
           ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       );
     }
@@ -158,7 +167,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 63),
+                                padding: const EdgeInsets.only(bottom: 45),
                                 child: Image.asset(
                                   'assets/icon_your_address.png',
                                   width: 40,
@@ -169,32 +178,31 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           SizedBox(
                             width: 2,
                           ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Rumah',
-                                  style: primaryTextStyle.copyWith(
-                                    fontSize: 14,
-                                    fontWeight: bold,
-                                  ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Aldi Nurhanudin 081546847733',
+                                style: primaryTextStyle.copyWith(
+                                  fontSize: 14,
+                                  fontWeight: bold,
                                 ),
-                                Text(
-                                  'Aldi Nurhanudin(081546847733)\nJln Simpang Tiga Lohbener No.9\nKec.Lohbener, Kab.Indramayu,\nJawa Barat, ID 45252',
-                                  style: secondaryTextStyle.copyWith(
-                                    fontWeight: light,
-                                    fontSize: 13,
-                                  ),
+                              ),
+                              Text(
+                                'Jln Simpang Tiga Lohbener No.9\nKec.Lohbener, Kab.Indramayu,\nJawa Barat, ID 45252',
+                                style: secondaryTextStyle.copyWith(
+                                  fontWeight: light,
+                                  fontSize: 13,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
+            
               ],
             ),
           ),

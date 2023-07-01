@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +27,7 @@ import 'home_page/profile/my_order_widget/order_complited_notifier.dart';
 part 'home_page/product_card/product_card.dart';
 part 'home_page/loading_button/loading_button.dart';
 part 'home_page/checkout_widget/checkout_card/checkout_card.dart';
-part 'home_page/checkout_widget/address_list/address_list.dart';
+part 'home_page/checkout_widget/address/address_list.dart';
 part 'home_page/checkout_widget/select_delivery/select_delivery.dart';
 part 'home_page/cart_card/cart_card.dart';
 
