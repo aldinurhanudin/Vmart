@@ -3,8 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:vmart/shared/shared.dart';
 import 'package:vmart/ui/pages/home/education_page/docs_details_page.dart';
-
 
 class DocsPage extends StatelessWidget {
   const DocsPage({super.key});
@@ -56,11 +56,17 @@ class DocsPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width,
                                 height: 200,
-                                child: Image.network(
-                                  '${mypost['image']}',
-                                  fit: BoxFit.fill,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                  ),
+                                  child: Image.network(
+                                    '${mypost['image']}',
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -74,16 +80,17 @@ class DocsPage extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.only(
+                                    left: 8, bottom: 15, right: 8),
                                 child: Text(
                                   '${mypost['subtitle']}',
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blueGrey,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption!
+                                      .copyWith(fontSize: 18),
+                                  textAlign: TextAlign.justify,
                                 ),
                               ),
                             ],
@@ -99,6 +106,5 @@ class DocsPage extends StatelessWidget {
         },
       ),
     );
- 
   }
 }

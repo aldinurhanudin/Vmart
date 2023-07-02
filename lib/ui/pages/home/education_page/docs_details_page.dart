@@ -92,18 +92,64 @@ class _DocsDetailPageState extends State<DocsDetailPage> {
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                '${widget.data['subtitle']}',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black,
-                ),
+              RichText(
                 textAlign: TextAlign.justify,
-                textScaleFactor: 1.0,
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          '${widget.data['menjorok1']}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text: '${widget.data['paragraf1']}',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              RichText(
+                textAlign: TextAlign.justify,
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          '${widget.data['menjorok2']}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text: '${widget.data['paragraf2']}',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
                 'Kategori',
@@ -111,14 +157,15 @@ class _DocsDetailPageState extends State<DocsDetailPage> {
               ),
               SizedBox(height: 8),
               Container(
+                // height: 45,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 padding: EdgeInsets.all(16),
                 child: Text(
                   '${widget.data['kategori']}',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, color: Colors.grey[800]),
                 ),
               ),
             ],
@@ -126,6 +173,5 @@ class _DocsDetailPageState extends State<DocsDetailPage> {
         ),
       ),
     );
- 
   }
 }
