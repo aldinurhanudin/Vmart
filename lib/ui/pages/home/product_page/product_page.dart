@@ -173,7 +173,21 @@ class _ProductPageState extends State<ProductPage> {
                             style: secondaryTextStyle.copyWith(
                               fontSize: 12,
                             ),
-                          )
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Sisa ${widget.product.stocks?.quantity}',
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              RatingStars(5),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -403,22 +417,18 @@ class _ProductPageState extends State<ProductPage> {
     Widget tambahKeranjang() {
       return Container(
         // width: double.infinity,
-        height: 89,
-
+        height: 70,
         child: Column(
           children: [
             Divider(
               thickness: 0.3,
               color: subtitleColor,
             ),
-            SizedBox(
-              height: 5,
-            ),
             Row(
               children: [
                 SizedBox(
                   height: 8,
-                  width: 30,
+                  width: 5,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -442,42 +452,89 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
                 SizedBox(
-                  width: 80,
+                  width: 5,
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                    // borderRadius: BorderRadius.circular(35),
-                  ),
                   height: 50,
+                  width: 140,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/addAddress');
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: primaryColor,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Beli Sekarang',
+                      style: greenTextStyle,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  height: 50,
+                  width: 140,
                   child: TextButton(
                     onPressed: () {
                       cartProvider.addCart(widget.product);
                       showSuccessDialog();
                     },
                     style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                       backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
                     child: Text(
-                      'Tambah Keranjang',
-                      style: thirdTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
+                      '+ Keranjang',
+                      style: GoogleFonts.poppins(
+                          color: backgroundColor1,
+                          fontWeight: bold,
+                          fontSize: 14),
                     ),
                   ),
                 ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: Colors.grey.withOpacity(0.5),
+                //         spreadRadius: 1,
+                //         blurRadius: 5,
+                //         offset:
+                //             const Offset(0, 2), // changes position of shadow
+                //       ),
+                //     ],
+                //     // borderRadius: BorderRadius.circular(35),
+                //   ),
+                //   height: 50,
+                //   child: TextButton(
+                //     onPressed: () {
+                //       cartProvider.addCart(widget.product);
+                //       showSuccessDialog();
+                //     },
+                //     style: TextButton.styleFrom(
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(12),
+                //       ),
+                //       backgroundColor: primaryColor,
+                //     ),
+                //     child: Text(
+                //       '+Keranjang',
+                //       style: thirdTextStyle.copyWith(
+                //         fontSize: 16,
+                //         fontWeight: semiBold,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],
@@ -497,42 +554,182 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
-    Widget header() {
-      int index = -1;
-      return Column(
-        children: [
+    header() {
+      return
+          // Column(
+          //   children: [
+          //     Container(
+          //       margin: EdgeInsets.only(
+          //         top: defaultMargin,
+          //         // left: defaultMargin,
+          //         right: 5,
+          //       ),
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           GestureDetector(
+          //             onTap: () {
+          //               Navigator.pop(context);
+          //             },
+          //             child: Icon(
+          //               Icons.chevron_left,
+          //               size: 40,
+          //             ),
+          //           ),
+          //           Row(
+          //             children: [
+          //               Container(
+          //                 width: 40,
+          //                 height: 40,
+          //                 decoration: BoxDecoration(
+          //                   color: Colors.green,
+          //                   shape: BoxShape.circle,
+          //                 ),
+          //                 child: ClipRRect(
+          //                   borderRadius: BorderRadius.circular(20),
+          //                   child: Icon(
+          //                     size: 25,
+          //                     Icons.reply_rounded,
+          //                     color: Colors.white,
+          //                   ),
+          //                 ),
+          //               ),
+          //               SizedBox(
+          //                 width: 8,
+          //               ),
+          //               GestureDetector(
+          //                 onTap: () {
+          //                   cartProvider.addCart(widget.product);
+          //                   showSuccessDialog();
+          //                 },
+          //                 child: Container(
+          //                   width: 40,
+          //                   height: 40,
+          //                   decoration: BoxDecoration(
+          //                     color: Colors.green,
+          //                     shape: BoxShape.circle,
+          //                   ),
+          //                   child: ClipRRect(
+          //                     borderRadius: BorderRadius.circular(20),
+          //                     child: Icon(
+          //                       Icons.shopping_cart_outlined,
+          //                       size: 25,
+          //                       color: Colors.white,
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //               SizedBox(
+          //                 width: 8,
+          //               ),
+          //               Container(
+          //                 width: 40,
+          //                 height: 40,
+          //                 decoration: BoxDecoration(
+          //                   color: Colors.green,
+          //                   shape: BoxShape.circle,
+          //                 ),
+          //                 child: ClipRRect(
+          //                   borderRadius: BorderRadius.circular(20),
+          //                   child: Icon(
+          //                     Icons.more_vert,
+          //                     size: 25,
+          //                     color: Colors.white,
+          //                   ),
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // );
+          AppBar(
+        backgroundColor:
+            Colors.transparent, // Set the background color of the app bar
+        elevation: 0, // Remove the default shadow
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.chevron_left,
+            size: 40,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
           Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
-              // left: defaultMargin,
-              right: 5,
-            ),
+            margin: EdgeInsets.only(right: 5),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.chevron_left,
-                    size: 40,
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Icon(
+                      Icons.reply_rounded,
+                      size: 25,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
+                SizedBox(width: 8),
                 GestureDetector(
                   onTap: () {
-                    cartProvider.addCart(widget.product);
-                    showSuccessDialog();
+                    Navigator.pushNamed(context, '/cart');
                   },
-                  child: Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 40,
-                    color: primaryColor,
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      shape: BoxShape.circle,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Icon(
+                      Icons.more_vert,
+                      size: 25,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
+        ],
+      );
+    }
+
+    pictureProduct() {
+      int index = -1;
+      return Column(
+        children: [
           CarouselSlider(
             items: widget.product.galleries
                 ?.map(
@@ -572,10 +769,11 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     return Scaffold(
+      appBar: header(),
       backgroundColor: backgroundColor1,
       body: ListView(
         children: [
-          header(),
+          pictureProduct(),
           // SizedBox(
           //   height: 132,
           // ),

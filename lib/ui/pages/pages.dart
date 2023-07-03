@@ -19,6 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
 import 'package:vmart/ui/pages/home/education_page/recipe_page.dart';
+import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/rating_stars.dart';
 
 import '../../models/user_model/user_model.dart';
 
