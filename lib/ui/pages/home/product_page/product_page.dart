@@ -26,10 +26,13 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   int currentIndex = 0;
+  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
     Future<void> showSuccessDialog() async {
       return showDialog(
         context: context,
@@ -115,7 +118,7 @@ class _ProductPageState extends State<ProductPage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           borderRadius: BorderRadius.circular(12),
@@ -144,7 +147,7 @@ class _ProductPageState extends State<ProductPage> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: const Offset(0, 2), // changes position of shadow
+                offset: const Offset(0, 2), 
               ),
             ],
             borderRadius: BorderRadius.circular(10),
@@ -227,7 +230,6 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-
               Container(
                 margin: EdgeInsets.only(
                   top: 20,
@@ -244,7 +246,7 @@ class _ProductPageState extends State<ProductPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), // changes position of shadow
+                      offset: const Offset(0, 2), 
                     ),
                   ],
                 ),
@@ -267,8 +269,11 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-
+            
               Container(
+                height: isExpanded
+                    ? 280
+                    : 170, 
                 margin: EdgeInsets.only(
                   top: defaultMargin,
                   left: 10,
@@ -286,128 +291,71 @@ class _ProductPageState extends State<ProductPage> {
                     SizedBox(
                       height: 12,
                     ),
-                    Text(
-                      widget.product.description,
-                      style: subtitleTextStyle.copyWith(
-                        fontWeight: light,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      child: AnimatedCrossFade(
+                        duration: const Duration(milliseconds: 1),
+                        firstChild: Text(
+                          widget.product.description,
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        secondChild: Text(
+                          widget.product.description,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        crossFadeState: isExpanded
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
                       ),
-                      textAlign: TextAlign.justify,
                     ),
-                  ],
-                ),
-              ),
-
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(
-                  top: defaultMargin,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: Text(
-                        'Produk Populer',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: medium,
+                    SizedBox(height: 8.0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              isExpanded ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: primaryColor,
+                              ),
+                            ),
+                            // SizedBox(width: 2.0),
+                            Icon(
+                              isExpanded
+                                  ? Icons.expand_less
+                                  : Icons.expand_more,
+                              size: 30.0,
+                              color: primaryColor,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: familiarShoes.map((image) {
-                          index++;
-                          return Container(
-                            margin: EdgeInsets.only(
-                                left: index == 0 ? defaultMargin : 0),
-                            child: familiarShoesCard(image),
-                          );
-                        }).toList(),
-                      ),
-                    )
                   ],
                 ),
               ),
-
-              //Note Buttons
-              // Container(
-              //   width: double.infinity,
-              //   margin: EdgeInsets.all(
-              //     defaultMargin,
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       GestureDetector(
-              //         onTap: () {
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) =>
-              //                   DetailChatPage(widget.product),
-              //             ),
-              //           );
-              //         },
-              //         child: Container(
-              //           width: 54,
-              //           height: 54,
-              //           decoration: BoxDecoration(
-              //             image: DecorationImage(
-              //               image: AssetImage(
-              //                 'assets/button_chat.png',
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //       SizedBox(
-              //         width: 16,
-              //       ),
-              //       Expanded(
-              //         child: Container(
-              //           decoration: BoxDecoration(
-              //             boxShadow: [
-              //               BoxShadow(
-              //                 color: Colors.grey.withOpacity(0.5),
-              //                 spreadRadius: 1,
-              //                 blurRadius: 5,
-              //                 offset: const Offset(
-              //                     0, 2), // changes position of shadow
-              //               ),
-              //             ],
-              //             // borderRadius: BorderRadius.circular(35),
-              //           ),
-              //           height: 54,
-              //           child: TextButton(
-              //             onPressed: () {
-              //               cartProvider.addCart(widget.product);
-              //               showSuccessDialog();
-              //             },
-              //             style: TextButton.styleFrom(
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(12),
-              //               ),
-              //               backgroundColor: primaryColor,
-              //             ),
-              //             child: Text(
-              //               '+Keranjang',
-              //               style: thirdTextStyle.copyWith(
-              //                 fontSize: 16,
-              //                 fontWeight: semiBold,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -501,40 +449,6 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                 ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //     boxShadow: [
-                //       BoxShadow(
-                //         color: Colors.grey.withOpacity(0.5),
-                //         spreadRadius: 1,
-                //         blurRadius: 5,
-                //         offset:
-                //             const Offset(0, 2), // changes position of shadow
-                //       ),
-                //     ],
-                //     // borderRadius: BorderRadius.circular(35),
-                //   ),
-                //   height: 50,
-                //   child: TextButton(
-                //     onPressed: () {
-                //       cartProvider.addCart(widget.product);
-                //       showSuccessDialog();
-                //     },
-                //     style: TextButton.styleFrom(
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(12),
-                //       ),
-                //       backgroundColor: primaryColor,
-                //     ),
-                //     child: Text(
-                //       '+Keranjang',
-                //       style: thirdTextStyle.copyWith(
-                //         fontSize: 16,
-                //         fontWeight: semiBold,
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ],
@@ -555,100 +469,10 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     header() {
-      return
-          // Column(
-          //   children: [
-          //     Container(
-          //       margin: EdgeInsets.only(
-          //         top: defaultMargin,
-          //         // left: defaultMargin,
-          //         right: 5,
-          //       ),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           GestureDetector(
-          //             onTap: () {
-          //               Navigator.pop(context);
-          //             },
-          //             child: Icon(
-          //               Icons.chevron_left,
-          //               size: 40,
-          //             ),
-          //           ),
-          //           Row(
-          //             children: [
-          //               Container(
-          //                 width: 40,
-          //                 height: 40,
-          //                 decoration: BoxDecoration(
-          //                   color: Colors.green,
-          //                   shape: BoxShape.circle,
-          //                 ),
-          //                 child: ClipRRect(
-          //                   borderRadius: BorderRadius.circular(20),
-          //                   child: Icon(
-          //                     size: 25,
-          //                     Icons.reply_rounded,
-          //                     color: Colors.white,
-          //                   ),
-          //                 ),
-          //               ),
-          //               SizedBox(
-          //                 width: 8,
-          //               ),
-          //               GestureDetector(
-          //                 onTap: () {
-          //                   cartProvider.addCart(widget.product);
-          //                   showSuccessDialog();
-          //                 },
-          //                 child: Container(
-          //                   width: 40,
-          //                   height: 40,
-          //                   decoration: BoxDecoration(
-          //                     color: Colors.green,
-          //                     shape: BoxShape.circle,
-          //                   ),
-          //                   child: ClipRRect(
-          //                     borderRadius: BorderRadius.circular(20),
-          //                     child: Icon(
-          //                       Icons.shopping_cart_outlined,
-          //                       size: 25,
-          //                       color: Colors.white,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //               SizedBox(
-          //                 width: 8,
-          //               ),
-          //               Container(
-          //                 width: 40,
-          //                 height: 40,
-          //                 decoration: BoxDecoration(
-          //                   color: Colors.green,
-          //                   shape: BoxShape.circle,
-          //                 ),
-          //                 child: ClipRRect(
-          //                   borderRadius: BorderRadius.circular(20),
-          //                   child: Icon(
-          //                     Icons.more_vert,
-          //                     size: 25,
-          //                     color: Colors.white,
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // );
-          AppBar(
+      return AppBar(
         backgroundColor:
-            Colors.transparent, // Set the background color of the app bar
-        elevation: 0, // Remove the default shadow
+            Colors.transparent, 
+        elevation: 0, 
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -768,16 +592,62 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
+    Widget newArrivals() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2), 
+            ),
+          ],
+          // borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Produk Terbaru',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 22,
+                  fontWeight: semiBold,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Column(
+                children: productProvider.products
+                    .take(6)
+                    .map(
+                      (product) => ProductTile(product),
+                    )
+                    .toList(),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: header(),
       backgroundColor: backgroundColor1,
       body: ListView(
         children: [
           pictureProduct(),
-          // SizedBox(
-          //   height: 132,
-          // ),
           content(),
+          newArrivals(),
         ],
       ),
       bottomNavigationBar: tambahKeranjang(),
