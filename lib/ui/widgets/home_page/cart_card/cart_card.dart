@@ -2,6 +2,7 @@ part of '../../widgets.dart';
 
 class CartCard extends StatelessWidget {
   final CartModel cart;
+
   CartCard(this.cart);
 
   @override
@@ -67,7 +68,52 @@ class CartCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      cartProvider.addQuantity(cart.id!);
+                      if (cart.quantity < cart.product!.stocks!.quantity) {
+                        cartProvider.addQuantity(cart.id!);
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: backgroundColor3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Peringatan',
+                                    style: primaryTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    Icons.error_outline,
+                                    size: 25,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
+                              content: Text(
+                                'Kamu sudah mencapai batas maksimum.',
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                     },
                     child: Image.asset(
                       'assets/button_add.png',
@@ -102,28 +148,40 @@ class CartCard extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          GestureDetector(
-            onTap: () {
-              cartProvider.removeCart(cart.id!);
-            },
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icon_remove.png',
-                  width: 10,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  cartProvider.removeCart(cart.id!);
+                },
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icon_remove.png',
+                      width: 10,
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      'Hapus',
+                      style: alertTextStyle.copyWith(
+                        fontSize: 12,
+                        fontWeight: light,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 4,
+              ),
+              Text(
+                'Sisa ${cart.product!.stocks!.quantity}',
+                style: alertTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: light,
                 ),
-                Text(
-                  'Hapus',
-                  style: alertTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: light,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
