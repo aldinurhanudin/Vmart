@@ -35,6 +35,7 @@ class _OrdersDetailsState extends State<OrdersDetails> {
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     final orderCompletedNotifier = Provider.of<OrderCompletedNotifier>(context);
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -494,7 +495,7 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                           height: 5,
                         ),
                         Container(
-                          height: 250,
+                          height: 200,
                           margin: EdgeInsets.only(
                             top: 14,
                           ),
@@ -664,6 +665,98 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                               ],
                             ),
                           ),
+                        ),
+
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 15),
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: primaryColor,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Text(
+                                'Rekomendasi untukmu',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Row(
+                                    children: productProvider.products
+                                        .take(6)
+                                        .map(
+                                          (product) => ClipRect(
+                                            child: Align(
+                                              alignment: Alignment.topLeft,
+                                              widthFactor: 1.0,
+                                              child: ProductCard(product),
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AllProductsPage(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 215,
+                                      height: 278,
+                                      margin: EdgeInsets.only(
+                                        right: defaultMargin,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.green,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.arrow_forward_ios_outlined,
+                                              color: Colors.green,
+                                            ),
+                                            Text(
+                                              'Lihat Semua',
+                                              style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10,

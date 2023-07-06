@@ -133,6 +133,15 @@ class ProfilePage extends StatelessWidget {
                   Icons.lightbulb_outline_rounded,
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/quiz');
+                },
+                child: menuItem(
+                  'Vmart Games',
+                  Icons.sports_esports_outlined,
+                ),
+              ),
               menuItem(
                 'Kebijakan Privasi',
                 Icons.lock_outline,

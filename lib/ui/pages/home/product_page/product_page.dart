@@ -8,124 +8,14 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List images = [
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
-    'assets/image_shoes.png',
-  ];
-
-  List familiarShoes = [
-    'assets/image_kangkung.png',
-    'assets/image_bayam.jpg',
-    'assets/image_selada.png',
-    'assets/image_apple.png',
-    'assets/image_paprika.png',
-    'assets/image_sawi.png',
-    'assets/image_brokoli.png',
-    'assets/image_sawi.png',
-  ];
-
   int currentIndex = 0;
   bool isExpanded = false;
+  bool isExpand = false;
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-
-    Future<void> showSuccessDialog() async {
-      return showDialog(
-        context: context,
-        builder: (BuildContext contex) => Container(
-          width: MediaQuery.of(context).size.width - (2 * defaultMargin),
-          child: AlertDialog(
-            backgroundColor: backgroundColor3,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.close,
-                        color: primaryTextColor,
-                      ),
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/icon_success.png',
-                    width: 100,
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'Item berhasil ditambahkan',
-                    style: primaryTextStyle,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 142,
-                    height: 44,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/cart');
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        'Lihat Keranjang Saya',
-                        style: thirdTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: medium,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
-    Widget familiarShoesCard(String imageUrl) {
-      return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageUrl),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 2), 
-            ),
-          ],
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-        ),
-      );
-    }
 
     Widget content() {
       int index = -1;
@@ -147,7 +37,7 @@ class _ProductPageState extends State<ProductPage> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: const Offset(0, 2), 
+                offset: const Offset(0, 2),
               ),
             ],
             borderRadius: BorderRadius.circular(10),
@@ -167,7 +57,7 @@ class _ProductPageState extends State<ProductPage> {
                           Text(
                             widget.product.name,
                             style: primaryTextStyle.copyWith(
-                              fontSize: 18,
+                              fontSize: 20,
                               fontWeight: semiBold,
                             ),
                           ),
@@ -246,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), 
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -269,11 +159,8 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-            
               Container(
-                height: isExpanded
-                    ? 280
-                    : 170, 
+                height: isExpanded ? 290 : 175,
                 margin: EdgeInsets.only(
                   top: defaultMargin,
                   left: 10,
@@ -286,6 +173,7 @@ class _ProductPageState extends State<ProductPage> {
                       'Deskripsi',
                       style: primaryTextStyle.copyWith(
                         fontWeight: bold,
+                        fontSize: 18,
                       ),
                     ),
                     SizedBox(
@@ -456,100 +344,6 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
-    Widget indicator(int index) {
-      return Container(
-        width: currentIndex == index ? 16 : 4,
-        height: 4,
-        margin: EdgeInsets.symmetric(horizontal: 2),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
-        ),
-      );
-    }
-
-    header() {
-      return AppBar(
-        backgroundColor:
-            Colors.transparent, 
-        elevation: 0, 
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.chevron_left,
-            size: 40,
-            color: Colors.black,
-          ),
-        ),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: 5),
-            child: Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Icon(
-                      Icons.reply_rounded,
-                      size: 25,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/cart');
-                  },
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      shape: BoxShape.circle,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Icon(
-                      Icons.more_vert,
-                      size: 25,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      );
-    }
-
     pictureProduct() {
       int index = -1;
       return Column(
@@ -592,6 +386,104 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
+    Widget nutrition() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          // borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Kandungan dan Nutrisi',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: semiBold,
+                ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isExpand = !isExpand;
+                  });
+                },
+                child: AnimatedCrossFade(
+                  duration: const Duration(milliseconds: 1),
+                  firstChild: Text(
+                    widget.product.tags!,
+                    maxLines: 5,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  secondChild: Text(
+                    widget.product.tags!,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  crossFadeState: isExpand
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isExpand = !isExpand;
+                  });
+                },
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        isExpand ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor,
+                        ),
+                      ),
+                      // SizedBox(width: 2.0),
+                      Icon(
+                        isExpand ? Icons.expand_less : Icons.expand_more,
+                        size: 30.0,
+                        color: primaryColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     Widget newArrivals() {
       return Container(
         margin: EdgeInsets.only(
@@ -603,7 +495,7 @@ class _ProductPageState extends State<ProductPage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           // borderRadius: BorderRadius.circular(12),
@@ -612,6 +504,7 @@ class _ProductPageState extends State<ProductPage> {
         child: Padding(
           padding: const EdgeInsets.only(
             left: 10,
+            top: 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -619,7 +512,7 @@ class _ProductPageState extends State<ProductPage> {
               Text(
                 'Produk Terbaru',
                 style: primaryTextStyle.copyWith(
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: semiBold,
                 ),
               ),
@@ -647,10 +540,173 @@ class _ProductPageState extends State<ProductPage> {
         children: [
           pictureProduct(),
           content(),
+          nutrition(),
           newArrivals(),
         ],
       ),
       bottomNavigationBar: tambahKeranjang(),
+    );
+  }
+
+  header() {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.chevron_left,
+          size: 40,
+          color: Colors.black,
+        ),
+      ),
+      actions: [
+        Container(
+          margin: EdgeInsets.only(right: 5),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Icon(
+                    Icons.reply_rounded,
+                    size: 25,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(width: 8),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    shape: BoxShape.circle,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Icon(
+                      Icons.shopping_cart_outlined,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 8),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Icon(
+                    Icons.more_vert,
+                    size: 25,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget indicator(int index) {
+    return Container(
+      width: currentIndex == index ? 16 : 4,
+      height: 4,
+      margin: EdgeInsets.symmetric(horizontal: 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
+      ),
+    );
+  }
+
+  Future<void> showSuccessDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext contex) => Container(
+        width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+        child: AlertDialog(
+          backgroundColor: backgroundColor3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.close,
+                      color: primaryTextColor,
+                    ),
+                  ),
+                ),
+                Image.asset(
+                  'assets/icon_success.png',
+                  width: 100,
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  'Item berhasil ditambahkan',
+                  style: primaryTextStyle,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 142,
+                  height: 44,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Lihat Keranjang Saya',
+                      style: thirdTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
