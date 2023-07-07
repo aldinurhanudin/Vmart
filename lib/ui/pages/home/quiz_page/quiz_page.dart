@@ -55,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('please select any option'),
+            content: Text('Pilih opsi terlebih dahulu'),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(vertical: 20),
           ),
@@ -101,7 +101,7 @@ class _QuizPageState extends State<QuizPage> {
           } else if (snapshot.hasData) {
             var extractedData = snapshot.data as List<Question>;
             return Scaffold(
-              backgroundColor: Colors.black,
+              backgroundColor: primaryColor,
               appBar: AppBar(
                 title: Text('Kuis'),
                 backgroundColor: primaryColor,
@@ -193,7 +193,7 @@ class _QuizPageState extends State<QuizPage> {
           );
         }
         return Center(
-          child: Text('No Data'),
+          child: Text('Tidak ada  data'),
         );
       },
     );

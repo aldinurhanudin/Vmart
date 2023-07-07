@@ -23,7 +23,7 @@ Color blackColor = Color(0xff2E2E2E);
 Color accentColor1 = Color(0xFFADADAD);
 Color greyColor = Color(0xffA4A8AE);
 
-const Color correct = Colors.green;
+const Color correct = Color.fromARGB(255, 0, 248, 8);
 const Color incorrect = Colors.red;
 const Color neutral = Colors.white;
 
