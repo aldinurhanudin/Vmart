@@ -126,23 +126,17 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget slider() {
       List<String> titles = [
-        // (AppLocalizations.of(context)!.welcome.toTitleCase()),
         'Selamat Datang di Vegetable Mart !',
-        'Kualitas Terbaik Dari Para Petani',
+        'Kualitas Terbaik Dari Petani',
         'Kamu Senang Petani Menang',
-        'Cuti',
-        'Claim',
-        'SPPD'
+        'Produk Segar',
       ];
 
       List<String> subtitles = [
-        // (AppLocalizations.of(context)!.labelLogin.toCapitalized()),
         '',
         'Sayur,buah dengan jaminan kualitas terbaik dan segar',
         'Ribuan petani lokal terbantu di setiap  belanjaan yang kamu beli',
-        'Kamu bisa mengajukan cuti ',
-        'Kamu bisa mengclaim apa yang menjadi hak mu',
-        'Kamu bisa mengajukan pembuatan SPPD'
+        'Produk segar dari petani lokal, langsung ketempat anda',
       ];
 
       return Padding(
@@ -187,8 +181,6 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     child: Image.asset(
                       'assets/welcome.png',
-                      // height: 203,
-                      // width: 268,
                     ),
                   ),
                   Container(
@@ -208,7 +200,7 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'assets/welcome.png',
+                      'assets/welcome4.png',
                       height: 203,
                       width: 268,
                     ),
@@ -230,7 +222,7 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'assets/welcome.png',
+                      'assets/welcome3.png',
                       height: 203,
                       width: 268,
                     ),
@@ -252,54 +244,7 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'assets/welcome.png',
-
-                      // height: 203,
-                      // width: 268,
-                    ),
-                  ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Image.asset(
-                      'assets/welcome.png',
-                      // height: 203,
-                      // width: 268,
-                    ),
-                  ),
-                  Container(
-                    width: 360,
-                    height: 205,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), // changes position of shadow
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Image.asset(
-                      'assets/welcome.png',
-                      // height: 203,
-                      // width: 268,
+                      'assets/welcome1.png',
                     ),
                   ),
                 ],
@@ -321,10 +266,7 @@ class _SignInPageState extends State<SignInPage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                // AppLocalizations.of(context)!.welcome.toTitleCase(),
-
                 titles[currentIndex],
-
                 style: blackTextStyle.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -390,28 +332,17 @@ class _SignInPageState extends State<SignInPage> {
                     color: currentIndex == 3 ? blackColor : greyColor,
                   ),
                 ),
-                Container(
-                  width: currentIndex == 4 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 4 ? blackColor : greyColor,
-                  ),
-                ),
-                Container(
-                  width: currentIndex == 5 ? 28 : 12,
-                  height: 12,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: currentIndex == 5 ? blackColor : greyColor,
-                  ),
-                ),
+
+                //   width: currentIndex == 5 ? 28 : 12,
+                //   height: 12,
+                //   margin: EdgeInsets.only(
+                //     right: 10,
+                //   ),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(10),
+                //     color: currentIndex == 5 ? blackColor : greyColor,
+                //   ),
+                // ),
               ],
             ),
             SizedBox(
@@ -482,6 +413,9 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
+              // Padding(
+              //     padding: EdgeInsets.only(
+              //         bottom: MediaQuery.of(context).viewInsets.bottom))
             ],
           ),
         ),
@@ -549,6 +483,9 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
+              // Padding(
+              //     padding: EdgeInsets.only(
+              //         bottom: MediaQuery.of(context).viewInsets.bottom))
             ],
           ),
         ),
@@ -643,6 +580,7 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: backgroundColor1,
       resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
           header(),
@@ -659,6 +597,9 @@ class _SignInPageState extends State<SignInPage> {
           isLoading ? LoadingButton() : signInButton(),
           Spacer(),
           footer(),
+          Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom))
         ],
       ),
     );

@@ -5,6 +5,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:vmart/providers/game_provider/game_provider.dart';
 import 'package:vmart/ui/pages/home/games/info_card.dart';
 
+import '../../../../shared/shared.dart';
+
 class Games extends StatefulWidget {
   const Games({super.key});
 
@@ -35,7 +37,12 @@ class _GamesState extends State<Games> {
             content: Text('Anda telah menyelesaikan permainan!'),
             actions: [
               TextButton(
-                child: Text('Ulangi Lagi'),
+                child: Text(
+                  'Ulangi Lagi',
+                  style: TextStyle(
+                    color: primaryColor,
+                  ),
+                ),
                 onPressed: () {
                   setState(() {
                     _game.initGame();
@@ -46,7 +53,12 @@ class _GamesState extends State<Games> {
                 },
               ),
               TextButton(
-                child: Text('Keluar'),
+                child: Text(
+                  'Keluar',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
