@@ -5,7 +5,7 @@ import 'package:vmart/models/quiz_model/question_model.dart';
 
 class DBconnect {
   final url = Uri.parse(
-      'https://quiz-8ee28-default-rtdb.firebaseio.com/questions.json');
+      'https://quiz2-51aac-default-rtdb.asia-southeast1.firebasedatabase.app/questions.json');
 
   Future<List<Question>> fetchQuestions() async {
     return http.get(url).then((response) {

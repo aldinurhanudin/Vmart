@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
 import 'package:vmart/ui/pages/home/education_page/education_page.dart';
+import 'package:vmart/ui/pages/home/games/games.dart';
 import 'package:vmart/ui/pages/home/quiz_page/quiz_page.dart';
 import 'package:vmart/ui/widgets/home_page/checkout_widget/address/add_address.dart';
 import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_complited_notifier.dart';
@@ -48,7 +49,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => OrderCompletedNotifier(),
         ),
-        
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, routes: {
         '/': (context) => SplashPage(),
@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
         '/selectdelivery': (context) => SelectDelivery(),
         '/education': (context) => EducationPage(),
         '/quiz': (context) => QuizPage(),
+        '/games': (context) => Games(),
       }),
     );
   }

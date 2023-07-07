@@ -135,7 +135,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/quiz');
+                  Navigator.pushNamed(context, '/games');
                 },
                 child: menuItem(
                   'Vmart Games',
