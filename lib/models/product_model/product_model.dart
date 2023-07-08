@@ -6,6 +6,7 @@ class ProductModel {
   int? price;
   var description;
   String? tags;
+  var isAvailable;
   StocksModel? stocks;
   CategoryModel? category;
   DateTime? createdAt;
@@ -18,6 +19,7 @@ class ProductModel {
     this.price,
     this.description,
     this.tags,
+    this.isAvailable,
     this.stocks,
     this.category,
     this.createdAt,
@@ -31,6 +33,7 @@ class ProductModel {
     price = int.parse(json['price'].toString());
     description = json['description'];
     tags = json['tags'];
+    isAvailable = json['is_available'];
     if (json['stocks'] is List<dynamic>) {
       stocks = StocksModel.fromJson(json['stocks'][0]);
     } else {
@@ -51,6 +54,7 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
+      'is_available': isAvailable,
       'stocks': stocks?.map((stock) => stock.toString()).toList(),
       'category': category?.toJson(),
       'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),

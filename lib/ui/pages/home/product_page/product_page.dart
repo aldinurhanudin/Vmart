@@ -122,7 +122,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
               Container(
                 margin: EdgeInsets.only(
-                  top: 20,
+                  top: 15,
                   left: 10,
                   right: 10,
                 ),
@@ -159,91 +159,9 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-              Container(
-                height: isExpanded ? 290 : 175,
-                margin: EdgeInsets.only(
-                  top: defaultMargin,
-                  left: 10,
-                  right: 10,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Deskripsi',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      child: AnimatedCrossFade(
-                        duration: const Duration(milliseconds: 1),
-                        firstChild: Text(
-                          widget.product.description,
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                        secondChild: Text(
-                          widget.product.description,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                        crossFadeState: isExpanded
-                            ? CrossFadeState.showSecond
-                            : CrossFadeState.showFirst,
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              isExpanded ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: primaryColor,
-                              ),
-                            ),
-                            // SizedBox(width: 2.0),
-                            Icon(
-                              isExpanded
-                                  ? Icons.expand_less
-                                  : Icons.expand_more,
-                              size: 30.0,
-                              color: primaryColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),
@@ -386,104 +304,6 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
-    Widget nutrition() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 14,
-        ),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 2),
-            ),
-          ],
-          // borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Kandungan dan Nutrisi',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: semiBold,
-                ),
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isExpand = !isExpand;
-                  });
-                },
-                child: AnimatedCrossFade(
-                  duration: const Duration(milliseconds: 1),
-                  firstChild: Text(
-                    widget.product.tags!,
-                    maxLines: 5,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  secondChild: Text(
-                    widget.product.tags!,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  crossFadeState: isExpand
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
-                ),
-              ),
-              SizedBox(height: 8.0),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isExpand = !isExpand;
-                  });
-                },
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        isExpand ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: primaryColor,
-                        ),
-                      ),
-                      // SizedBox(width: 2.0),
-                      Icon(
-                        isExpand ? Icons.expand_less : Icons.expand_more,
-                        size: 30.0,
-                        color: primaryColor,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
     Widget newArrivals() {
       return Container(
         margin: EdgeInsets.only(
@@ -540,6 +360,8 @@ class _ProductPageState extends State<ProductPage> {
         children: [
           pictureProduct(),
           content(),
+          varian(),
+          description(),
           nutrition(),
           newArrivals(),
         ],
@@ -705,6 +527,260 @@ class _ProductPageState extends State<ProductPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget varian() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 14,
+      ),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        // borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Varian',
+              style: primaryTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 198, 242, 198),
+                  border: Border.all(color: primaryColor, width: 1),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                child: Text(
+                  // widget.product.isAvailable!,
+                  '${widget.product.isAvailable!} g',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget description() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 14,
+      ),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        // borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Deskripsi',
+              style: primaryTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
+              child: AnimatedCrossFade(
+                duration: const Duration(milliseconds: 1),
+                firstChild: Text(
+                  widget.product.description,
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                secondChild: Text(
+                  widget.product.description,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                crossFadeState: isExpanded
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+              ),
+            ),
+            SizedBox(height: 8.0),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      isExpanded ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                        color: primaryColor,
+                      ),
+                    ),
+                    // SizedBox(width: 2.0),
+                    Icon(
+                      isExpanded ? Icons.expand_less : Icons.expand_more,
+                      size: 30.0,
+                      color: primaryColor,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget nutrition() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 14,
+      ),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        // borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Kandungan dan Nutrisi',
+              style: primaryTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isExpand = !isExpand;
+                });
+              },
+              child: AnimatedCrossFade(
+                duration: const Duration(milliseconds: 1),
+                firstChild: Text(
+                  widget.product.tags!,
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                secondChild: Text(
+                  widget.product.tags!,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                crossFadeState: isExpand
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+              ),
+            ),
+            SizedBox(height: 8.0),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isExpand = !isExpand;
+                });
+              },
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      isExpand ? 'SEMBUNYIKAN' : 'BACA SELENGKAPNYA',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                        color: primaryColor,
+                      ),
+                    ),
+                    // SizedBox(width: 2.0),
+                    Icon(
+                      isExpand ? Icons.expand_less : Icons.expand_more,
+                      size: 30.0,
+                      color: primaryColor,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
