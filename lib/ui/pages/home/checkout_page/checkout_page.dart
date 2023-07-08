@@ -8,12 +8,10 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  final String apiKey =
-      'd6e171a68e0353d3f840306a11756725'; 
-  final String origin =
-      '22'; 
-  final String destination = '22'; 
-  final int weight = 1000; 
+  final String apiKey = 'd6e171a68e0353d3f840306a11756725';
+  final String origin = '22';
+  final String destination = '22';
+  final int weight = 1000;
 
   List<dynamic> shippingCosts = [];
   bool isLoading = false;
@@ -56,8 +54,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
       });
     }
   }
-  
 
+  String abbreviateText(String text, int maxLength) {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.substring(0, maxLength - 3) + '...';
+    }
+  }
+
+  bool isClicked = false;
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
@@ -93,376 +99,457 @@ class _CheckoutPageState extends State<CheckoutPage> {
       );
     }
 
-    Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
-        children: [
-          // Note Address Details
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
+    Widget address() {
+      return Container(
+        width: 400,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Alamat Pengiriman",
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Alamat Pengiriman",
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/addresslist');
-                          },
-                          child: Text(
-                            "Ganti Alamat",
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 14,
-                              color: primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/addresslist');
+                        },
+                        child: Text(
+                          "Ganti Alamat",
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 15,
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Icon(
-                          Icons.chevron_right,
-                          size: 24,
-                          color: primaryColor,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: defaultMargin,
-                  ),
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 2), // changes position of shadow
+                      ),
+                      Icon(
+                        Icons.chevron_right,
+                        size: 24,
+                        color: primaryColor,
                       ),
                     ],
-                    color: backgroundColor1,
-                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                ],
+              ),
+              Divider(
+                color: Colors.grey,
+                thickness: 0.5,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Row(
+                      Column(
                         children: [
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 45),
-                                child: Image.asset(
-                                  'assets/icon_your_address.png',
-                                  width: 40,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 2,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Aldi Nurhanudin 081546847733',
-                                style: primaryTextStyle.copyWith(
-                                  fontSize: 14,
-                                  fontWeight: bold,
-                                ),
-                              ),
-                              Text(
-                                'Jln Simpang Tiga Lohbener No.9\nKec.Lohbener, Kab.Indramayu,\nJawa Barat, ID 45252',
-                                style: secondaryTextStyle.copyWith(
-                                  fontWeight: light,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
+                          Image.asset(
+                            'assets/icons_googlemaps.png',
+                            width: 25,
                           ),
                         ],
                       ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Aldi Nurhanudin 081546847733',
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: bold,
+                              ),
+                            ),
+                            Text(
+                              abbreviateText(
+                                'Jln Simpang Tiga Lohbener No.9 Kec.Lohbener, Kab.Indramayu, Jawa Barat, ID 45252',
+                                45,
+                              ),
+                              style: secondaryTextStyle.copyWith(
+                                fontWeight: light,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ),
-            
-              ],
-            ),
-          ),
-
-          //Note: List Items
-
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Daftar item',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-                Column(
-                  children: cartProvider.carts
-                      .map(
-                        (cart) => CheckoutCard(cart),
-                      )
-                      .toList(),
-                ),
-              ],
-            ),
+                  Container(
+                    height: 5,
+                    child: Row(
+                      children: List.generate(10, (index) {
+                        final isBlue = index % 2 == 0;
+                        final flex = isBlue ? 1 : 1;
+
+                        return Expanded(
+                          flex: flex,
+                          child: Container(
+                            color: isBlue ? Colors.blue : Colors.red,
+                          ),
+                        );
+                      })
+                          .expand((widget) => [widget, SizedBox(width: 5)])
+                          .toList(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 3,
+                  )
+                ],
+              ),
+            ],
           ),
+        ),
+      );
+    }
 
-          //pilih pengiriman
-
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
+    Widget item() {
+      return Container(
+        width: 400,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
             ),
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 5,
-                  offset: const Offset(0, 2), // changes position of shadow
-                ),
-              ],
-              color: backgroundColor1,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                // SelectDelivery();
-                Navigator.pushNamed(context, '/selectdelivery');
-                // print('Container ditekan');
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 children: [
-                  // Row(
-                  //   children: [
-                  //     Column(
-                  //       children: [
-                  //         Icon(
-                  //           Icons.local_shipping,
-                  //           size: 30,
-                  //           color: primaryColor,
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     SizedBox(
-                  //       width: 12,
-                  //     ),
-                  //     Expanded(
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //         children: [
-                  //           Text(
-                  //             'Pilih Pengiriman',
-                  //             style: primaryTextStyle.copyWith(
-                  //               fontSize: 12,
-                  //               fontWeight: medium,
-                  //             ),
-                  //           ),
-                  //           Icon(
-                  //             Icons.chevron_right,
-                  //             size: 24,
-                  //             color: Colors.grey,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-
-                  DropdownSearch<String>(
-                    mode: Mode.MENU,
-                    showSelectedItem: true,
-                    items: ['jne', 'tiki', 'pos'],
-                    label: 'Pilih Pengiriman',
-                    onChanged: (String? newValue) {
-                      fetchShippingCosts(newValue!);
-                    },
-                    // selectedItem: selectedShipping,
-                  ),
-                  if (isLoading)
-                    Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 4.0,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                  Container(
+                    width: 53,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Vmart',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'Daftar item',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: cartProvider.carts
+                    .map(
+                      (cart) => CheckoutCard(cart),
                     )
-                  else
-                    SizedBox(
-                      height: 60, // Sesuaikan dengan tinggi yang diinginkan
-                      child: ListView.builder(
-                        itemCount: shippingCosts.length,
-                        itemBuilder: (ctx, index) {
-                          final cost = shippingCosts[index];
-                          final serviceName = cost['name'];
-                          final serviceCost =
-                              cost['costs'][0]['cost'][0]['value'];
+                    .toList(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/checkout');
-                            },
-                            child: Card(
+    Widget shippingOptions() {
+      return Container(
+        width: 400,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.local_shipping_outlined,
+                    color: primaryColor,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    'Opsi Pengiriman',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isClicked = !isClicked;
+                  });
+                  Navigator.pushNamed(context, '/selectdelivery');
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DropdownSearch<String>(
+                      mode: Mode.MENU,
+                      showSelectedItem: true,
+                      items: ['jne', 'tiki', 'pos'],
+                      label: 'Pilih Pengiriman',
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                        fetchShippingCosts(newValue!);
+                      },
+                    ),
+                    if (isLoading)
+                      Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 4.0,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.green),
+                        ),
+                      )
+                    else
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 1),
+                        height: isClicked ? 100 : 10,
+                        child: ListView.builder(
+                          itemCount: shippingCosts.length,
+                          itemBuilder: (ctx, index) {
+                            final cost = shippingCosts[index];
+                            final serviceName = cost['name'];
+                            final serviceCost =
+                                cost['costs'][0]['cost'][0]['value'];
+
+                            return Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black.withOpacity(0.5),
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(8),
+                                  bottomRight: Radius.circular(8),
+                                ),
+                              ),
                               child: ListTile(
                                 title: Text(serviceName),
                                 subtitle: Text('Harga: Rp $serviceCost'),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget paymentSummary() {
+      return Container(
+        width: 400,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.assignment_outlined,
+                    color: primaryColor,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    'Ringkasan Belanja',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
                 ],
               ),
-            ),
-          ),
-
-          //Note: Payment Summary
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
-            ),
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 5,
-                  offset: const Offset(0, 2), // changes position of shadow
-                ),
-              ],
-              color: backgroundColor1,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Ringkasan Belanja',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
+              SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Kuantitas Produk',
+                    style: secondaryTextStyle.copyWith(fontSize: 12),
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Kuantitas Produk',
-                      style: secondaryTextStyle.copyWith(fontSize: 12),
+                  Text(
+                    '${cartProvider.totalItems()} Barang',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
                     ),
-                    Text(
-                      '${cartProvider.totalItems()} Barang',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Harga Produk',
+                    style: secondaryTextStyle.copyWith(fontSize: 12),
+                  ),
+                  Text(
+                    'Rp.${cartProvider.totalPrice()}',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Harga Produk',
-                      style: secondaryTextStyle.copyWith(fontSize: 12),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Ongkos Kirim',
+                    style: secondaryTextStyle.copyWith(fontSize: 12),
+                  ),
+                  Text(
+                    'Rp.8.000',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
                     ),
-                    Text(
-                      'Rp.${cartProvider.totalPrice()}',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Divider(
+                thickness: 0.5,
+                color: Colors.grey,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Total Pembayaran',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: semiBold,
+                      fontSize: 18,
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ' Ongkos Kirim',
-                      style: secondaryTextStyle.copyWith(fontSize: 12),
+                  ),
+                  Text(
+                    'Rp.${cartProvider.totalPriceShipping()}',
+                    style: priceTextStyle.copyWith(
+                      fontWeight: semiBold,
+                      fontSize: 18,
                     ),
-                    Text(
-                      'Rp.8.000',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Divider(
-                  thickness: 1,
-                  color: Color(0xff2E3141),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: priceTextStyle.copyWith(
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                    Text(
-                      'Rp.${cartProvider.totalPriceShipping()}',
-                      style: priceTextStyle.copyWith(
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
           ),
-
-          //Note:  Checkout Button
-          SizedBox(
-            height: defaultMargin,
-          ),
-        ],
+        ),
       );
     }
 
@@ -482,14 +569,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Total Pembayaran',
-                      style: primaryTextStyle,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                     Text(
                       'Rp.${cartProvider.totalPriceShipping()}',
@@ -501,7 +590,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ],
                 ),
                 SizedBox(
-                  width: 30,
+                  width: 40,
                 ),
                 Container(
                   width: 120,
@@ -558,7 +647,25 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: header(),
-      body: content(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            address(),
+            SizedBox(
+              height: 10,
+            ),
+            item(),
+            SizedBox(
+              height: 10,
+            ),
+            shippingOptions(),
+            SizedBox(
+              height: 10,
+            ),
+            paymentSummary(),
+          ],
+        ),
+      ),
       bottomNavigationBar: checkoutButton(),
     );
   }

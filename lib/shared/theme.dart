@@ -44,7 +44,7 @@ TextStyle subtitleTextStyle = GoogleFonts.poppins(
 );
 
 TextStyle priceTextStyle = GoogleFonts.poppins(
-  color: priceColor,
+  color: primaryColor,
 );
 
 TextStyle greenTextStyle = GoogleFonts.poppins(

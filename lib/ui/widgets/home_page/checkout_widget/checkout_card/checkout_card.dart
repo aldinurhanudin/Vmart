@@ -65,15 +65,24 @@ class CheckoutCard extends StatelessWidget {
           SizedBox(
             width: 12,
           ),
-          Text(
-            '${cart.quantity} Barang',
-            style: secondaryTextStyle.copyWith(
-              fontSize: 12,
-            ),
-          )
+          Row(
+            children: [
+              Text(
+                '${cart.quantity} Barang',
+                style: secondaryTextStyle.copyWith(
+                  fontSize: 12,
+                ),
+              ),
+              Text(
+                ' (${cart.product!.isAvailable} g)',
+                style: secondaryTextStyle.copyWith(
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
- 
   }
 }
