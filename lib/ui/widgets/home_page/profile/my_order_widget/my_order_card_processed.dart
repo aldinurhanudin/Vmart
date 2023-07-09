@@ -29,7 +29,7 @@ class MyOrderCardProcessed extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           color: backgroundColor1,
@@ -68,11 +68,21 @@ class MyOrderCardProcessed extends StatelessWidget {
                       SizedBox(
                         height: 2,
                       ),
-                      Text(
-                        '${cart.quantity} Barang',
-                        style: secondaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            '${cart.quantity} Barang',
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                            ),
+                          ),
+                          Text(
+                            ' (${cart.product!.isAvailable} g)',
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -107,9 +117,6 @@ class MyOrderCardProcessed extends StatelessWidget {
                 Container(
                   width: 120,
                   height: 39,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: defaultMargin,
-                  ),
                   child: TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/cart');
@@ -138,6 +145,5 @@ class MyOrderCardProcessed extends StatelessWidget {
         ),
       ),
     );
- 
   }
 }

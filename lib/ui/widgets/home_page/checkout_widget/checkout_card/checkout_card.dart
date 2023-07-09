@@ -21,7 +21,7 @@ class CheckoutCard extends StatelessWidget {
             offset: const Offset(0, 2), // changes position of shadow
           ),
         ],
-        color: backgroundColor1,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
