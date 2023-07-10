@@ -68,7 +68,7 @@ class CartCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if (cart.quantity < cart.product!.stocks!.quantity) {
+                      if (cart.quantity < cart.product!.totalStock) {
                         cartProvider.addQuantity(cart.id!);
                       } else {
                         showDialog(
@@ -175,7 +175,7 @@ class CartCard extends StatelessWidget {
                 ),
               ),
               Text(
-                'Sisa ${cart.product!.stocks!.quantity}',
+                'Sisa ${cart.product!.totalStock!}',
                 style: alertTextStyle.copyWith(
                   fontSize: 12,
                   fontWeight: light,

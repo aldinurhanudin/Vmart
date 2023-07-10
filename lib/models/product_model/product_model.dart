@@ -7,7 +7,8 @@ class ProductModel {
   var description;
   String? tags;
   var isAvailable;
-  StocksModel? stocks;
+  // StocksModel? stocks;
+  int? totalStock;
   CategoryModel? category;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -20,11 +21,12 @@ class ProductModel {
     this.description,
     this.tags,
     this.isAvailable,
-    this.stocks,
+    // this.stocks,
     this.category,
     this.createdAt,
     this.updatedAt,
     this.galleries,
+    this.totalStock,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -34,11 +36,8 @@ class ProductModel {
     description = json['description'];
     tags = json['tags'];
     isAvailable = json['is_available'];
-    if (json['stocks'] is List<dynamic>) {
-      stocks = StocksModel.fromJson(json['stocks'][0]);
-    } else {
-      stocks = StocksModel.fromJson(json['stocks']);
-    }
+    totalStock = json['totalStock'];
+    // stocks = StocksModel.fromJson(json['stocks']);
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
         .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
@@ -55,7 +54,8 @@ class ProductModel {
       'description': description,
       'tags': tags,
       'is_available': isAvailable,
-      'stocks': stocks?.map((stock) => stock.toString()).toList(),
+      // 'stocks': stocks?.toJson(),
+      'totalStock': totalStock,
       'category': category?.toJson(),
       'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),
       'created_at': createdAt.toString(),

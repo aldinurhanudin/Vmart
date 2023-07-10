@@ -73,7 +73,7 @@ class _ProductPageState extends State<ProductPage> {
                           Row(
                             children: [
                               Text(
-                                'Sisa ${widget.product.stocks?.quantity}',
+                                'Sisa ${widget.product.totalStock}',
                               ),
                               SizedBox(
                                 width: 8,
