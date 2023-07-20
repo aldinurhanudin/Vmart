@@ -59,9 +59,9 @@ class MyOrderCardFinish extends StatelessWidget {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   width: 12,
-                // ),
+                SizedBox(
+                  width: 12,
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

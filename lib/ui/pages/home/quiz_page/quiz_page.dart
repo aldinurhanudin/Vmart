@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vmart/models/quiz_model/db_connect.dart';
@@ -64,12 +65,33 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
+  Future<void> updatePoints(int newPoints) async {
+    final DocumentReference docRef =
+        FirebaseFirestore.instance.collection('data').doc('vmartPay');
+
+    try {
+      final DocumentSnapshot docSnapshot = await docRef.get();
+      final Map<String, dynamic>? data =
+          docSnapshot.data() as Map<String, dynamic>?;
+
+      if (data != null) {
+        final int currentPoints = data['points'] as int;
+        final int updatedPoints = currentPoints + newPoints;
+
+        await docRef.update({'points': updatedPoints});
+      }
+    } catch (e) {
+      print('Error updating points: $e');
+    }
+  }
+
   void checkAnswerAndUpdate(bool value) {
     if (isAlreadySelected) {
       return;
     } else {
       if (value == true) {
-        score++;
+        score += 100;
+        updatePoints(100); // Menambahkan 100 poin ke Firebase
       }
       setState(() {
         isPressed = true;

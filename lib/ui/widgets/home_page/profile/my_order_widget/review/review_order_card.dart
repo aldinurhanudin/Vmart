@@ -28,7 +28,8 @@ class ReviewOrderCard extends StatefulWidget {
   State<ReviewOrderCard> createState() => _ReviewOrderCardState();
 }
 
-class _ReviewOrderCardState extends State<ReviewOrderCard> {
+class _ReviewOrderCardState extends State<ReviewOrderCard>
+    with SingleTickerProviderStateMixin {
   TextEditingController reviewController = TextEditingController();
   bool showTextInput = false;
 
@@ -49,7 +50,8 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
     }
   }
 
-  void sendDataToFirebase(double rating, String review) async {
+  void sendDataToFirebase(
+      double rating, String review, int additionalPoints) async {
     CollectionReference reviewsCollection =
         FirebaseFirestore.instance.collection('reviews');
 
@@ -58,6 +60,91 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
         'rating': rating,
         'review': review,
       });
+
+      // Menambahkan 500 poin ke Firebase
+      CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('data');
+      await usersCollection.doc('vmartPay').update({
+        'points': FieldValue.increment(additionalPoints),
+      });
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Center(
+              child: Text(
+                'Selamat!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                ),
+              ),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Kamu dapat ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: const <TextSpan>[
+                      TextSpan(
+                        text: '500 ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      TextSpan(text: 'Koin!'),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned.fill(
+                      child: RotationTransition(
+                        turns: Tween(begin: 0.0, end: 1.0).animate(
+                          AnimationController(
+                            vsync: this,
+                            duration: Duration(seconds: 2),
+                          )..repeat(),
+                        ),
+                        child: Transform.scale(
+                          scale: 5,
+                          child: Image.asset(
+                            'assets/sunrey.png',
+                          ),
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                      'assets/koin.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                child: Text(
+                  'Oke',
+                  style: TextStyle(
+                    color: primaryColor,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+              ),
+            ],
+          );
+        },
+      );
       print('Data successfully sent to Firebase');
     } catch (error) {
       print('Error sending data to Firebase: $error');
@@ -85,7 +172,7 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           color: backgroundColor1,
@@ -107,6 +194,9 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
                       fit: BoxFit.cover,
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 Expanded(
                   child: Column(
@@ -139,6 +229,9 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 10,
             ),
             RatingBar.builder(
               initialRating: 3,
@@ -243,8 +336,8 @@ class _ReviewOrderCardState extends State<ReviewOrderCard> {
                 onPressed: () {
                   double rating = 5.0;
                   String review = reviewController.text;
-                  sendDataToFirebase(rating, review);
-                  Navigator.pop(context);
+                  int additionalPoints = 500;
+                  sendDataToFirebase(rating, review, additionalPoints);
                 },
                 style: ButtonStyle(
                   backgroundColor:

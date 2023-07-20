@@ -1,11 +1,11 @@
 part of '../services.dart';
 
-
 class TransactionService {
-  String baseUrl = 
-  // 'https://shamo-backend.buildwithangga.id/api';
-  // 'https://bwabank.my.id/api';
-  'http://10.0.2.2:8000/api';
+  String baseUrl =
+
+      // 'http://10.0.2.2:8000/api';
+      'https://vmart.abdimas.com/api';
+      // 'http://103.31.39.159/api';
 
   Future<bool> checkout(
       String token, List<CartModel> carts, double totalPrice) async {
@@ -45,6 +45,4 @@ class TransactionService {
       throw Exception('Gagal Melakukan Checkout!');
     }
   }
-
-
 }

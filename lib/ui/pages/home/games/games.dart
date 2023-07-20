@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,13 +9,13 @@ import 'package:vmart/ui/pages/home/games/info_card.dart';
 import '../../../../shared/shared.dart';
 
 class Games extends StatefulWidget {
-  const Games({super.key});
+  const Games({Key? key}) : super(key: key);
 
   @override
-  State<Games> createState() => _GamesState();
+  _GamesState createState() => _GamesState();
 }
 
-class _GamesState extends State<Games> {
+class _GamesState extends State<Games> with SingleTickerProviderStateMixin {
   TextStyle whiteText = TextStyle(color: Colors.white);
   Game _game = Game();
 
@@ -33,8 +34,55 @@ class _GamesState extends State<Games> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Permainan Selesai'),
-            content: Text('Anda telah menyelesaikan permainan!'),
+            title: Center(child: Text('Permainan Selesai')),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Selamat Kamu dapat ',
+                    style: TextStyle(color: Colors.black),
+                    children: const <TextSpan>[
+                      TextSpan(
+                        text: '400 ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      TextSpan(text: 'Koin!'),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned.fill(
+                      child: RotationTransition(
+                        turns: Tween(begin: 0.0, end: 1.0).animate(
+                          AnimationController(
+                            vsync: this,
+                            duration: Duration(seconds: 2),
+                          )..repeat(),
+                        ),
+                        child: Transform.scale(
+                          scale: 5,
+                          child: Image.asset(
+                            'assets/sunrey.png',
+                          ),
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                      'assets/koin.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ],
+            ),
             actions: [
               TextButton(
                 child: Text(
@@ -68,6 +116,27 @@ class _GamesState extends State<Games> {
           );
         },
       );
+      updatePoints(400); // Menambahkan 100 poin ke Firebase
+    }
+  }
+
+  Future<void> updatePoints(int newPoints) async {
+    final DocumentReference docRef =
+        FirebaseFirestore.instance.collection('data').doc('vmartPay');
+
+    try {
+      final DocumentSnapshot docSnapshot = await docRef.get();
+      final Map<String, dynamic>? data =
+          docSnapshot.data() as Map<String, dynamic>?;
+
+      if (data != null) {
+        final int currentPoints = data['points'] as int;
+        final int updatedPoints = currentPoints + newPoints;
+
+        await docRef.update({'points': updatedPoints});
+      }
+    } catch (e) {
+      print('Error updating points: $e');
     }
   }
 

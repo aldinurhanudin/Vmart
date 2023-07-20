@@ -7,7 +7,6 @@ class ProductModel {
   var description;
   String? tags;
   var isAvailable;
-  // StocksModel? stocks;
   int? totalStock;
   CategoryModel? category;
   DateTime? createdAt;
@@ -21,7 +20,6 @@ class ProductModel {
     this.description,
     this.tags,
     this.isAvailable,
-    // this.stocks,
     this.category,
     this.createdAt,
     this.updatedAt,
@@ -37,7 +35,6 @@ class ProductModel {
     tags = json['tags'];
     isAvailable = json['is_available'];
     totalStock = json['totalStock'];
-    // stocks = StocksModel.fromJson(json['stocks']);
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
         .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
@@ -54,7 +51,6 @@ class ProductModel {
       'description': description,
       'tags': tags,
       'is_available': isAvailable,
-      // 'stocks': stocks?.toJson(),
       'totalStock': totalStock,
       'category': category?.toJson(),
       'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),

@@ -1,7 +1,10 @@
 part of '../services.dart';
 
 class ProductService {
-  String baseUrl = 'http://10.0.2.2:8000/api';
+  String baseUrl =
+      // 'http://10.0.2.2:8000/api';
+      'https://vmart.abdimas.com/api';
+      //  'http://103.31.39.159/api';
   // 'http://192.168.1.14:8000/api';
   // '';
   // 'http://127.0.0.1:8000/api';

@@ -36,18 +36,22 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 30,
-            ),
-            Image.network(
-              product.galleries![0].url!,
-              width: 215,
-              height: 150,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
+              ),
+              child: Image.network(
+                product.galleries![0].url!,
+                width: 215,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
             ),
             Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 20,
+                vertical: 15,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,6 +91,5 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
-  
   }
 }

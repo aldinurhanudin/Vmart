@@ -266,20 +266,28 @@ class _ProductPageState extends State<ProductPage> {
       int index = -1;
       return Column(
         children: [
+          SizedBox(
+            height: 10,
+          ),
           CarouselSlider(
             items: widget.product.galleries
                 ?.map(
-                  (image) => Image.network(
-                    image.url!,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    fit: BoxFit.cover,
+                  (image) => ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(
+                      image.url!,
+                      width: 900,
+                      // width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 )
                 .toList(),
             options: CarouselOptions(
               initialPage: 0,
               enableInfiniteScroll: false,
+              // aspectRatio: 3,
               onPageChanged: (index, reason) {
                 setState(
                   () {
@@ -290,7 +298,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -632,7 +640,7 @@ class _ProductPageState extends State<ProductPage> {
                 duration: const Duration(milliseconds: 1),
                 firstChild: Text(
                   widget.product.description,
-                  maxLines: 5,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
                   style: TextStyle(
@@ -730,7 +738,7 @@ class _ProductPageState extends State<ProductPage> {
                 duration: const Duration(milliseconds: 1),
                 firstChild: Text(
                   widget.product.tags!,
-                  maxLines: 5,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
                   style: TextStyle(

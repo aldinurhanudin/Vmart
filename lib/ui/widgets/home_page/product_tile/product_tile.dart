@@ -30,13 +30,13 @@ class ProductTile extends StatelessWidget {
               offset: const Offset(0, 2),
             ),
           ],
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           color: Color(0xFFFFFFFF),
         ),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 product.galleries![0].url!,
                 width: 120,
@@ -45,7 +45,7 @@ class ProductTile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 12,
+              width: 20,
             ),
             Expanded(
               child: Column(
@@ -75,6 +75,7 @@ class ProductTile extends StatelessWidget {
                     'Rp.${product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
+                      fontSize: 14,
                     ),
                   ),
                 ],

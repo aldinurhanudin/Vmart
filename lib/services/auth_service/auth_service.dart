@@ -2,9 +2,11 @@ part of '../services.dart';
 
 class AuthService {
   String baseUrl =
-      
-      'http://10.0.2.2:8000/api';
-      // 'http://127.0.0.1:8000/api';
+
+      // 'http://10.0.2.2:8000/api';
+      'https://vmart.abdimas.com/api';
+  // 'http://103.31.39.159/api';
+  // 'http://127.0.0.1:8000/api';
 
   Future<UserModel> register({
     required String name,
@@ -68,7 +70,6 @@ class AuthService {
       throw Exception('Gagal Login');
     }
   }
-
 
   Future<String> getToken() async {
     String token = '';

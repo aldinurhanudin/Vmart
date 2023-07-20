@@ -51,9 +51,9 @@ class MyOrderCardProcessed extends StatelessWidget {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   width: 12,
-                // ),
+                SizedBox(
+                  width: 12,
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,23 +95,20 @@ class MyOrderCardProcessed extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Belanja',
-                          style: primaryTextStyle.copyWith(
-                            fontWeight: medium,
-                          ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Belanja',
+                        style: primaryTextStyle.copyWith(
+                          fontWeight: medium,
                         ),
-                        Text(
-                          'Rp.${cartProvider.totalPriceShipping()}',
-                          style: priceTextStyle,
-                        ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        'Rp.${cartProvider.totalPriceShipping()}',
+                        style: priceTextStyle,
+                      ),
+                    ],
                   ),
                 ),
                 Container(

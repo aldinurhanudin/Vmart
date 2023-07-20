@@ -13,7 +13,7 @@ class HeaderAkunProfileWidget extends StatelessWidget {
 
       margin: EdgeInsets.only(
         // top: 20,
-        bottom: 20,
+        bottom: 15,
       ),
       decoration: BoxDecoration(
         boxShadow: [
