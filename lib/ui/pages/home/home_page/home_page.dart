@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           // borderRadius: BorderRadius.circular(12),
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           // borderRadius: BorderRadius.circular(12),
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
               top: 3,
               bottom: 40,
               child: Image.asset(
-                'assets/spesial_hari_ini.png', // Ganti dengan path gambar Anda
+                'assets/spesial_hari_ini.png', 
                 fit: BoxFit.cover,
                 // height: 20,
               ),
@@ -246,7 +246,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2),
             ),
           ],
           // borderRadius: BorderRadius.circular(12),

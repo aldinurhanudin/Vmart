@@ -11,7 +11,7 @@ Widget info_card(String title, String info) {
       ),
       padding: EdgeInsets.symmetric(
         vertical: 8.0,
-        // horizontal: 10,
+      
       ),
       decoration: BoxDecoration(
         color: Colors.white,

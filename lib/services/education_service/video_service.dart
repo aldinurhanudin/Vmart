@@ -12,10 +12,6 @@ class VideoService {
     return List<Video>.from((response.data['items'])
         .map((json) => Video.fromJson(json['snippet'])));
 
-    // return [];
-    // return videos.map((snapshot) {
-    //   var videoMap = snapshot.data();
-    //   return Video(videoMap['name'], '');
-    // }).toList();
+ 
   }
 }

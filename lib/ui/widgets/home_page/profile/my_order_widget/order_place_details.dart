@@ -22,7 +22,7 @@ Widget OrderPlaceDetails(
                 ),
               ),
             ),
-            // Spacer(), // Menambahkan jarak antara dua teks
+          
             SizedBox(width: 80),
             Expanded(
               child: Text(

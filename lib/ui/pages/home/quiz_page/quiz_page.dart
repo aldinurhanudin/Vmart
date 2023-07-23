@@ -91,7 +91,7 @@ class _QuizPageState extends State<QuizPage> {
     } else {
       if (value == true) {
         score += 100;
-        updatePoints(100); // Menambahkan 100 poin ke Firebase
+        updatePoints(100); 
       }
       setState(() {
         isPressed = true;

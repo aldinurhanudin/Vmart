@@ -8,11 +8,10 @@ class SelectDelivery extends StatefulWidget {
 }
 
 class _SelectDeliveryState extends State<SelectDelivery> {
-  final String apiKey =
-      'd6e171a68e0353d3f840306a11756725'; // Ganti dengan API Key yang Anda dapatkan dari Raja Ongkir
-  final String origin = '22'; // Ganti dengan kota asal pengiriman Anda
-  final String destination = '22'; // Ganti dengan kota tujuan pengiriman Anda
-  final int weight = 1000; // Ganti dengan berat pengiriman dalam gram
+  final String apiKey = 'd6e171a68e0353d3f840306a11756725';
+  final String origin = '22';
+  final String destination = '22';
+  final int weight = 1000;
 
   List<dynamic> shippingCosts = [];
   bool isLoading = false;
@@ -73,99 +72,7 @@ class _SelectDeliveryState extends State<SelectDelivery> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child:
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.stretch,
-            //   children: [
-            //     DropdownSearch<String>(
-            //       mode: Mode.MENU,
-            //       showSelectedItem: true,
-            //       items: ['jne', 'tiki', 'pos'],
-            //       label: 'Pilih Pengiriman',
-            //       onChanged: (String? newValue) {
-            //         fetchShippingCosts(newValue!);
-            //       },
-            //       // selectedItem: selectedShipping,
-            //     ),
-            //     if (isLoading)
-            //       // CircularProgressIndicator()
-            //       ClipOval(
-            //         child: CircularProgressIndicator(
-            //           strokeWidth: 4.0,
-            //           valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-            //         ),
-            //       )
-            //     else
-            //       Expanded(
-            //         child: ListView.builder(
-            //           itemCount: shippingCosts.length,
-            //           itemBuilder: (ctx, index) {
-            //             final cost = shippingCosts[index];
-            //             final serviceName = cost['name'];
-            //             final serviceCost = cost['costs'][0]['cost'][0]['value'];
-
-            //             return GestureDetector(
-            //               onTap: () {
-            //                 Navigator.pushNamed(context, '/checkout');
-            //               },
-            //               child: ListTile(
-            //                 title: Text(serviceName),
-            //                 subtitle: Text('Harga: Rp $serviceCost'),
-            //               ),
-            //             );
-            //           },
-            //         ),
-            //       ),
-            //   ],
-            // ),
-
-            //     Column(
-            //   crossAxisAlignment: CrossAxisAlignment.stretch,
-            //   children: [
-            //     DropdownSearch<String>(
-            //       mode: Mode.MENU,
-            //       showSelectedItem: true,
-            //       items: ['jne', 'tiki', 'pos'],
-            //       label: 'Pilih Pengiriman',
-            //       onChanged: (String? newValue) {
-            //         fetchShippingCosts(newValue!);
-            //       },
-            //       // selectedItem: selectedShipping,
-            //     ),
-            //     if (isLoading)
-            //       Center(
-            //         child: CircularProgressIndicator(
-            //           strokeWidth: 4.0,
-            //           valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-            //         ),
-            //       )
-            //     else
-            //       Expanded(
-            //         child: ListView.builder(
-            //           itemCount: shippingCosts.length,
-            //           itemBuilder: (ctx, index) {
-            //             final cost = shippingCosts[index];
-            //             final serviceName = cost['name'];
-            //             final serviceCost = cost['costs'][0]['cost'][0]['value'];
-
-            //             return GestureDetector(
-            //               onTap: () {
-            //                 Navigator.pushNamed(context, '/checkout');
-            //               },
-            //               child: Card(
-            //                 child: ListTile(
-            //                   title: Text(serviceName),
-            //                   subtitle: Text('Harga: Rp $serviceCost'),
-            //                 ),
-            //               ),
-            //             );
-            //           },
-            //         ),
-            //       ),
-            //   ],
-            // ),
-
-            Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DropdownSearch<String>(
@@ -187,7 +94,7 @@ class _SelectDeliveryState extends State<SelectDelivery> {
               )
             else
               SizedBox(
-                height: 200, // Sesuaikan dengan tinggi yang diinginkan
+                height: 200, 
                 child: ListView.builder(
                   itemCount: shippingCosts.length,
                   itemBuilder: (ctx, index) {

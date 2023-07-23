@@ -78,10 +78,7 @@ class ChatTile extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              // Divider(
-              //   thickness: 1,
-              //   color: Color(0xff2B2939),
-              // ),
+             
             ],
           ),
         ),

@@ -30,7 +30,7 @@ class ChatBubble extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           border: Border.all(
@@ -154,13 +154,11 @@ class ChatBubble extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 1,
                         blurRadius: 5,
-                        offset:
-                            const Offset(0, 2), // changes position of shadow
+                        offset: const Offset(0, 2),
                       ),
                     ],
                     border: Border.all(
                       color: primaryColor,
-                      // style: BorderStyle.solid,
                       width: 2,
                     ),
                     color: isSender ? backgroundColor1 : backgroundColor4,

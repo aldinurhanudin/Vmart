@@ -1,6 +1,6 @@
 part of '../../../widgets.dart';
 
-class VmartPay extends StatelessWidget {
+class VmartPoin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,7 +48,7 @@ class VmartPay extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/wallet.png',
+                            'assets/voucher.png',
                             width: 30,
                             height: 30,
                           ),
@@ -61,7 +61,7 @@ class VmartPay extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'VmartPay',
+                                  'Voucher Aktif',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class VmartPay extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  amount.toString(),
+                                  '${amount.toString()} Voucher',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.grey,
@@ -109,7 +109,7 @@ class VmartPay extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  points.toString(),
+                                  '${points.toString()} Poin',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.grey,

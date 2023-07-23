@@ -61,7 +61,7 @@ class _ReviewOrderCardState extends State<ReviewOrderCard>
         'review': review,
       });
 
-      // Menambahkan 500 poin ke Firebase
+     
       CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('data');
       await usersCollection.doc('vmartPay').update({

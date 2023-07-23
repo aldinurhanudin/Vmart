@@ -41,15 +41,9 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
           },
         ),
       ),
-    
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // SizedBox(
-          //   height: 10,
-          // ),
-
-          //tabbar
           Container(
             decoration: BoxDecoration(
               boxShadow: [
@@ -57,10 +51,9 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 1,
                   blurRadius: 5,
-                  offset: const Offset(0, 2), // changes position of shadow
+                  offset: const Offset(0, 2), 
                 ),
               ],
-              // borderRadius: BorderRadius.circular(12),
               color: Colors.white,
             ),
             child: Align(
@@ -88,7 +81,6 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
               ),
             ),
           ),
-
           Container(
             height: 520,
             width: double.maxFinite,
@@ -97,7 +89,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
               children: [
                 ProcessedWidget(),
                 FinishWidget(),
-                // Selesai(),
+                
               ],
             ),
           ),

@@ -10,7 +10,7 @@ class AllProductsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: backgroundColor1,
         elevation: 2,
-        // centerTitle: true,
+        
         leading: IconButton(
           icon: Icon(
             Icons.chevron_left,
@@ -74,11 +74,7 @@ class AllProductsPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    // const Icon(
-                    //   Icons.message_sharp,
-                    //   size: 20,
-                    //   color: Colors.white,
-                    // )
+                    
                   ),
                 ),
               ),

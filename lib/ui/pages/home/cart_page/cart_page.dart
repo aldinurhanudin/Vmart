@@ -1,7 +1,45 @@
 part of '../../pages.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  bool usePoints = false;
+  int points = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchPointsFromFirebase();
+  }
+
+  void fetchPointsFromFirebase() async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('data')
+          .doc('vmartPay')
+          .get();
+
+      final data = snapshot.data() as Map<String, dynamic>?;
+      final fetchedPoints = data?['points'] ?? 0;
+      setState(() {
+        points = fetchedPoints;
+      });
+    } catch (e) {
+     
+      print('Error fetching points: $e');
+    }
+  }
+
+  void _onSwitchChanged(bool value) {
+    setState(() {
+      usePoints = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,76 +148,174 @@ class CartPage extends StatelessWidget {
     }
 
     Widget customBottomNav() {
+      int pointsToDeduct = usePoints ? points : 0;
       return Container(
-        height: 89,
-        child: Column(
+        height: 130,
+        child: Stack(
           children: [
-            Divider(
-              thickness: 0.3,
-              color: subtitleColor,
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
+            Column(
               children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total Harga',
-                      style: primaryTextStyle,
-                    ),
-                    Text(
-                      'Rp.${cartProvider.totalPrice()}',
-                      style: priceTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 18,
-                ),
                 Container(
-                  width: 180,
-                  height: 50,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: defaultMargin,
+                  height: 60,
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 13),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: subtitleColor,
+                        width: 1,
+                      ),
+                    ),
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/checkout');
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Checkout',
-                          style: thirdTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semiBold,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/koin.png',
+                            width: 32,
+                            height: 32,
                           ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: thirdTextColor,
-                        ),
-                      ],
+                          SizedBox(width: 8),
+                          Text(
+                            'Tukarkan',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          StreamBuilder<DocumentSnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('data')
+                                .doc('vmartPay')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) {
+                                return CircularProgressIndicator();
+                              }
+
+                              final data = snapshot.data!.data()
+                                  as Map<String, dynamic>?;
+                              final points = data?['points'] ?? 'Loading...';
+                              final formattedPoints = NumberFormat.currency(
+                                locale: 'id',
+                                symbol: '',
+                                decimalDigits: 0,
+                              ).format(points);
+                              return Text(
+                                ' $formattedPoints',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            ' VmartPoin ',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          Icon(Icons.help_outline, size: 18),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(width: 8),
+                          Switch(
+                            activeColor: primaryColor,
+                            value:
+                                usePoints, 
+                            onChanged: _onSwitchChanged,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                
+                Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: subtitleColor,
+                        width: 1,
+                      ),
                     ),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total Harga',
+                                style: primaryTextStyle,
+                              ),
+                              Text(
+                                'Rp.${usePoints ? cartProvider.totalPrice() - pointsToDeduct : cartProvider.totalPrice()}',
+                                style: priceTextStyle.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 28,
+                          ),
+                          Container(
+                            width: 180,
+                            height: 50,
+                            margin: EdgeInsets.symmetric(
+                              horizontal: defaultMargin,
+                            ),
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/checkout');
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: primaryColor,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Checkout',
+                                    style: thirdTextStyle.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: thirdTextColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -187,6 +323,7 @@ class CartPage extends StatelessWidget {
           ],
         ),
       );
+   
     }
 
     return Scaffold(

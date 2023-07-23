@@ -215,7 +215,7 @@ class _CarouselMapWidgetState extends State<CarouselMapWidget> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           color: Colors.white,
@@ -335,11 +335,7 @@ class _CarouselMapWidgetState extends State<CarouselMapWidget> {
                             color: Colors.white,
                           ),
                         ),
-                        // const Icon(
-                        //   Icons.message_sharp,
-                        //   size: 20,
-                        //   color: Colors.white,
-                        // )
+                       
                       ),
                     ),
                   ),

@@ -282,8 +282,7 @@ class ProfilePage extends StatelessWidget {
       body: ListView(
         children: [
           HeaderAkunProfileWidget(),
-          // vmartPay(),
-          VmartPay(),
+          VmartPoin(),
           SizedBox(
             height: 15,
           ),

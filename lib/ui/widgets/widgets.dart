@@ -42,7 +42,7 @@ part 'home_page/chat_tile/chat_tile.dart';
 part 'home_page/profile/my_order_widget/finish_widget.dart';
 part 'home_page/profile/my_order_widget/processed_widget.dart';
 part 'home_page/profile/header_akun_profile_widget/header_akun_profile_widget.dart';
-part 'home_page/profile/vmart_pay/vmart_pay.dart';
+part 'home_page/profile/vmart_poin/vmart_poin.dart';
 part 'home_page/profile/my_order_widget/my_order_card_processed.dart';
 
 part 'home_page/categories_widget/special_categories.dart';

@@ -50,12 +50,10 @@ class _MainPageState extends State<MainPage> {
             child: BottomNavigationBar(
               unselectedLabelStyle:
                   const TextStyle(color: Colors.white, fontSize: 14),
-              // backgroundColor: const Color(0xFF084A76),
               fixedColor: primaryColor,
               backgroundColor: backgroundColor7,
               currentIndex: pageProvider.currentIndex,
               onTap: (value) {
-                // print(value);
                 pageProvider.currentIndex = value;
               },
               type: BottomNavigationBarType.fixed,

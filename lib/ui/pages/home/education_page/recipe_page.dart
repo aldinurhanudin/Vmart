@@ -48,7 +48,7 @@ class _RecipePageState extends State<RecipePage> {
             top: 1,
             bottom: 50,
             child: Image.asset(
-              'assets/resep_vmart.png', // Ganti dengan path gambar Anda
+              'assets/resep_vmart.png',
               fit: BoxFit.cover,
               height: 20,
             ),
@@ -88,7 +88,7 @@ class _RecipePageState extends State<RecipePage> {
                                             spreadRadius: 1,
                                             blurRadius: 5,
                                             offset: const Offset(0,
-                                                2), // changes position of shadow
+                                                2), 
                                           ),
                                         ],
                                         color: Colors.white,

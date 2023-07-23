@@ -151,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
+                    offset: const Offset(0, 3), 
                   ),
                 ],
                 borderRadius: BorderRadius.circular(20),
@@ -174,7 +174,7 @@ class _SignInPageState extends State<SignInPage> {
                           spreadRadius: 1,
                           blurRadius: 5,
                           offset:
-                              const Offset(0, 2), // changes position of shadow
+                              const Offset(0, 2), 
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -194,7 +194,7 @@ class _SignInPageState extends State<SignInPage> {
                           spreadRadius: 1,
                           blurRadius: 5,
                           offset:
-                              const Offset(0, 2), // changes position of shadow
+                              const Offset(0, 2), 
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -216,7 +216,7 @@ class _SignInPageState extends State<SignInPage> {
                           spreadRadius: 1,
                           blurRadius: 5,
                           offset:
-                              const Offset(0, 2), // changes position of shadow
+                              const Offset(0, 2), 
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -238,7 +238,7 @@ class _SignInPageState extends State<SignInPage> {
                           spreadRadius: 1,
                           blurRadius: 5,
                           offset:
-                              const Offset(0, 2), // changes position of shadow
+                              const Offset(0, 2),
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -333,16 +333,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
 
-                //   width: currentIndex == 5 ? 28 : 12,
-                //   height: 12,
-                //   margin: EdgeInsets.only(
-                //     right: 10,
-                //   ),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(10),
-                //     color: currentIndex == 5 ? blackColor : greyColor,
-                //   ),
-                // ),
+                
               ],
             ),
             SizedBox(
@@ -382,7 +373,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), // changes position of shadow
+                      offset: const Offset(0, 2), 
                     ),
                   ],
                   color: backgroundColor2,
@@ -413,9 +404,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              // Padding(
-              //     padding: EdgeInsets.only(
-              //         bottom: MediaQuery.of(context).viewInsets.bottom))
+          
             ],
           ),
         ),
@@ -451,7 +440,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), // changes position of shadow
+                      offset: const Offset(0, 2), 
                     ),
                   ],
                   color: backgroundColor2,
@@ -483,9 +472,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              // Padding(
-              //     padding: EdgeInsets.only(
-              //         bottom: MediaQuery.of(context).viewInsets.bottom))
+              
             ],
           ),
         ),
@@ -606,7 +593,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _handleRemeberme(value) async {
-    // final loginController = Get.put(LoginController(authRepository: sl()));
+   
     print("Handle Rember Me");
     _isChecked = value;
     SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -622,29 +609,5 @@ class _SignInPageState extends State<SignInPage> {
       _isChecked = value;
     });
   }
-  //  void _loadUserEmailPassword() async {
-  //   print("Load Email");
-  //   try {
-  //     final loginController = Get.put(LoginController(authRepository: sl()));
-  //     SharedPreferences _prefs = await SharedPreferences.getInstance();
-  //     var _email = _prefs.getString("email") ?? "";
-  //     var _password = _prefs.getString("password") ?? "";
-  //     var _remeberMe = _prefs.getBool("remember_me") ?? false;
-
-  //     print(_remeberMe);
-  //     print(_email);
-  //     print(_password);
-
-  //     if (_remeberMe) {
-  //       print("has ben remember");
-  //       setState(() {
-  //         _isChecked = true;
-  //         loginController.emailController.text = _email;
-  //         loginController.passwordController.text = _password;
-  //       });
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  
 }

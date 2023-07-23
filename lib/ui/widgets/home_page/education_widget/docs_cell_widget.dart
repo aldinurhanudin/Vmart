@@ -25,7 +25,7 @@ class DocsCellWidget extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), // changes position of shadow
+              offset: const Offset(0, 2), 
             ),
           ],
           color: Colors.white,
@@ -39,7 +39,7 @@ class DocsCellWidget extends StatelessWidget {
               child: Image.asset(
                 image,
                 fit: BoxFit
-                    .fitWidth, // Menggunakan BoxFit.fitWidth untuk mengatur gambar agar sesuai lebar container
+                    .fitWidth,
               ),
             ),
             const SizedBox(

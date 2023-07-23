@@ -64,6 +64,40 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   bool isClicked = false;
+
+  bool usePoints = true;
+  int points = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchPointsFromFirebase();
+  }
+
+  void fetchPointsFromFirebase() async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('data')
+          .doc('vmartPay')
+          .get();
+
+      final data = snapshot.data() as Map<String, dynamic>?;
+      final fetchedPoints = data?['points'] ?? 0;
+      setState(() {
+        points = fetchedPoints;
+      });
+    } catch (e) {
+      
+      print('Error fetching points: $e');
+    }
+  }
+
+  void _onSwitchChanged(bool value) {
+    setState(() {
+      usePoints = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
@@ -160,7 +194,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
               Divider(
                 color: Colors.grey,
-                thickness: 0.5,
+                thickness: 0.3,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -423,7 +457,99 @@ class _CheckoutPageState extends State<CheckoutPage> {
       );
     }
 
+    Widget poin() {
+      int pointsToDeduct = usePoints ? points : 0;
+      return Container(
+        height: 60,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/koin.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Tukarkan',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('data')
+                        .doc('vmartPay')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return CircularProgressIndicator();
+                      }
+
+                      final data =
+                          snapshot.data!.data() as Map<String, dynamic>?;
+                      final points = data?['points'] ?? 'Loading...';
+                      final formattedPoints = NumberFormat.currency(
+                        locale: 'id',
+                        symbol: '',
+                        decimalDigits: 0,
+                      ).format(points);
+                      return Text(
+                        ' $formattedPoints',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    ' VmartPoin ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  Icon(Icons.help_outline, size: 18),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 8),
+                  Switch(
+                    activeColor: primaryColor,
+                    value: usePoints, 
+                    onChanged: _onSwitchChanged,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     Widget paymentSummary() {
+      int pointsToDeduct = usePoints ? points : 0;
       return Container(
         width: 400,
         decoration: BoxDecoration(
@@ -536,7 +662,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ),
                   Text(
-                    'Rp.${cartProvider.totalPriceShipping()}',
+                    'Rp.${usePoints ? cartProvider.totalPriceShipping() - pointsToDeduct : cartProvider.totalPriceShipping()}',
                     style: priceTextStyle.copyWith(
                       fontWeight: semiBold,
                       fontSize: 18,
@@ -554,93 +680,101 @@ class _CheckoutPageState extends State<CheckoutPage> {
     }
 
     Widget checkoutButton() {
+      int pointsToDeduct = usePoints ? points : 0;
       return Container(
-        height: 65,
-        child: Column(
-          children: [
-            Divider(
-              thickness: 1.3,
-              color: greyColor,
-              height: 1.0,
+        height: 60,
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: subtitleColor,
+              width: 1,
             ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total Pembayaran',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    Text(
-                      'Rp.${cartProvider.totalPriceShipping()}',
-                      style: priceTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 40,
-                ),
-                Container(
-                  width: 120,
-                  height: 45,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: defaultMargin,
+          ),
+        ),
+        child: StreamBuilder<Object>(
+            stream: null,
+            builder: (context, snapshot) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: 7,
                   ),
-                  child: TextButton(
-                    onPressed: () async {
-                      String url =
-                          "https://app.sandbox.midtrans.com/payment-links/1689586706078";
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, '/checkout-success', (route) => false);
-                      } else {
-                        throw 'Tidak dapat membuka URL: $url';
-                      }
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Total Pembayaran',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          Text(
+                            'Rp.${usePoints ? cartProvider.totalPriceShipping() - pointsToDeduct : cartProvider.totalPriceShipping()}',
+                            style: priceTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: semiBold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Bayar',
-                          style: thirdTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semiBold,
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Container(
+                        width: 120,
+                        height: 45,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: defaultMargin,
+                        ),
+                        child: TextButton(
+                          onPressed: () async {
+                            String url =
+                                "https://app.sandbox.midtrans.com/payment-links/1689586706078";
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  '/checkout-success', (route) => false);
+                            } else {
+                              throw 'Tidak dapat membuka URL: $url';
+                            }
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Bayar',
+                                style: thirdTextStyle.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Icon(
+                                Icons.chevron_right,
+                                color: thirdTextColor,
+                              ),
+                            ],
                           ),
                         ),
-                        Icon(
-                          Icons.chevron_right,
-                          color: thirdTextColor,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
+                ],
+              );
+            }),
       );
     }
 
@@ -659,6 +793,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
               height: 10,
             ),
             shippingOptions(),
+            SizedBox(
+              height: 10,
+            ),
+            poin(),
             SizedBox(
               height: 10,
             ),

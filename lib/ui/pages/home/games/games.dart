@@ -116,7 +116,7 @@ class _GamesState extends State<Games> with SingleTickerProviderStateMixin {
           );
         },
       );
-      updatePoints(400); // Menambahkan 100 poin ke Firebase
+      updatePoints(400); 
     }
   }
 
