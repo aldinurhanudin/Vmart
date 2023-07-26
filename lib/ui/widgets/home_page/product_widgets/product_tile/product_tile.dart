@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class ProductTile extends StatelessWidget {
   final ProductModel product;

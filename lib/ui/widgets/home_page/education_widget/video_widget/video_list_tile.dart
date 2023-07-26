@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vmart/shared/shared.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../../models/education_model/video.dart';
+import '../../../../../models/education_model/video.dart';
 
 class VideoListTile extends StatelessWidget {
   final Video video;

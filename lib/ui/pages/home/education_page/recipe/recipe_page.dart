@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:vmart/ui/pages/home/education_page/recipe_details_page.dart';
+import 'package:vmart/ui/pages/home/education_page/recipe/recipe_details_page.dart';
 
-import '../../../../shared/shared.dart';
+import '../../../../../shared/shared.dart';
 
 class RecipePage extends StatefulWidget {
   const RecipePage({super.key});

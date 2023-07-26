@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class ProductAll extends StatelessWidget {
   final ProductModel product;
@@ -36,11 +36,17 @@ class ProductAll extends StatelessWidget {
               SizedBox(
                 height: 2,
               ),
-              Image.network(
-                product.galleries![0].url!,
-                width: 215,
-                height: 150,
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                ),
+                child: Image.network(
+                  product.galleries![0].url!,
+                  width: 215,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(

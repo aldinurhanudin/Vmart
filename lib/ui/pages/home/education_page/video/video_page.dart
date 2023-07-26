@@ -4,9 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'package:provider/provider.dart';
 import 'package:vmart/models/education_model/video.dart';
-import 'package:vmart/ui/widgets/home_page/education_widget/video_list_tile.dart';
+import 'package:vmart/ui/widgets/home_page/education_widget/video_widget/video_list_tile.dart';
 
-import '../../../../controller/education_controller/video_notifier.dart';
+import '../../../../../controller/education_controller/video_notifier.dart';
 
 
 

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
-import 'package:vmart/ui/pages/home/education_page/docs_page.dart';
+import 'package:vmart/ui/pages/home/education_page/article/docs_page.dart';
 
 import '../../../../controller/education_controller/video_notifier.dart';
 
-import 'video_page.dart';
+import 'video/video_page.dart';
 
 class EducationPage extends StatefulWidget {
   const EducationPage({super.key});

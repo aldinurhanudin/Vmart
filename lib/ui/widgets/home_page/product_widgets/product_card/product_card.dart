@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;

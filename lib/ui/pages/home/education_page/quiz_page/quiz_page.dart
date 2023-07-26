@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:vmart/models/quiz_model/db_connect.dart';
 import 'package:vmart/models/quiz_model/question_model.dart';
 import 'package:vmart/shared/shared.dart';
-import 'package:vmart/ui/widgets/home_page/quiz_widget/next_button.dart';
-import 'package:vmart/ui/widgets/home_page/quiz_widget/option_card.dart';
-import 'package:vmart/ui/widgets/home_page/quiz_widget/question_widget.dart';
-import 'package:vmart/ui/widgets/home_page/quiz_widget/result_box.dart';
+import 'package:vmart/ui/widgets/home_page/education_widget/quiz_widget/next_button.dart';
+import 'package:vmart/ui/widgets/home_page/education_widget/quiz_widget/option_card.dart';
+import 'package:vmart/ui/widgets/home_page/education_widget/quiz_widget/question_widget.dart';
+import 'package:vmart/ui/widgets/home_page/education_widget/quiz_widget/result_box.dart';
 
 class QuizPage extends StatefulWidget {
   QuizPage({Key? key}) : super(key: key);

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:vmart/providers/game_provider/game_provider.dart';
-import 'package:vmart/ui/pages/home/games/info_card.dart';
+import 'package:vmart/ui/pages/home/education_page/games/info_card.dart';
 
-import '../../../../shared/shared.dart';
+import '../../../../../shared/shared.dart';
 
 class Games extends StatefulWidget {
   const Games({Key? key}) : super(key: key);

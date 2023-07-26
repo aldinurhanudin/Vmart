@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:vmart/shared/shared.dart';
-import 'package:vmart/ui/pages/home/education_page/docs_details_page.dart';
+import 'package:vmart/ui/pages/home/education_page/article/docs_details_page.dart';
 
 class DocsPage extends StatelessWidget {
   const DocsPage({super.key});

@@ -7,7 +7,7 @@ import 'package:vmart/providers/providers.dart';
 import 'package:vmart/shared/shared.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
-import '../../pages.dart';
+import '../../../pages.dart';
 
 class RecipeDetailsPage extends StatefulWidget {
   final DocumentSnapshot data;
