@@ -65,7 +65,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   bool isClicked = false;
 
-  bool usePoints = true;
+  bool usePoints = false;
   int points = 0;
 
   @override
@@ -87,7 +87,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
         points = fetchedPoints;
       });
     } catch (e) {
-      
       print('Error fetching points: $e');
     }
   }
@@ -101,6 +100,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
+    int pointsToDeduct = usePoints ? points : 0;
+    double hargaProduk = usePoints
+        ? cartProvider.totalPrice().toDouble() - pointsToDeduct.toDouble()
+        : cartProvider.totalPrice().toDouble();
+    double totalHarga = usePoints
+        ? cartProvider.totalPriceShipping().toDouble() -
+            pointsToDeduct.toDouble()
+        : cartProvider.totalPriceShipping().toDouble();
     header() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -537,7 +549,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   SizedBox(width: 8),
                   Switch(
                     activeColor: primaryColor,
-                    value: usePoints, 
+                    value: usePoints,
                     onChanged: _onSwitchChanged,
                   ),
                 ],
@@ -619,7 +631,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     style: secondaryTextStyle.copyWith(fontSize: 12),
                   ),
                   Text(
-                    'Rp.${cartProvider.totalPrice()}',
+                    formatCurrency.format(hargaProduk),
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -662,7 +674,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ),
                   Text(
-                    'Rp.${usePoints ? cartProvider.totalPriceShipping() - pointsToDeduct : cartProvider.totalPriceShipping()}',
+                    formatCurrency.format(totalHarga),
                     style: priceTextStyle.copyWith(
                       fontWeight: semiBold,
                       fontSize: 18,
@@ -714,7 +726,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             ),
                           ),
                           Text(
-                            'Rp.${usePoints ? cartProvider.totalPriceShipping() - pointsToDeduct : cartProvider.totalPriceShipping()}',
+                            formatCurrency.format(totalHarga),
                             style: priceTextStyle.copyWith(
                               fontSize: 16,
                               fontWeight: semiBold,

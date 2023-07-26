@@ -6,6 +6,11 @@ class CheckoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return Container(
       margin: EdgeInsets.only(top: 12),
       padding: EdgeInsets.symmetric(
@@ -18,7 +23,7 @@ class CheckoutCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 2), 
+            offset: const Offset(0, 2),
           ),
         ],
         color: Colors.white,
@@ -56,7 +61,7 @@ class CheckoutCard extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  'Rp.${cart.product!.price}',
+                  formatCurrency.format(cart.product!.price),
                   style: priceTextStyle,
                 ),
               ],

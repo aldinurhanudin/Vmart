@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class CartCard extends StatelessWidget {
   final CartModel cart;
@@ -8,6 +8,11 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return Container(
       margin: EdgeInsets.only(
         top: defaultMargin,
@@ -24,7 +29,7 @@ class CartCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 2), 
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -58,7 +63,7 @@ class CartCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Rp.${cart.product!.price}',
+                      formatCurrency.format(cart.product!.price),
                       style: priceTextStyle,
                     ),
                   ],

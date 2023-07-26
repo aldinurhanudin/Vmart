@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/providers/providers.dart';
-import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/my_order_card_finish.dart';
+import 'package:vmart/ui/widgets/home_page/card_widgets/my_order_card/my_order_card_finish.dart';
 import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/review/review_order_card.dart';
 
 import '../../../../../../shared/shared.dart';

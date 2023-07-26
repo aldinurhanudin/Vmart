@@ -1,11 +1,16 @@
-part of '../../../widgets.dart';
+part of '../../../../widgets.dart';
 
-class ProductTile extends StatelessWidget {
+class ProductNew extends StatelessWidget {
   final ProductModel product;
-  ProductTile(this.product);
+  ProductNew(this.product);
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -72,7 +77,7 @@ class ProductTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Rp.${product.price}',
+                    formatCurrency.format(product.price),
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 14,

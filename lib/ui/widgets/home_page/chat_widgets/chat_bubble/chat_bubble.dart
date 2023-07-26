@@ -13,6 +13,11 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     Widget productPreview() {
       return Container(
         width: 270,
@@ -30,7 +35,7 @@ class ChatBubble extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           border: Border.all(
@@ -44,7 +49,7 @@ class ChatBubble extends StatelessWidget {
             Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(5),
                   child: Image.network(
                     product!.galleries![0].url,
                     width: 70,
@@ -65,7 +70,8 @@ class ChatBubble extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        'Rp.${product!.price}',
+                        // 'Rp.${product!.price}',
+                        formatCurrency.format(product!.price),
                         style: priceTextStyle.copyWith(
                           fontWeight: medium,
                         ),

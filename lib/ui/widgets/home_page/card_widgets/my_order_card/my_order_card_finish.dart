@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vmart/models/models.dart';
 import 'package:vmart/providers/providers.dart';
@@ -18,6 +19,11 @@ class MyOrderCardFinish extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -37,7 +43,7 @@ class MyOrderCardFinish extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           color: backgroundColor1,
@@ -102,7 +108,7 @@ class MyOrderCardFinish extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Rp.${cartProvider.totalPriceShipping()}',
+                      formatCurrency.format(cartProvider.totalPriceShipping()),
                       style: priceTextStyle,
                     ),
                   ],

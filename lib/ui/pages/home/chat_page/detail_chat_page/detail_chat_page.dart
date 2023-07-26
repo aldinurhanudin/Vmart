@@ -14,6 +14,11 @@ class _DetailChatPageState extends State<DetailChatPage> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
 
     handleAddMessage() async {
       await MessageService().addMessage(
@@ -30,58 +35,114 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     header() {
-      return PreferredSize(
-        preferredSize: Size.fromHeight(70),
-        child: AppBar(
-          backgroundColor: backgroundColor1,
-          centerTitle: false,
-          title: Row(
-            children: [
-              Image.asset(
-                'assets/vmart_on.png',
-                width: 60,
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Vegetables Mart',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    'Online',
-                    style: secondaryTextStyle.copyWith(
-                      fontWeight: light,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(1.0),
-            child: Divider(
-              color: greyColor,
-              height: 1.0,
-              thickness: 1.2,
+      // return PreferredSize(
+      //   preferredSize: Size.fromHeight(70),
+      //   child: AppBar(
+      //     backgroundColor: backgroundColor1,
+      //     centerTitle: false,
+      //     title: Row(
+      //       children: [
+      //         Image.asset(
+      //           'assets/vmart_on.png',
+      //           width: 60,
+      //         ),
+      //         SizedBox(
+      //           width: 12,
+      //         ),
+      //         Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             Text(
+      //               'Vegetables Mart',
+      //               style: primaryTextStyle.copyWith(
+      //                 fontWeight: medium,
+      //                 fontSize: 14,
+      //               ),
+      //             ),
+      //             Text(
+      //               'Online',
+      //               style: secondaryTextStyle.copyWith(
+      //                 fontWeight: light,
+      //                 fontSize: 14,
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //     bottom: PreferredSize(
+      //       preferredSize: Size.fromHeight(1.0),
+      //       child: Divider(
+      //         color: greyColor,
+      //         height: 1.0,
+      //         thickness: 1.2,
+      //       ),
+      //     ),
+      //     leading: IconButton(
+      //       icon: Icon(
+      //         Icons.arrow_back,
+      //         color: Colors.black,
+      //       ),
+      //       onPressed: () {
+      //         Navigator.pop(context);
+      //       },
+      //     ),
+      //   ),
+      // );
+
+      return AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/vmart_on.png',
+              width: 53,
             ),
-          ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
+            SizedBox(
+              width: 10,
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Vegetables Mart',
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: medium,
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  'Online',
+                  style: secondaryTextStyle.copyWith(
+                    fontWeight: light,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            color: greyColor,
+            height: 1.0,
+            thickness: 1.2,
           ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+          },
         ),
       );
     }
@@ -107,11 +168,14 @@ class _DetailChatPageState extends State<DetailChatPage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                widget.product.galleries![0].url,
-                width: 54,
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  widget.product.galleries![0].url,
+                  width: 54,
+                ),
               ),
             ),
             SizedBox(
@@ -131,7 +195,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     height: 2,
                   ),
                   Text(
-                    'Rp.${widget.product.price}',
+                    formatCurrency.format(widget.product.price),
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

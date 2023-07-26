@@ -10,6 +10,11 @@ class MyOrderCardProcessed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -105,7 +110,8 @@ class MyOrderCardProcessed extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Rp.${cartProvider.totalPriceShipping()}',
+                        formatCurrency
+                            .format(cartProvider.totalPriceShipping()),
                         style: priceTextStyle,
                       ),
                     ],

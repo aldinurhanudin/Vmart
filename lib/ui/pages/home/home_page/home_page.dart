@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                 children: productProvider.products
                     .take(6)
                     .map(
-                      (product) => ProductTile(product),
+                      (product) => ProductNew(product),
                     )
                     .toList(),
               ),

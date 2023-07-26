@@ -16,7 +16,11 @@ class _ProductPageState extends State<ProductPage> {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     Widget content() {
       int index = -1;
       return Container(
@@ -91,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
                         if (wishlistProvider.isWishlist(widget.product)) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              backgroundColor: secondaryColor,
+                              backgroundColor: primaryColor,
                               content: Text(
                                 'Telah ditambahkan ke Daftar Keinginan',
                                 textAlign: TextAlign.center,
@@ -150,7 +154,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                     ),
                     Text(
-                      'Rp.${widget.product.price}',
+                      formatCurrency.format(widget.product.price),
                       style: priceTextStyle.copyWith(
                         fontSize: 16,
                         fontWeight: semiBold,
@@ -351,7 +355,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: productProvider.products
                     .take(6)
                     .map(
-                      (product) => ProductTile(product),
+                      (product) => ProductNew(product),
                     )
                     .toList(),
               ),

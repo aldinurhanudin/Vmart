@@ -1,4 +1,4 @@
-part of '../../widgets.dart';
+part of '../../../widgets.dart';
 
 class WishlistCard extends StatelessWidget {
   final ProductModel product;
@@ -7,6 +7,11 @@ class WishlistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return Container(
       margin: EdgeInsets.only(
         top: 20,
@@ -28,7 +33,7 @@ class WishlistCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 2), 
+            offset: const Offset(0, 2),
           ),
         ],
         borderRadius: BorderRadius.circular(10),
@@ -56,7 +61,8 @@ class WishlistCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\Rp${product.price}',
+                  // '\Rp${product.price}',
+                  formatCurrency.format(product.price),
                   style: priceTextStyle,
                 ),
               ],
@@ -67,7 +73,7 @@ class WishlistCard extends StatelessWidget {
               wishlistProvider.setProduct(product);
             },
             child: Image.asset(
-              'assets/button_wishlist_blue.png',
+              'assets/button_wishlist_red.png',
               width: 34,
             ),
           ),

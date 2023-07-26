@@ -91,7 +91,7 @@ class _ResultBoxState extends State<ResultBox>
                     color: Colors.amber,
                   ),
                 ),
-                Text(' Koin!'),
+                Text(' Poin!'),
               ],
             ),
           ),

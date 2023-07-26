@@ -1,4 +1,4 @@
-part of '../../../widgets.dart';
+part of '../../../../widgets.dart';
 
 class ProductAll extends StatelessWidget {
   final ProductModel product;
@@ -6,6 +6,11 @@ class ProductAll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -77,7 +82,7 @@ class ProductAll extends StatelessWidget {
                       height: 6,
                     ),
                     Text(
-                      '\Rp.${product.price}',
+                      formatCurrency.format(product.price),
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

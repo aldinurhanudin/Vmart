@@ -36,6 +36,11 @@ class _OrdersDetailsState extends State<OrdersDetails> {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     final orderCompletedNotifier = Provider.of<OrderCompletedNotifier>(context);
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
 
     header() {
       return AppBar(
@@ -616,7 +621,8 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                                           fontSize: 12),
                                     ),
                                     Text(
-                                      'Rp.${cartProvider.totalPrice()}',
+                                      formatCurrency
+                                          .format(cartProvider.totalPrice()),
                                       style: primaryTextStyle.copyWith(
                                         fontWeight: medium,
                                       ),
@@ -662,7 +668,8 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                                       ),
                                     ),
                                     Text(
-                                      'Rp.${cartProvider.totalPriceShipping()}',
+                                      formatCurrency.format(
+                                          cartProvider.totalPriceShipping()),
                                       style: priceTextStyle.copyWith(
                                         fontWeight: semiBold,
                                         fontSize: 18,

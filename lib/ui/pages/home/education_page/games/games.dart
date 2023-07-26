@@ -50,7 +50,7 @@ class _GamesState extends State<Games> with SingleTickerProviderStateMixin {
                           color: Colors.amber,
                         ),
                       ),
-                      TextSpan(text: 'Koin!'),
+                      TextSpan(text: 'Poin!'),
                     ],
                   ),
                 ),
@@ -116,7 +116,7 @@ class _GamesState extends State<Games> with SingleTickerProviderStateMixin {
           );
         },
       );
-      updatePoints(400); 
+      updatePoints(400);
     }
   }
 

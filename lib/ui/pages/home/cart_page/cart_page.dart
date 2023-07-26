@@ -30,7 +30,6 @@ class _CartPageState extends State<CartPage> {
         points = fetchedPoints;
       });
     } catch (e) {
-     
       print('Error fetching points: $e');
     }
   }
@@ -44,6 +43,15 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    );
+    int pointsToDeduct = usePoints ? points : 0;
+    double totalHarga = usePoints
+        ? cartProvider.totalPrice().toDouble() - pointsToDeduct.toDouble()
+        : cartProvider.totalPrice().toDouble();
     header() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -74,6 +82,7 @@ class _CartPageState extends State<CartPage> {
           },
         ),
       );
+    
     }
 
     Widget emptyCart() {
@@ -226,8 +235,7 @@ class _CartPageState extends State<CartPage> {
                           SizedBox(width: 8),
                           Switch(
                             activeColor: primaryColor,
-                            value:
-                                usePoints, 
+                            value: usePoints,
                             onChanged: _onSwitchChanged,
                           ),
                         ],
@@ -235,7 +243,6 @@ class _CartPageState extends State<CartPage> {
                     ],
                   ),
                 ),
-                
                 Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -264,7 +271,7 @@ class _CartPageState extends State<CartPage> {
                                 style: primaryTextStyle,
                               ),
                               Text(
-                                'Rp.${usePoints ? cartProvider.totalPrice() - pointsToDeduct : cartProvider.totalPrice()}',
+                                formatCurrency.format(totalHarga),
                                 style: priceTextStyle.copyWith(
                                   fontSize: 16,
                                   fontWeight: semiBold,
@@ -323,7 +330,6 @@ class _CartPageState extends State<CartPage> {
           ],
         ),
       );
-   
     }
 
     return Scaffold(
