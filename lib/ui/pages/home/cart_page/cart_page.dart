@@ -26,6 +26,7 @@ class _CartPageState extends State<CartPage> {
 
       final data = snapshot.data() as Map<String, dynamic>?;
       final fetchedPoints = data?['points'] ?? 0;
+      final fetchedShipping = data?['shipping'] ?? 0;
       setState(() {
         points = fetchedPoints;
       });
@@ -82,7 +83,6 @@ class _CartPageState extends State<CartPage> {
           },
         ),
       );
-    
     }
 
     Widget emptyCart() {
@@ -159,19 +159,136 @@ class _CartPageState extends State<CartPage> {
     Widget customBottomNav() {
       int pointsToDeduct = usePoints ? points : 0;
       return Container(
-        height: 130,
+        height: 190,
         child: Stack(
           children: [
             Column(
               children: [
                 Container(
                   height: 60,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: greyColor,
+                        width: 0.9,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 5,
+                      ),
+                      StreamBuilder<DocumentSnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection('data')
+                            .doc('vmartPay')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return CircularProgressIndicator();
+                          }
+
+                          final data =
+                              snapshot.data!.data() as Map<String, dynamic>?;
+                          final shipping = data?['shipping'] ??
+                              0; // Default value 0 if data is not available
+                          final formattedShipping = NumberFormat.currency(
+                            locale: 'id',
+                            symbol: 'Rp',
+                            decimalDigits: 0,
+                          ).format(shipping);
+
+                          // Assuming you have a variable 'totalPrice' that holds the total price of the items
+
+                          // Check if the total price exceeds the shipping cost
+                          if (totalHarga > shipping) {
+                            return Row(
+                              children: [
+                                Image.asset(
+                                  'assets/checked.png', // Replace this with the asset image for free shipping
+                                  width: 32,
+                                  height: 32,
+                                ),
+                                SizedBox(width: 10),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'yay, ',
+                                    style: primaryTextStyle.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: 'Gratis Ongkir! ',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(3.14159),
+                                  child: Image.asset(
+                                    'assets/free_ongkir.png',
+                                    width: 32,
+                                    height: 32,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'Gratis Ongkir ',
+                                    style: primaryTextStyle.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: 'minimum  belanja ',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: '$formattedShipping',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 60,
                   padding: EdgeInsets.symmetric(horizontal: 5, vertical: 13),
                   decoration: BoxDecoration(
                     border: Border(
                       top: BorderSide(
-                        color: subtitleColor,
-                        width: 1,
+                        color: greyColor,
+                        width: 0.9,
                       ),
                     ),
                   ),
@@ -248,8 +365,8 @@ class _CartPageState extends State<CartPage> {
                   decoration: BoxDecoration(
                     border: Border(
                       top: BorderSide(
-                        color: subtitleColor,
-                        width: 1,
+                        color: greyColor,
+                        width: 0.9,
                       ),
                     ),
                   ),

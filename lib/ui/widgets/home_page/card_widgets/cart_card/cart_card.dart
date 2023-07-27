@@ -76,47 +76,25 @@ class CartCard extends StatelessWidget {
                       if (cart.quantity < cart.product!.totalStock) {
                         cartProvider.addQuantity(cart.id!);
                       } else {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor: backgroundColor3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Peringatan',
-                                    style: primaryTextStyle.copyWith(
-                                      fontWeight: semiBold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.error_outline,
-                                    size: 25,
-                                    color: Colors.red,
-                                  ),
-                                ],
-                              ),
-                              content: Text(
-                                'Kamu sudah mencapai batas maksimum.',
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: Text('OK'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            behavior: SnackBarBehavior
+                                .floating, // Membuat SnackBar mengambang
+                            margin: EdgeInsets.only(
+                              bottom: 5,
+                              right: 5,
+                              left: 5,
+                            ),
+                            content: Text(
+                              'Kamu sudah mencapai batas maksimum!',
+                              style: TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         );
                       }
                     },

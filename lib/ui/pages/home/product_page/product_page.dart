@@ -217,7 +217,7 @@ class _ProductPageState extends State<ProductPage> {
                   width: 140,
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/addAddress');
+                      Navigator.pushNamed(context, '/checkout');
                     },
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(
