@@ -193,21 +193,19 @@ class _CartPageState extends State<CartPage> {
                           final data =
                               snapshot.data!.data() as Map<String, dynamic>?;
                           final shipping = data?['shipping'] ??
-                              0; // Default value 0 if data is not available
+                              0; 
                           final formattedShipping = NumberFormat.currency(
                             locale: 'id',
                             symbol: 'Rp',
                             decimalDigits: 0,
                           ).format(shipping);
 
-                          // Assuming you have a variable 'totalPrice' that holds the total price of the items
-
-                          // Check if the total price exceeds the shipping cost
+                        
                           if (totalHarga > shipping) {
                             return Row(
                               children: [
                                 Image.asset(
-                                  'assets/checked.png', // Replace this with the asset image for free shipping
+                                  'assets/checked.png', 
                                   width: 32,
                                   height: 32,
                                 ),

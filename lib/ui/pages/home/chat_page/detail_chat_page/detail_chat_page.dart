@@ -35,61 +35,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     header() {
-      // return PreferredSize(
-      //   preferredSize: Size.fromHeight(70),
-      //   child: AppBar(
-      //     backgroundColor: backgroundColor1,
-      //     centerTitle: false,
-      //     title: Row(
-      //       children: [
-      //         Image.asset(
-      //           'assets/vmart_on.png',
-      //           width: 60,
-      //         ),
-      //         SizedBox(
-      //           width: 12,
-      //         ),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             Text(
-      //               'Vegetables Mart',
-      //               style: primaryTextStyle.copyWith(
-      //                 fontWeight: medium,
-      //                 fontSize: 14,
-      //               ),
-      //             ),
-      //             Text(
-      //               'Online',
-      //               style: secondaryTextStyle.copyWith(
-      //                 fontWeight: light,
-      //                 fontSize: 14,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     bottom: PreferredSize(
-      //       preferredSize: Size.fromHeight(1.0),
-      //       child: Divider(
-      //         color: greyColor,
-      //         height: 1.0,
-      //         thickness: 1.2,
-      //       ),
-      //     ),
-      //     leading: IconButton(
-      //       icon: Icon(
-      //         Icons.arrow_back,
-      //         color: Colors.black,
-      //       ),
-      //       onPressed: () {
-      //         Navigator.pop(context);
-      //       },
-      //     ),
-      //   ),
-      // );
-
+     
       return AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
