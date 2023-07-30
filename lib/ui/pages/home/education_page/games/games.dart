@@ -180,7 +180,7 @@ class _GamesState extends State<Games> with SingleTickerProviderStateMixin {
         children: [
           Image.asset(
             'assets/VMART.png',
-            width: 213,
+            width: 200,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

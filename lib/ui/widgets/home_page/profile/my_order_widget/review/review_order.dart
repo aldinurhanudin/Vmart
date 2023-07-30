@@ -127,7 +127,11 @@ class _ReviewOrderState extends State<ReviewOrder> {
           },
         ),
       ),
-      body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+      body: ListView(
+        children: [
+          cartProvider.carts.length == 0 ? emptyCart() : content(),
+        ],
+      ),
     );
   }
 }

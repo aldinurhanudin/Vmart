@@ -96,7 +96,7 @@ class _ReviewOrderCardState extends State<ReviewOrderCard>
                           color: Colors.amber,
                         ),
                       ),
-                      TextSpan(text: 'Koin!'),
+                      TextSpan(text: 'Poin!'),
                     ],
                   ),
                 ),
@@ -349,5 +349,6 @@ class _ReviewOrderCardState extends State<ReviewOrderCard>
         ),
       ),
     );
+ 
   }
 }
