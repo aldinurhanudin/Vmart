@@ -73,8 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
     }
 
     Widget nameInput() {
-      return 
-      Container(
+      return Container(
         margin: EdgeInsets.only(top: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +125,6 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       );
-   
     }
 
     Widget usernameInput() {
@@ -352,24 +350,22 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       backgroundColor: backgroundColor1,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              nameInput(),
-              usernameInput(),
-              emailInput(),
-              passwordInput(),
-              isLoading ? LoadingButton() : signUpButton(),
-              Spacer(),
-              footer(),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ListView(
+          children: [
+            header(),
+            nameInput(),
+            usernameInput(),
+            emailInput(),
+            passwordInput(),
+            isLoading ? LoadingButton() : signUpButton(),
+            Spacer(),
+            footer(),
+            Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom))
+          ],
         ),
       ),
     );
