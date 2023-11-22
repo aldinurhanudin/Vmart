@@ -93,18 +93,18 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                   icon: Container(
                     margin: EdgeInsets.only(
-                      top: 20,
-                      bottom: 10,
+                      top: 18,
+                      bottom: 5,
                     ),
                     child: Image.asset(
-                      'assets/icon_chat.png',
-                      width: 20,
+                      'assets/education.png',
+                      width: 25,
                       color: pageProvider.currentIndex == 2
                           ? primaryColor
                           : Color(0xff808191),
                     ),
                   ),
-                  label: 'Pesan',
+                  label: 'Edukasi',
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
@@ -138,7 +138,7 @@ class _MainPageState extends State<MainPage> {
           return WishlistPage();
           break;
         case 2:
-          return ChatPage();
+          return EducationPage();
           break;
         case 3:
           return ProfilePage();

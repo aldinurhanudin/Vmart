@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,7 @@ import '../../shared/shared.dart';
 import 'package:http/http.dart' as http;
 import '../widgets/home_page/profile/my_order_widget/order_complited_notifier.dart';
 import '../widgets/widgets.dart';
+import 'home/education_page/education_page.dart';
 
 // import 'home/profile_page/my_order/my_order.dart';
 

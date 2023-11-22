@@ -16,6 +16,18 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool isLoading = false;
 
+  List<String> listKategori = ["Pengguna", "Admin"];
+
+  String nKategori = "Pengguna";
+  int? nilaiKategori;
+
+  void pilihKategori(String value) {
+    //menampilkan  yang dipilih
+    setState(() {
+      nKategori = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -347,6 +359,60 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     }
 
+    // Widget role() {
+    //   return Column(
+    //     children: [
+    //       Container(
+    //         child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             Expanded(
+    //               child: Text(
+    //                 'Daftar Sebagai',
+    //                 style: blackTextFont.copyWith(
+    //                   fontSize: 16,
+    //                   fontWeight: FontWeight.w400,
+    //                 ),
+    //               ),
+    //             ),
+    //             Column(
+    //               children: [
+    //                 Container(
+    //                     height: 40,
+    //                     width: 152,
+    //                     padding: EdgeInsets.symmetric(horizontal: 10),
+    //                     decoration: BoxDecoration(
+    //                       color: Color(0XFFE1E1E1),
+    //                       borderRadius: BorderRadius.circular(15),
+    //                     ),
+    //                     child: DropdownButton(
+    //                       borderRadius: BorderRadius.circular(14),
+    //                       isExpanded: true,
+    //                       underline: SizedBox(),
+    //                       value: nKategori,
+    //                       onChanged: (String? value) {
+    //                         pilihKategori(
+    //                             value ?? ""); //perubahaan saat  di pilih
+    //                         nilaiKategori = listKategori.indexOf(value ??
+    //                             ""); //mengambil nilai index berdasarkan urutan list
+    //                       },
+    //                       items: listKategori.map((String value) {
+    //                         return DropdownMenuItem(
+    //                           //tampilan isi data dropdown
+    //                           child: Text(value),
+    //                           value: value,
+    //                         );
+    //                       }).toList(),
+    //                     )),
+    //               ],
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     ],
+    //   );
+    // }
+
     return Scaffold(
       backgroundColor: backgroundColor1,
       resizeToAvoidBottomInset: false,
@@ -359,6 +425,10 @@ class _SignUpPageState extends State<SignUpPage> {
             usernameInput(),
             emailInput(),
             passwordInput(),
+            SizedBox(
+              height: 15,
+            ),
+            // role(),
             isLoading ? LoadingButton() : signUpButton(),
             Spacer(),
             footer(),

@@ -115,15 +115,16 @@ class ProfilePage extends StatelessWidget {
                   Icons.receipt_long_outlined,
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/education');
-                },
-                child: menuItem(
-                  'Edukasi',
-                  Icons.school,
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.pushNamed(context, '/education');
+              //   },
+              //   child: menuItem(
+              //     'Edukasi',
+              //     Icons.school,
+              //   ),
+              // ),
+
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/quiz');

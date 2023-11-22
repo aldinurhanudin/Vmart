@@ -75,16 +75,40 @@ class _SelectDeliveryState extends State<SelectDelivery> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // DropdownSearch<String>(
+            //   mode: Mode.MENU,
+            //   // showSelectedItem: true,
+            //   items: ['jne', 'tiki', 'pos'],
+            //   label: 'Pilih Pengiriman',
+            //   onChanged: (String? newValue) {
+            //     fetchShippingCosts(newValue!);
+            //   },
+            //   // selectedItem: selectedShipping,
+            // ),
             DropdownSearch<String>(
-              mode: Mode.MENU,
-              showSelectedItem: true,
-              items: ['jne', 'tiki', 'pos'],
-              label: 'Pilih Pengiriman',
+              popupProps: PopupProps.menu(
+                showSelectedItems: true,
+                disabledItemFn: (String s) => s.startsWith('I'),
+              ),
+              items: ["jne", "tiki", "pos"],
+              dropdownSearchDecoration: InputDecoration(
+                labelText: "Pilih Pengiriman",
+                hintText: "Pilih Pengiriman",
+              ),
               onChanged: (String? newValue) {
                 fetchShippingCosts(newValue!);
               },
               // selectedItem: selectedShipping,
             ),
+
+            DropdownSearch<String>(
+              items: ['jne', 'tiki', 'pos'],
+              // label: 'Pilih Pengiriman',
+              onChanged: (String? newValue) {
+                fetchShippingCosts(newValue!);
+              },
+            ),
+
             if (isLoading)
               Center(
                 child: CircularProgressIndicator(
@@ -94,7 +118,7 @@ class _SelectDeliveryState extends State<SelectDelivery> {
               )
             else
               SizedBox(
-                height: 200, 
+                height: 100,
                 child: ListView.builder(
                   itemCount: shippingCosts.length,
                   itemBuilder: (ctx, index) {

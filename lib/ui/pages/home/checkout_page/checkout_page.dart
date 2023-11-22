@@ -147,7 +147,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget address() {
       return Container(
-        width: 400,
+        // width: 400,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -285,7 +285,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget item() {
       return Container(
-        width: 400,
+        // width: 400,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -357,7 +357,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget shippingOptions() {
       return Container(
-        width: 400,
+        // width: 400,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -409,18 +409,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // DropdownSearch<String>(
+                    //   mode: Mode.MENU,
+                    //   showSelectedItem: true,
+                    //   items: ['jne', 'tiki', 'pos'],
+                    //   label: 'Pilih Pengiriman',
+                    //   onChanged: (String? newValue) {
+                    //     setState(() {
+                    //       isClicked = !isClicked;
+                    //     });
+                    //     fetchShippingCosts(newValue!);
+                    //   },
+                    // ),
+                    //ini harus dibenarkan
                     DropdownSearch<String>(
-                      mode: Mode.MENU,
-                      showSelectedItem: true,
-                      items: ['jne', 'tiki', 'pos'],
-                      label: 'Pilih Pengiriman',
+                      popupProps: PopupProps.menu(
+                        showSelectedItems: true,
+                        disabledItemFn: (String s) => s.startsWith('I'),
+                      ),
+                      items: ["jne", "tiki", "pos"],
+                      dropdownSearchDecoration: InputDecoration(
+                        labelText: "Pilih Pengiriman",
+                        hintText: "Pilih Pengiriman",
+                      ),
                       onChanged: (String? newValue) {
                         setState(() {
                           isClicked = !isClicked;
                         });
                         fetchShippingCosts(newValue!);
                       },
+                      // selectedItem: selectedShipping,
                     ),
+
                     if (isLoading)
                       Center(
                         child: CircularProgressIndicator(
@@ -432,7 +452,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     else
                       AnimatedContainer(
                         duration: Duration(milliseconds: 1),
-                        height: isClicked ? 100 : 10,
+                        height: isClicked ? 90 : 15,
                         child: ListView.builder(
                           itemCount: shippingCosts.length,
                           itemBuilder: (ctx, index) {
@@ -563,7 +583,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     Widget paymentSummary() {
       int pointsToDeduct = usePoints ? points : 0;
       return Container(
-        width: 400,
+        // width: 400,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -712,6 +732,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     height: 7,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: 10,

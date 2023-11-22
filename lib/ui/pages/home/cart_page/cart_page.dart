@@ -192,20 +192,18 @@ class _CartPageState extends State<CartPage> {
 
                           final data =
                               snapshot.data!.data() as Map<String, dynamic>?;
-                          final shipping = data?['shipping'] ??
-                              0; 
+                          final shipping = data?['shipping'] ?? 0;
                           final formattedShipping = NumberFormat.currency(
                             locale: 'id',
                             symbol: 'Rp',
                             decimalDigits: 0,
                           ).format(shipping);
 
-                        
                           if (totalHarga > shipping) {
                             return Row(
                               children: [
                                 Image.asset(
-                                  'assets/checked.png', 
+                                  'assets/checked.png',
                                   width: 32,
                                   height: 32,
                                 ),
@@ -374,6 +372,7 @@ class _CartPageState extends State<CartPage> {
                         height: 8,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             width: 10,

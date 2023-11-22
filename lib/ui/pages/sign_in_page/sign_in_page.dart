@@ -151,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: const Offset(0, 3), 
+                    offset: const Offset(0, 3),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(20),
@@ -173,8 +173,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), 
+                          offset: const Offset(0, 2),
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -193,8 +192,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), 
+                          offset: const Offset(0, 2),
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -215,8 +213,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset:
-                              const Offset(0, 2), 
+                          offset: const Offset(0, 2),
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -237,8 +234,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 5,
-                          offset:
-                              const Offset(0, 2),
+                          offset: const Offset(0, 2),
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
@@ -332,8 +328,6 @@ class _SignInPageState extends State<SignInPage> {
                     color: currentIndex == 3 ? blackColor : greyColor,
                   ),
                 ),
-
-                
               ],
             ),
             SizedBox(
@@ -373,7 +367,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), 
+                      offset: const Offset(0, 2),
                     ),
                   ],
                   color: backgroundColor2,
@@ -404,7 +398,6 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-          
             ],
           ),
         ),
@@ -440,7 +433,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 2), 
+                      offset: const Offset(0, 2),
                     ),
                   ],
                   color: backgroundColor2,
@@ -472,39 +465,115 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
       );
     }
 
-    Widget rememberMe() {
+    Widget captcha() {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          SizedBox(
-              height: 24.0,
-              width: 24.0,
-              child: Theme(
-                data: ThemeData(unselectedWidgetColor: Color(0xFF7B7B7B)),
-                child: Checkbox(
-                    activeColor: primaryColor,
-                    //  Color(0xff00C8E8),
-                    value: _isChecked,
-                    onChanged: _handleRemeberme),
-              )),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Container(
+            height: 50,
+            width: 180,
+            // margin: EdgeInsets.only(top: 30),
+            decoration: BoxDecoration(
+              color: backgroundColor1,
+              // borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                SizedBox(
+                    height: 24.0,
+                    width: 24.0,
+                    child: Theme(
+                      data: ThemeData(unselectedWidgetColor: Color(0xFF7B7B7B)),
+                      child: Checkbox(
+                        activeColor: primaryColor,
+                        //  Color(0xff00C8E8),
+                        value: _isChecked,
+                        onChanged: _handleCaptcha,
+                      ),
+                    )),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "I'm not a robot",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 13,
+                    fontWeight: bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Image.asset(
+                  'assets/recaptcha.png',
+                  width: 40,
+                ),
+              ],
+            ),
+          ),
           SizedBox(width: 10.0),
-          Text(
-            "Remember Me",
-            style: TextStyle(
-              color: Colors.black54,
-              fontSize: 13,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/forgotPassword');
+            },
+            child: Text(
+              "Lupa password?",
+              style: TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 15,
+                fontWeight: bold,
+              ),
             ),
           )
         ]),
       );
     }
+
+    // Widget signInButton() {
+    //   return Padding(
+    //     padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+    //     child: Container(
+    //       height: 50,
+    //       width: double.infinity,
+    //       margin: EdgeInsets.only(top: 30),
+    //       child: TextButton(
+    //         onPressed: handleSignIn,
+    //         style: TextButton.styleFrom(
+    //           backgroundColor: primaryColor,
+    //           shape: RoundedRectangleBorder(
+    //             borderRadius: BorderRadius.circular(12),
+    //           ),
+    //         ),
+    //         child: Text(
+    //           'Masuk',
+    //           style: thirdTextStyle.copyWith(
+    //             fontSize: 16,
+    //             fontWeight: medium,
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     Widget signInButton() {
       return Padding(
@@ -514,9 +583,9 @@ class _SignInPageState extends State<SignInPage> {
           width: double.infinity,
           margin: EdgeInsets.only(top: 30),
           child: TextButton(
-            onPressed: handleSignIn,
+            onPressed: _isChecked ? handleSignIn : _showCaptchaAlert,
             style: TextButton.styleFrom(
-              backgroundColor: primaryColor,
+              backgroundColor: _isChecked ? primaryColor : primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -580,7 +649,7 @@ class _SignInPageState extends State<SignInPage> {
           SizedBox(
             height: 5,
           ),
-          rememberMe(),
+          captcha(),
           isLoading ? LoadingButton() : signInButton(),
           Spacer(),
           footer(),
@@ -592,22 +661,37 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  void _handleRemeberme(value) async {
-   
-    print("Handle Rember Me");
+  void _handleCaptcha(value) async {
     _isChecked = value;
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    _prefs.setBool("remember_me", value);
-    // SharedPreferences.getInstance().then(
-    //   (prefs) {
-    //     prefs.setBool("remember_me", value);
-    //     prefs.setString("email", loginController.emailController.text);
-    //     prefs.setString("password", loginController.passwordController.text);
-    //   },
-    // );
+
     setState(() {
       _isChecked = value;
     });
   }
-  
+
+  void _showCaptchaAlert() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            'Klik Captcha Terlebih Dahulu!!',
+            style: primaryTextStyle.copyWith(
+              fontSize: 15,
+              fontWeight: bold,
+            ),
+          ),
+          content: Text('Harap klik Captcha sebelum masuk.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

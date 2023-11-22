@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           // borderRadius: BorderRadius.circular(12),
@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Temukan penawaran terbaik\ndi Vmart!',
@@ -50,9 +51,6 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 14,
                       // fontWeight: semiBold,
                     ),
-                  ),
-                  SizedBox(
-                    width: 50,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -64,7 +62,10 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 22),
+                      padding: const EdgeInsets.only(
+                        bottom: 22,
+                        // right: 10,
+                      ),
                       child: Text(
                         'Lihat Semua',
                         style: greenTextStyle.copyWith(
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: const Offset(0, 2), 
+              offset: const Offset(0, 2),
             ),
           ],
           // borderRadius: BorderRadius.circular(12),
@@ -180,7 +181,7 @@ class _HomePageState extends State<HomePage> {
               top: 3,
               bottom: 40,
               child: Image.asset(
-                'assets/spesial_hari_ini.png', 
+                'assets/spesial_hari_ini.png',
                 fit: BoxFit.cover,
                 // height: 20,
               ),

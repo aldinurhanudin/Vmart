@@ -7,6 +7,7 @@ import 'package:vmart/ui/pages/home/education_page/games/games.dart';
 import 'package:vmart/ui/pages/home/education_page/quiz_page/quiz_page.dart';
 import 'package:vmart/ui/widgets/home_page/checkout_widget/address/add_address.dart';
 import 'package:vmart/ui/widgets/home_page/profile/my_order_widget/order_complited_notifier.dart';
+import 'package:vmart/ui/widgets/sign_in_widget/forgot_password_widget.dart';
 import 'package:vmart/ui/widgets/widgets.dart';
 
 import 'controller/education_controller/video_notifier.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         '/education': (context) => EducationPage(),
         '/quiz': (context) => QuizPage(),
         '/games': (context) => Games(),
+        '/forgotPassword': (context) => ForgotPassword(),
       }),
     );
   }
